@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'movies/style.css' %}">
+
+{% if latest_movie_list %}
+<ul>
+    {% for movie in latest_movie_list %}
+    <h1><li><a href="/movies/{{ movie.movie_id }}/">{{ movie.movie_titel }}</a></li></h1>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No movies are available.</p>
+{% endif %}
+
+<button type="button" class="btn btn-dark">Dark</button>
+
+{% endblock %}
