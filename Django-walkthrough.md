@@ -51,7 +51,7 @@ I repeat - restart your command prompt.
     py -m pip install django-mssql-backend
 
 3. Create a directory where the project will live
-    
+
     Create project folder
         mkdir django-project
 
@@ -60,7 +60,7 @@ I repeat - restart your command prompt.
 
 4. Generate the django project files in the project directory
 
-    Run: 
+    Run:
         django-admin startproject mysite
 
     mysite == name of the project
@@ -86,7 +86,7 @@ I repeat - restart your command prompt.
 7. Start django server
     py -3 manage.py runserver
 
-    Visit your site at http://127.0.0.1:8000/ 
+    Visit your site at http://127.0.0.1:8000/
 
     # command line output should be
     Watching for file changes with StatReloader                                                                             
@@ -159,7 +159,7 @@ Ctrl + c in command line to stop server
 
     If you look att tables in your db there are some new ones like dbo.auth_user. It holds all users including the superuser we´re going to create now
 
-3. In terminal write 
+3. In terminal write
     -py -3 manage.py createsuperuser
     -follow the instructions
 
@@ -242,11 +242,11 @@ Ctrl + c to stop server
         ]
 
 5. In order to view the content we create in our movies app we have to point the root url from our mysite project
-    - Go to 
+    - Go to
         mysite/urls.py
 
     - add our url pattern
-    
+
         from django.contrib import admin
 
         from django.urls import include, path
@@ -255,7 +255,7 @@ Ctrl + c to stop server
             path('movies/', include('movies.urls')),
             path('admin/', admin.site.urls),
         ]
-       
+
 6. Register app with project in mysite/settings.py
 
     - Open mysite/settings.py and add movies
@@ -303,7 +303,7 @@ Models are python classes that structures the way we want to store data and tran
         movie_titel = models.CharField(max_length=100)
         movie_description = models.TextField(max_length=1000)
         release_date = models.DateField('Release date')
-        genre = models.ForeignKey(Genres, on_delete=models.CASCADE)
+        genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
 
 2. Create sql tables for our models
@@ -323,7 +323,7 @@ Models are python classes that structures the way we want to store data and tran
         from django.contrib import admin
 
         from .models import Movies, Genres
-        
+
         admin.site.register(Movies)
         admin.site.register(Genres)
 
@@ -425,7 +425,7 @@ Create views to view our movies
 
 
 4. In movies/templates/movies/ create <detail.html> and add
-    
+
     <h1>{{ movie_details.movie_titel }}</h1>
     <p>{{ movie_details.movie_description }}</p>
 
@@ -448,6 +448,3 @@ Create views to view our movies
     Save and visit your site http://127.0.0.1:8000/movies
 
     Ctrl + Shift + R on windows to do a hard refresh of the site and show changes made to CSS
-
-
- 
