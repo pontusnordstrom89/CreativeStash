@@ -25,7 +25,7 @@
         - WINDOWS       venv\Scripts\activate
 
 
-    4. Run
+    4. To install CreativeStash's required python modules run
         pip install -r requirements.txt
 
 
@@ -33,7 +33,7 @@
 
         - Run 
             - MAC       python3 manage.py runserver
-            
+
             - WINDOWS   py -3 manage.py runserver
 
 

@@ -124,3 +124,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
+
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/theStash'
+
+# We do not support emails yet. This logs any emails sent to the console (so you can copy the password reset link from the console).
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
