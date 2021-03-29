@@ -21,7 +21,9 @@
 
                 <!-- Short example of django user auth -->
                 <div class="col-sm-2" id="user-info">
+                 <h2>Hej!!</h2>
                     <p>Visar inloggad användare</p>
+
                     {% if user.is_authenticated %}
                     <li>User: {{ user.get_username }}</li>
                     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
