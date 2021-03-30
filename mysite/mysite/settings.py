@@ -76,29 +76,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'CreativeStash',
+        'ENGINE': 'sql_server.pyodbc',
+        'HOST': '127.0.0.1',
+        'USER': 'sa',
+        'PASSWORD': 'Creativestash2021',
+        'PORT': '1433',
+        'OPTIONS': {'driver':'ODBC Driver 17 for SQL Server'}
     }
 }
 
-# Connection for MSSQL
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'mydb',
-        'USER': 'user@myserver',
-        'PASSWORD': 'password',
-        'HOST': 'myserver.database.windows.net',
-        'PORT': '',
 
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
-}
 
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
