@@ -28,9 +28,9 @@ DATABASES = {
 
 
 #>>>>>>> main
-'''
-#MSSQL on MacOS
 
+#MSSQL on MacOS
+'''
 DATABASES = {
     'default': {
         'NAME': 'CreativeStash',
