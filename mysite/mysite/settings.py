@@ -71,34 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database sqlite connection
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Connection for MSSQL
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'mydb',
-        'USER': 'user@myserver',
-        'PASSWORD': 'password',
-        'HOST': 'myserver.database.windows.net',
-        'PORT': '',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
-}
-
-'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -149,3 +121,6 @@ LOGIN_REDIRECT_URL = '/theStash'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+from .local_settings import *
