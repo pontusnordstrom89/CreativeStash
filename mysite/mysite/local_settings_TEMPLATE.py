@@ -1,5 +1,5 @@
 
-#Rename this file to local_settings.py and choose and adjust to your database settings.
+#Rename this file to local_settings.py, uncomment and adjust to your database settings.
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -22,8 +22,12 @@ DATABASES = {
 }
 '''
 
+#<<<<<<< localsettings
+#MSSQL on MacOS
+=======
 
 
+#>>>>>>> main
 '''
 #MSSQL on MacOS
 

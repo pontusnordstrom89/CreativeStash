@@ -71,6 +71,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
+# Database sqlite connection
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'NAME': 'CreativeStash',
+        'ENGINE': 'sql_server.pyodbc',
+        'HOST': '127.0.0.1',
+        'USER': 'sa',
+        'PASSWORD': 'Creativestash2021',
+        'PORT': '1433',
+        'OPTIONS': {'driver':'ODBC Driver 17 for SQL Server'}
+    }
+}
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -120,7 +138,8 @@ LOGIN_REDIRECT_URL = '/theStash'
 # We do not support emails yet. This logs any emails sent to the console (so you can copy the password reset link from the console).
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+#Add package for bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
+# Import the local settings for your database configuration from the local_settings.py file.
 from .local_settings import *
