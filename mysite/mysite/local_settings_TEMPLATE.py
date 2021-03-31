@@ -24,9 +24,9 @@ DATABASES = {
 
 
 
-
-#MSSQL on MacOS
 '''
+#MSSQL on MacOS
+
 DATABASES = {
     'default': {
         'NAME': 'CreativeStash',
@@ -38,4 +38,5 @@ DATABASES = {
         'OPTIONS': {'driver':'ODBC Driver 17 for SQL Server'}
     }
 }
+
 '''
