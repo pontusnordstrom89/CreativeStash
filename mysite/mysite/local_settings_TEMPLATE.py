@@ -22,13 +22,6 @@ DATABASES = {
 }
 '''
 
-#<<<<<<< localsettings
-#MSSQL on MacOS
-=======
-
-
-#>>>>>>> main
-
 #MSSQL on MacOS
 '''
 DATABASES = {
