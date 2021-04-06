@@ -18,7 +18,7 @@ class Profile(models.Model):
     github = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.user.name}:{self.bio}"
+        return f"{self.user}:{self.bio}"
 
 
 class Idea(models.Model):
