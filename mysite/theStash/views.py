@@ -4,13 +4,14 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
-
+from .models import Idea
 
 
 def index(request):
+    latest_idea_list = Idea.objects.order_by('-title')[:5]
     template = loader.get_template('theStash/index.html')
     context = {
-        'CreativeStash': 'CreativeStash'
+        'latest_idea_list': latest_idea_list
     }
     return HttpResponse(template.render(context, request))
 
