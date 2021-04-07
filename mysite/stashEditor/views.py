@@ -4,7 +4,6 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import CreateIdeaForm
-
 from theStash.models import Idea
 
 
@@ -29,7 +28,7 @@ def create(request):
     if form.is_valid():
         # save the form data to model
         form.save()
-        return redirect('')
+        return redirect('/')
 
     
     context = {

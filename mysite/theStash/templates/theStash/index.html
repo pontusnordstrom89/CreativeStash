@@ -1,18 +1,39 @@
-{% extends "base_generic.html" %} <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+{% extends "base_generic.html" %}
+<!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 
 
-{% block content %}  <!-- Page start -->
+{% block content %}
+<!-- Page start -->
 
 
 
 <!--Put content here-->
+<div class="row">
+    {% if latest_idea_list %}
+    
+        {% for idea in latest_idea_list %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ idea.title }}</h5>
+                    <p class="card-text">{{ idea.description }}</p>
+                    
+                    <a href="#" class="btn btn-primary">Read more</a>
+    
+                </div>
+            </div>
+        {% endfor %}
+</div>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+    
+{% endblock %}
 
-<h1>Hello World</h1>
 
-<h3>Index of CreativeStash</h3>
-<p>{{ CreativeStash }}</p>
+
 <!-- Change global CSS go to CreativeStash/mysite/staticfiles/css/globalstyle.css -->
 <!-- For app specific CSS go to CreativeStash/mysite/theStash/static/css/globalstyle.css -->
 
 
-{% endblock %} <!-- Page end -->
+
+<!-- Page end -->
