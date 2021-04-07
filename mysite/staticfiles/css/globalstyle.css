@@ -1,9 +1,4 @@
-body {
-    background-color: pink;
-}
-
-
-
-#user-info {
-    background-color: #f8f8f8;
+.navbar-dark .navbar-toggler {
+    color: #FBFF08;
+    border-color: rgba(255,255,255,.1);
 }
