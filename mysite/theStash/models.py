@@ -11,11 +11,11 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     #profession = models.CharField(max_length=30)
-    twitter = models.TextField(blank=True)
-    instagram = models.TextField(blank=True)
-    vimeo = models.TextField(blank=True)
-    behance = models.TextField(blank=True)
-    github = models.TextField(blank=True)
+    twitter = models.CharField(max_length=30)
+    instagram = models.CharField(max_length=30)
+    vimeo = models.CharField(max_length=30)
+    behance = models.CharField(max_length=30)
+    github = models.CharField(max_length=30)
 
     def __str__(self):
         return f"{self.user}:{self.bio}"
