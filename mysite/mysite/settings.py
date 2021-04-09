@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theStash.apps.ThestashConfig',
     'stashEditor.apps.StasheditorConfig',
+    'crispy_forms',
+    
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -145,3 +149,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Import the local settings for your database configuration from the local_settings.py file.
 from .local_settings import *
+
+
