@@ -19,25 +19,25 @@ def index(request):
 @login_required
 def create(request):
     template = loader.get_template('stashEditor/create.html')
-    form = CreateIdeaForm(request.POST or None, request.FILES or None)
+    create_idea_form = CreateIdeaForm(request.POST or None, request.FILES or None)
 
    
     # create object of form
     
 
      # check if form data is valid
-    if form.is_valid():
+    if create_idea_form.is_valid():
         # Return an object without saving to the DB
-        obj = form.save(commit=False)
+        form_object = create_idea_form.save(commit=False)
         # Add an author field which will contain current user's id
-        obj.creator = User.objects.get(pk=request.user.id)
-        obj.save()  # Save the final "real form" to the DB
+        form_object.creator = User.objects.get(pk=request.user.id)
+        form_object.save()  # Save the final "real form" to the DB
         # save the form data to model
         return redirect('/')
 
     
     context = {
-        'form': form
+        'form': create_idea_form
         }
 
     

@@ -1,14 +1,18 @@
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
-from django.contrib.auth import get_user_model
 
 
 # Create your models here.
+class Category(models.Model):
+    category_name = models.CharField(max_length=30, primary_key=True)
+    category_description = models.TextField(max_length=500)
 
-User = get_user_model()
+    def __str__(self):
+        return self.category_name
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     #profession = models.CharField(max_length=30)
     twitter = models.CharField(max_length=100, blank=True)
@@ -16,17 +20,13 @@ class Profile(models.Model):
     vimeo = models.CharField(max_length=100, blank=True)
     behance = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
+    user_interests = models.ManyToManyField(Category)
 
     def __str__(self):
         return f"{self.user}:{self.bio}"
 
 
-class Category(models.Model):
-    category_name = models.CharField(max_length=30, primary_key=True)
-    category_description = models.TextField(max_length=500)
 
-    def __str__(self):
-        return self.category_name
 
 class Idea(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
@@ -40,7 +40,3 @@ class Idea(models.Model):
     def __str__(self):
         return self.idea_title
 
-
-class Interest(models.Model):
-    category_name = models.ForeignKey(Category, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)

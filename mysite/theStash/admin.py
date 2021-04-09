@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Profile, Idea, Category, Interest
+from .models import Profile, Idea, Category
 
 admin.site.register(Profile)
 admin.site.register(Idea)
 admin.site.register(Category)
-admin.site.register(Interest)
+
