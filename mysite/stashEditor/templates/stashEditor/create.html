@@ -3,6 +3,8 @@
 {% block content %}
 
 <h3>Idea editor</h3>
+<div class="row">
+<div class="col-sm-5">
 {% load crispy_forms_tags %}
 <form action="" method="post">
     {% csrf_token %}
@@ -10,8 +12,11 @@
     
     <button type="submit" class="btn btn-warning">Submit</button>
 </form>
+</div>
+<div class="col-sm-5">
+    <h1>halv kolumn</h1>
+</div>
 
-
-
+</div>
 
 {% endblock %}
