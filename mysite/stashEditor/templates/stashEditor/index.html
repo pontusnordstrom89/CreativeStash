@@ -6,7 +6,8 @@
 
 <h1>Idea editor</h1>
 
-<h3><a href="{% url 'create'%}">Create idea</a></h3>
+<h3><a href="{% url 'stashEditor:create'%}">Create idea</a></h3>
+<h3><a href="{% url 'theStash:restricted'%}">Create idea</a></h3>
 
 <div class="row">
 {% if latest_idea_list %}
