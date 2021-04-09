@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import CreateIdeaForm
 from theStash.models import Idea
-
+from django.contrib.auth.models import User
 
 def index(request):
     latest_idea_list = Idea.objects.order_by('-idea_title')
@@ -19,15 +19,20 @@ def index(request):
 @login_required
 def create(request):
     template = loader.get_template('stashEditor/create.html')
-
-    
-    # create object of form
     form = CreateIdeaForm(request.POST or None, request.FILES or None)
+
+   
+    # create object of form
+    
 
      # check if form data is valid
     if form.is_valid():
+        # Return an object without saving to the DB
+        obj = form.save(commit=False)
+        # Add an author field which will contain current user's id
+        obj.creator = User.objects.get(pk=request.user.id)
+        obj.save()  # Save the final "real form" to the DB
         # save the form data to model
-        form.save()
         return redirect('/')
 
     
