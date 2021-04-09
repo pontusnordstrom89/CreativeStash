@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theStash.apps.ThestashConfig',
     'stashEditor.apps.StasheditorConfig',
+    
 ]
 
 MIDDLEWARE = [
