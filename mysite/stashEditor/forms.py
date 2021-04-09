@@ -6,4 +6,4 @@ class CreateIdeaForm(forms.ModelForm):
 
     class Meta:
         model = Idea
-        fields = ['title', 'profile', 'description', 'public']
+        fields = '__all__'
