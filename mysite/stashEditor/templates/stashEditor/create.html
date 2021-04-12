@@ -4,19 +4,37 @@
 
 <h3>Idea editor</h3>
 <div class="row">
-<div class="col-sm-5">
-{% load crispy_forms_tags %}
-<form action="" method="post">
-    {% csrf_token %}
-        {{form|crispy}}
-    
-    <button type="submit" class="btn btn-warning">Submit</button>
-</form>
-</div>
-<div class="col-sm-5">
-    <h1>halv kolumn</h1>
-</div>
+    <div class="col-sm-5">
+        {% load crispy_forms_tags %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.idea_title|as_crispy_field}}
+            {{form.idea_description|as_crispy_field}}
+            {{form.idea_category|as_crispy_field}}
+            <button type="button" class="btn btn-primary" id="show-add-category">Add Category</button>
+            {{form.is_public|as_crispy_field}}
+            <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
 
+        
+
+        
+
+
+    </div>
+    <div class="col-sm-5">
+        <div id="add-category-form">
+            <h3>Add new category</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{categoryform|crispy}}
+        
+                <button type="submit" class="btn btn-warning" id="submit-new-category">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
+
+

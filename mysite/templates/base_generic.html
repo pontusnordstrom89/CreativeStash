@@ -13,6 +13,15 @@
         <!-- Add additional CSS in static file -->
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script>
+
+            $("#show-add-category").click(function () {
+                    $("#add-category-form").toggle();
+                });
+        </script>
+        
     </head>
 
 
@@ -124,6 +133,8 @@
             integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
             crossorigin="anonymous"></script>
         <!-- Import Bootstrp JavaScript ENDS -->
+        <script src="{% static 'js/globalscripts.js' %}"></script>
+        {% block javascript %}{% endblock %}
     </body>
 
 </html>

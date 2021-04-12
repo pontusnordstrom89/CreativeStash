@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .forms import CreateIdeaForm
-from theStash.models import Idea
+from .forms import CreateIdeaForm, CreateCategoryFrom
+from theStash.models import Idea, Category
 from django.contrib.auth.models import User
 
 def index(request):
@@ -17,11 +17,24 @@ def index(request):
 
 
 @login_required
+def create_category(request):
+    create_category_form = CreateCategoryFrom(request.POST or None, request.FILES or None)
+
+    # check if form data is valid
+    if create_category_form.is_valid():
+        create_category_form.save()
+    return create_category_form
+
+
+
+@login_required
 def create(request):
     template = loader.get_template('stashEditor/create.html')
+
+    
     create_idea_form = CreateIdeaForm(request.POST or None, request.FILES or None)
 
-   
+    category = create_category(request)
     # create object of form
     
 
@@ -37,7 +50,8 @@ def create(request):
 
     
     context = {
-        'form': create_idea_form
+        'form': create_idea_form,
+        'categoryform': category
         }
 
     
