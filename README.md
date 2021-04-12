@@ -39,6 +39,51 @@
 
 
 
+    EXTRA
+    -To use sqlite3 database 
+
+        - Go to CreativeStash/mysite/mysite/settings.py
+            Find DATABASES uncomment and replace with
+
+            DATABASES = {
+                'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                }
+            }
+
+        - In shell/terminal cd to CreativeStash/mysite
+
+            1. Run
+                - MAC       python3 manage.py makemigrations
+
+                - WINDOWS   py -3 manage.py makemigrations
+
+
+            2. 
+                - MAC       python3 manage.py makemigrations theStash
+
+                - WINDOWS   py -3 manage.py makemigrations theStash
+
+
+            3. 
+                - MAC       python3 manage.py migrate
+
+                - WINDOWS   py -3 manage.py migrate
+
+            4. 
+                - MAC       python3 manage.py createsuperuser
+
+                - WINDOWS   py -3 manage.py createsuperuser
+
+            Follow instructions
+
+            Now you can create users, create ideas and use the admin pages at http://127.0.0.1:8000/admin/
+
+
+
+
+
 
 # Project Code
 - Python
