@@ -1,4 +1,4 @@
-#### CreativeStash
+# CreativeStash
 - A project by Group 14 in course DA336A-TS043.
 - Spring 2021. 
 - Bachelor of Science in Computer and Information Science, Malmö University.
@@ -31,7 +31,7 @@
 
     5. cd to CreativeStash/mysite/
 
-        - Run 
+       Run 
             - MAC       python3 manage.py runserver
 
             - WINDOWS   py -3 manage.py runserver
@@ -40,9 +40,9 @@
 
 
     EXTRA
-    -To use sqlite3 database 
+    * To use sqlite3 database 
 
-        - Go to CreativeStash/mysite/mysite/settings.py
+        * Go to CreativeStash/mysite/mysite/settings.py
             Find DATABASES uncomment and replace with
 
             DATABASES = {
@@ -52,7 +52,7 @@
                 }
             }
 
-        - In shell/terminal cd to CreativeStash/mysite
+        * In shell/terminal cd to CreativeStash/mysite
 
             1. Run
                 - MAC       python3 manage.py makemigrations
@@ -85,15 +85,14 @@
 
 
 
-# Project Code
+## Project Code
 - Python
 - HTML, CSS, JavaScript
 - SQL
 
-# Project frameworks
+## Project frameworks
 - Django
 - Bootstrap
 
-
-# Dependencies
+## Dependencies
 - Python see requirements.txt
