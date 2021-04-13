@@ -8,7 +8,7 @@ from .models import Idea
 
 
 def index(request):
-    latest_idea_list = Idea.objects.order_by('-idea_title')[:5]
+    latest_idea_list = Idea.objects.order_by('-idea_title')[:20]
     template = loader.get_template('theStash/index.html')
     context = {
         'latest_idea_list': latest_idea_list
