@@ -1,4 +1,13 @@
 .navbar-dark .navbar-toggler {
     color: #61614d;
-    border-color: rgba(255,255,255,.1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+#navbar-account-button {
+    margin: 0px 60px 0px 60px;
+    min-width: 100px;
+}
+
+#add-category-form {
+    display: none;
 }
