@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.db import models
 
 
@@ -23,10 +22,7 @@ class Profile(models.Model):
     user_interests = models.ManyToManyField(Category)
 
     def __str__(self):
-        return f"{self.user}:{self.bio}"
-
-
-
+        return self.user
 
 class Idea(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
