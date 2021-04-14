@@ -1,6 +1,4 @@
 from django import forms
-
-
 from theStash.models import Idea, Category
 
 

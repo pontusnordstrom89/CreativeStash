@@ -38,7 +38,7 @@ def create(request):
     # create object of form
     
 
-     # check if form data is valid
+    # check if form data is valid
     if create_idea_form.is_valid():
         # Return an object without saving to the DB
         form_object = create_idea_form.save(commit=False)
