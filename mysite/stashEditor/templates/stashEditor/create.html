@@ -8,11 +8,11 @@
         {% load crispy_forms_tags %}
         <form action="" method="post">
             {% csrf_token %}
-            {{form.idea_title|as_crispy_field}}
-            {{form.idea_description|as_crispy_field}}
-            {{form.idea_category|as_crispy_field}}
+            {{ideaform.idea_title|as_crispy_field}}
+            {{ideaform.idea_description|as_crispy_field}}
+            {{ideaform.idea_category|as_crispy_field}}
             <button type="button" class="btn btn-primary" id="show-add-category">Add Category</button>
-            {{form.is_public|as_crispy_field}}
+            {{ideaform.is_public|as_crispy_field}}
             <button type="submit" class="btn btn-warning">Submit</button>
         </form>
 

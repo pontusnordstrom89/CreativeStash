@@ -49,7 +49,7 @@ def create(request):
 
     
     context = {
-        'form': create_idea_form,
+        'ideaform': create_idea_form,
         'categoryform': category
         }
 
