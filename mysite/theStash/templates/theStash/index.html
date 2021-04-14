@@ -8,7 +8,7 @@
 
 
 <!--Put content here-->
-<div class="row">
+<section class="row">
     {% if latest_idea_list %}
     
         {% for idea in latest_idea_list %}
@@ -22,7 +22,7 @@
                 </div>
             </div>
         {% endfor %}
-</div>
+</section>
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
