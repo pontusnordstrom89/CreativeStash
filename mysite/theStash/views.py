@@ -17,8 +17,7 @@ def index(request):
 
 
 '''
-
-Innan funktionen under (restricted_to_users) körs används en decorator = @login_required det är en inbyggd funktion vi får från django som ser om användaren är innloggad
+Innan funktionen under (restricted_to_users) körs används en decorator = @login_required det är en inbyggd funktion vi får från django som ser om användaren är inloggad
 Om användaren är inloggad körs funktionen och sidan visas, annars dirigeras användaren till Loginsidan
 '''
 
