@@ -15,8 +15,10 @@
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
-        <script>
 
+
+        <!---Denna script tag ska bort i framtiden-->
+        <script>
             $("#show-add-category").click(function () {
                     $("#add-category-form").toggle();
                 });
@@ -32,14 +34,14 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
+            <section class="container-fluid">
                 <a class="navbar-brand" href="{% url 'theStash:theStashindex' %}">CreativeStash</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <section class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"
@@ -72,7 +74,7 @@
 
 
 
-                    <div class="dropdown">
+                    <section class="dropdown">
 
                         {% if user.is_authenticated %}
                             <button class="btn btn-warning dropdown-toggle" type="button" id="navbar-account-button" data-bs-toggle="dropdown"
@@ -93,21 +95,14 @@
                                 <li><a class="dropdown-item" href="{% url 'theStash:signup'%}">Signup</a></li>
                             </ul>
                         {% endif %}
-                    </div>
-                </div>
+                    </section>
+                </section>
 
-            </div>
-            </div>
+            </section>
         </nav>
-        <div class="container-fluid">
-            <div class="row justify-content-md-center">
-
-                <!-- Short example of django user auth -->
-
-
-
-
-                <div class="col-sm-10">
+        <main class="container-fluid">
+            <section class="row justify-content-md-center">
+                <section class="col-sm-10">
 
                     {% block content %}
 
@@ -120,9 +115,9 @@
 
                     {% endblock %}
 
-                </div>
-            </div>
-        </div>
+                </section>
+            </section>
+        </main>
 
 
         <!-- Import Bootstrp JavaScript START -->
@@ -134,7 +129,9 @@
             crossorigin="anonymous"></script>
         <!-- Import Bootstrp JavaScript ENDS -->
         <script src="{% static 'js/globalscripts.js' %}"></script>
-        {% block javascript %}{% endblock %}
+        {% block javascript %}
+        <!-- Dessa tags fungerar på samma sätt som block content och endblock fast med scripts. Lägg dessa block på en html sida, skriv js och det kommer hamna här.-->
+        {% endblock %}
     </body>
 
 </html>
