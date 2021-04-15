@@ -4,16 +4,13 @@
 
 {% block content %}
 
-<h1>Idea editor</h1>
-
-<h3><a href="{% url 'stashEditor:create'%}">Create idea</a></h3>
-<h3><a href="{% url 'theStash:restricted'%}">Create idea</a></h3>
+<h3>Idea editor</h3>
 
 <div class="row">
 {% if latest_idea_list %}
 
     {% for idea in latest_idea_list %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 17rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ idea.idea_title }}</h5>
                 <p class="card-text">{{ idea.idea_description }}</p>
