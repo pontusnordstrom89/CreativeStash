@@ -7,4 +7,5 @@ app_name = 'stashEditor'
 urlpatterns = [
     path('', views.index, name='index'),
     path('create', views.create, name='create'),
+    path('how_it_works', views.how_it_works, name='how_it_works'),
 ]
