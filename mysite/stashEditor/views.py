@@ -56,4 +56,6 @@ def create(request):
     
     return HttpResponse(template.render(context, request))
 
-
+def how_it_works(request):
+    template = loader.get_template('stashEditor/how_it_works.html')
+    return HttpResponse(template.render())
