@@ -4,7 +4,9 @@
 
 {% block content %}
 <!-- Page start -->
-
+<section class="col-sm-12">
+    <h3>Browse ideas.....</h3>
+</section>
 
 
 <!--Put content here-->
@@ -12,21 +14,23 @@
     {% if latest_idea_list %}
     
         {% for idea in latest_idea_list %}
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 17rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ idea.idea_title }}</h5>
                     <p class="card-text">{{ idea.idea_description }}</p>
                     <p><a href="#"a>{{idea.creator}}</a></p>
                     <a href="#" class="btn btn-warning">Read more</a>
-    
                 </div>
             </div>
+
         {% endfor %}
 </section>
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
-    
+
+
+
 {% endblock %}
 
 
