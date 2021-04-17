@@ -13,7 +13,7 @@
         <!-- Add additional CSS in static file -->
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
         
 
 
@@ -128,7 +128,10 @@
             integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
             crossorigin="anonymous"></script>
         <!-- Import Bootstrp JavaScript ENDS -->
+        <!-- Import Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{% static 'js/globalscripts.js' %}"></script>
+
         {% block javascript %}
         <!-- Dessa tags fungerar på samma sätt som block content och endblock fast med scripts. Lägg dessa block på en html sida, skriv js och det kommer hamna här.-->
         {% endblock %}
