@@ -1,40 +1,59 @@
 {% extends "base_generic.html" %}
 
+{% block javascript %}
+<script>
+
+    $("#submit_idea_form").click(function () {
+
+        $("#idea_form").submit();
+    });
+
+    
+
+    $("#id_category_name").change(function () {
+        var category_name = $(this).val();
+
+        $.ajax({
+            url: '/stashEditor/ajax/validate_categories/',
+            data: {
+                'category_name': category_name
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.is_taken) {
+                    $("#info").html(data.message + ' already exists in category list');
+                } else {}
+                    $("#id_idea_category").append('<option value=' + data.category +'>' + data.category + '</option>')
+                    $("#id_category_name").val("");
+            }
+        });
+
+    });
+
+
+
+</script>
+
+{% endblock %}
+
+
 {% block content %}
 
 <h3>Idea editor</h3>
 <div class="row">
     <div class="col-sm-5">
         {% load crispy_forms_tags %}
-        <form action="" method="post">
+        <form action="" method="post" id="idea_form">
             {% csrf_token %}
             {{ideaform.idea_title|as_crispy_field}}
             {{ideaform.idea_description|as_crispy_field}}
+            {{categoryform.category_name|as_crispy_field}}
+            <strong class="text-info" id="info" name="category_list"></strong>
             {{ideaform.idea_category|as_crispy_field}}
-            <button type="button" class="btn btn-primary" id="show-add-category">Add Category</button>
             {{ideaform.is_public|as_crispy_field}}
-            <button type="submit" class="btn btn-warning">Submit</button>
         </form>
-
-        
-
-        
-
-
-    </div>
-    <div class="col-sm-5">
-        <div id="add-category-form">
-            <h3>Add new category</h3>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{categoryform|crispy}}
-        
-                <button type="submit" class="btn btn-warning" id="submit-new-category">Submit</button>
-            </form>
-        </div>
+        <button class="btn btn-warning" id="submit_idea_form">Submit</button>
     </div>
 </div>
 
 {% endblock %}
-
-

@@ -4,8 +4,7 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    category_name = models.CharField(max_length=30, primary_key=True)
-    category_description = models.TextField(max_length=500)
+    category_name = models.CharField(max_length=100, primary_key=True)
 
     def __str__(self):
         return self.category_name
