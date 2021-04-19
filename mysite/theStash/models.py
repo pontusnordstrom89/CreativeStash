@@ -12,12 +12,11 @@ class Category(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
-    #profession = models.CharField(max_length=30)
-    twitter = models.CharField(max_length=100, blank=True)
-    instagram = models.CharField(max_length=100, blank=True)
-    vimeo = models.CharField(max_length=100, blank=True)
-    behance = models.CharField(max_length=100, blank=True)
-    github = models.CharField(max_length=100, blank=True)
+    #profile_picture = models.Image()
+    #social links connected to user profile
+    link1 = models.URLField(max_length=200, blank=True)
+    link2 = models.URLField(max_length=200, blank=True)
+    link3 = models.URLField(max_length=200, blank=True)
     user_interests = models.ManyToManyField(Category)
 
     def __str__(self):
@@ -34,4 +33,3 @@ class Idea(models.Model):
 
     def __str__(self):
         return self.idea_title
-
