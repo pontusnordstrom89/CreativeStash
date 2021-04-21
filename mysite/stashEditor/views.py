@@ -7,6 +7,7 @@ from .forms import CreateIdeaForm, CreateCategoryFrom
 from theStash.models import Idea, Category
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     latest_idea_list = Idea.objects.order_by('idea_title')
@@ -25,22 +26,26 @@ def validate_categories(request):
 
     if data['is_taken']:
         data['message'] = category_name
-    else: 
+    else:
         data['category'] = category_name
         new_category = Category(category_name=category_name)
         new_category.save()
-        
+
     return JsonResponse(data)
 
 
-    
+
 @login_required
 def create(request):
     template = loader.get_template('stashEditor/create.html')
+    fs = FileSystemStorage()
+
 
     if request.method == 'POST':
         create_category_form = CreateCategoryFrom(request.POST)
         create_idea_form = CreateIdeaForm(request.POST)
+        uploaded_picture = request.FILES['image']
+
 
         # check if form data is valid
         if create_idea_form.is_valid():
@@ -48,15 +53,19 @@ def create(request):
             form_object = create_idea_form.save(commit=False)
             # Add an author field which will contain current user's id
             form_object.creator = User.objects.get(pk=request.user.id)
+            #Save the uploaded image
+            name = fs.save(uploaded_picture.name, uploaded_picture)
+            url = fs.url(name)
+            form_object.image = url
             # Save the final "real form" to the DB
             form_object.save()
-            
+
             return redirect('/')
 
     else:
         create_category_form = CreateCategoryFrom()
         create_idea_form = CreateIdeaForm()
-    
+
         context = {
             'ideaform': create_idea_form,
             'categoryform': create_category_form
