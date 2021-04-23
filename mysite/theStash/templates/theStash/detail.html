@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Document</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">References</a>
+            </li>
+        </ul>
+    </div>
+    <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ idea.idea_title }}</h5>
+        <p class="card-text">{{ idea.idea_description }}</p>
+        <a href="#" class="btn btn-primary">{{ idea.creator_id }}</a><em>Id för skapare, länk till profil här</em>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
