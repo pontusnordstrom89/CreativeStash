@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from .models import Idea
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -14,6 +15,16 @@ def index(request):
         'latest_idea_list': latest_idea_list
     }
     return HttpResponse(template.render(context, request))
+
+
+def detail(request, idea_id):
+    idea = get_object_or_404(Idea, pk=idea_id)
+    template = loader.get_template('theStash/detail.html')
+    context = {
+        'idea': idea
+    }
+    return HttpResponse(template.render(context, request))
+
 
 
 '''
