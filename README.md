@@ -29,7 +29,10 @@
         pip install -r requirements.txt
 
 
-    5. cd to CreativeStash/mysite/
+    5. In mysite/mysite/
+        - create an empty file called local_settings.py
+
+    6. cd to CreativeStash/mysite/
 
        Run 
             - MAC       python3 manage.py runserver

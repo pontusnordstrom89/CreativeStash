@@ -4,15 +4,19 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
-from .models import Idea
+from .models import Idea, Category
 from django.contrib.auth.models import User
 
 
 def index(request):
-    latest_idea_list = Idea.objects.order_by('-idea_title')[:20]
     template = loader.get_template('theStash/index.html')
+
+    category = Category.objects.order_by('category_name')
+    latest_idea_list = Idea.objects.order_by('idea_title')[:20]
+
     context = {
-        'latest_idea_list': latest_idea_list
+        'latest_idea_list': latest_idea_list,
+        'category': category
     }
     return HttpResponse(template.render(context, request))
 

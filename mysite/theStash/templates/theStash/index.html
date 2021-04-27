@@ -4,13 +4,31 @@
 
 {% block content %}
 <!-- Page start -->
-<section class="col-sm-12">
-    <h3>Browse ideas.....</h3>
-</section>
-
 
 <!--Put content here-->
+<!--
+{% if category %}
+    {% for item in category %}
+        <div class="row">
+           <h3>{{ item.category_name }}</h3>
+            
+            {% for idea in latest_idea_list %}
+                {% if idea.idea_category in item.category_name %}
+                    {{ idea.idea_title }}
+                {% endif %}
+            {% endfor %}
+            
+        </div>
+    {% endfor %}
+
+    {% else %}
+        <p>No categories are available.</p>
+{% endif %}
+-->
 <section class="row">
+
+
+   
     {% if latest_idea_list %}
 
         {% for idea in latest_idea_list %}
