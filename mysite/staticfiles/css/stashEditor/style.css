@@ -1,5 +1,22 @@
 h1 {
-color: rgb(204, 204, 117);
-padding-top:36px;
+    color: rgb(204, 204, 117);
+    padding-top: 36px;
+}
 
+#idea_editor {
+    display: flex;
+    justify-content: center;
+}
+
+#div_id_idea_title, #div_id_idea_description, #div_id_add_category, #div_id_add_image, #div_id_is_public {
+    margin-top: 20px;
+}
+
+#form_submit_button_box {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#submit_idea_form {
+    width: 30%;
 }

@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 
+
+
 {% block javascript %}
 <script>
 
@@ -20,11 +22,18 @@
             },
             dataType: 'json',
             success: function (data) {
+                $("#categories").append(data.category + ', ');
+                /*
                 if (data.is_taken) {
-                    $("#info").html(data.message + ' already exists in category list');
+                    $("#info").html(data.category).css('color', 'red');
+                    $("#categories").css('color', 'red').append(data.category + ', ');
+                   
                 } else {}
+                    
                     $("#id_idea_category").append('<option value=' + data.category +'>' + data.category + '</option>')
-                    $("#id_category_name").val("");
+                    
+                */
+               $("#id_category_name").val("");
             }
         });
 
@@ -39,23 +48,44 @@
 
 {% block content %}
 
-<h3>Idea editor</h3>
-<div class="row">
-    <div class="col-sm-5">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/stashEditor/style.css' %}">
+
+
+<div class="container" id="idea_editor">
+    <div class="col-sm-8">
+        <h3>Publish new idea</h3>
         {% load crispy_forms_tags %}
         <form action="" method="post" id="idea_form" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ideaform.idea_title|as_crispy_field}}
-            {{ideaform.idea_description|as_crispy_field}}
-            {{categoryform.category_name|as_crispy_field}}
-            <strong class="text-info" id="info" name="category_list"></strong>
-            {{ideaform.idea_category|as_crispy_field}}
-            <strong class="text-info" id="info" name="image_upload">Choose image</strong>
-            <input type="file" name="image" value="test">
-            {{ideaform.is_public|as_crispy_field}}
-        </form>
-      </div>
-    <button class="btn btn-warning" id="submit_idea_form">Submit</button>
-  </div>
 
+            <div class="sm-5">
+                {{ideaform.idea_title|as_crispy_field}}
+                <small class="form-text text-muted">Choose a suitable title for your project</small>
+        
+                {{ideaform.idea_description|as_crispy_field}}
+                <small class="form-text text-muted">Describe your project</small><br>
+            </div>
+
+            <div class="sm-5">
+                <label for="id_category_name" class="form-label" id="div_id_add_category">Add categories to your idea</label>
+                <input type="text" class="form-control" id="id_category_name" placeholder="e.g. cloud computing or cryptocurrency">
+                <small class="form-text text-muted">Press enter to add the new category</small>
+
+                <strong id="categories"></strong><br>
+
+                <label class="form-label" for="imageupload" id="div_id_add_image">Upload image</label>
+                <input class="form-control" type="file" name="image" id="imageupload">
+
+                {{ideaform.is_public|as_crispy_field}}
+            </div>
+        </form>
+        <div class="sm-5" id="form_submit_button_box">
+            <button class="btn btn-warning" id="submit_idea_form">Publish</button>
+        </div>
+        
+      </div>
+    
+    </div>
+</div>
 {% endblock %}
