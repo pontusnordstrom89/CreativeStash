@@ -4,13 +4,59 @@
 
 {% block content %}
 <!-- Page start -->
-<section class="col-sm-12">
-    <h3>Browse ideas.....</h3>
-</section>
-
 
 <!--Put content here-->
+
+
+
+
+
+{% if category %}
+    {% for item in category %}
+    <div class="row">
+        <h3>{{ item }}</h3>
+
+        {% if latest_idea_list %}
+            {% for idea in latest_idea_list %}
+                {% for obj in idea.idea_category.all %}
+                    {% if obj == item %}
+                    
+                            <div class="card" style="width: 17rem;">
+                                <div class="card-header text-muted">
+                                    <em>Author: </em><a href="#" a>{{idea.creator}}</a>
+                                </div>
+                                <div class="card-body">
+                                    <img src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
+                                    <h5 class="card-title">{{ idea.idea_title }}</h5>
+                                    <p class="card-text">{{ idea.idea_description }}</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    {% for obj in idea.idea_category.all %}
+                                    <em> {{ obj }}, </em>
+                            
+                                    {% endfor %}
+                                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning">Read more</a>
+                            
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                
+            {% endfor %}
+            
+        
+        {% endif %}
+    </div>    
+    {% endfor %}
+
+    {% else %}
+        <p>No categories are available.</p>
+{% endif %}
+<!--
 <section class="row">
+
+
+   
     {% if latest_idea_list %}
 
         {% for idea in latest_idea_list %}
@@ -28,7 +74,7 @@
                     <em> {{ obj }}, </em>
 
                     {% endfor %}
-                    <a href="/theStash/{{ idea.id }}/" class="btn btn-warning">Read more</a>
+                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning">Read more</a>
     
                 </div>
             </div>
@@ -38,7 +84,7 @@
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
-
+-->
 
 
 {% endblock %}

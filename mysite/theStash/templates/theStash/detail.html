@@ -1,27 +1,96 @@
 {% extends "base_generic.html" %}
+{% block javascript %}
+<script>
 
+    $("#details").click(function () {
+        $("#vy_1").toggle();
+    });
+</script>
+
+{% endblock %}
 {% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
 <div class="card text-center">
     <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Document</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Details</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">References</a>
-            </li>
+        <ul class="nav nav-tabs">
+            <button class="btn btn-warning" id="details">Details</button>
         </ul>
     </div>
-    <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ idea.idea_title }}</h5>
-        <p class="card-text">{{ idea.idea_description }}</p>
-        <a href="#" class="btn btn-primary">{{ idea.creator_id }}</a><em>Id för skapare, länk till profil här</em>
+
+    <div class="row">
+        <div class="col-sm-6" id="vy_1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    
+        <div class="row">
+            <div class="col-sm-8">
+                <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
+            </div>
+            <div class="col-sm-4">
+                <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture" id="idea_user_profile_picture">
+                <h3>{{ idea.creator }}</h3>
+
+                <p>{{ profile.bio}}</p>
+                <a href="#" class="btn btn-warning" id="visit_profile_button">Go To serprofile</a>
+            </div>
+
+        </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ idea.idea_title }}</h5>
+                <p class="card-text">{{ idea.idea_description }}</p>
+                
+            </div>
+
+            <div class="card-footer text-muted">
+                Created 2021-03-12
+            </div>
+        </div>
+   
+
+
+    
+
+
+
+
+
+
+
+
+
 </div>
 
 

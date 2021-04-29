@@ -20,14 +20,14 @@ class Profile(models.Model):
     user_interests = models.ManyToManyField(Category)
 
     def __str__(self):
-        return self.user
+        return self.bio
 
 class Idea(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
     idea_title = models.CharField(max_length=30)
     idea_description = models.TextField(blank=True)
     #an idea can be turned public but is private by default
-    idea_category = models.ManyToManyField(Category)
+    idea_category = models.ManyToManyField(Category, related_name="list_idea_categories")
     is_public = models.BooleanField(default=False)
     image = models.ImageField(upload_to='./media/', null=True, blank=True)
 
