@@ -1,6 +1,7 @@
 .navbar-dark .navbar-toggler {
     color: #61614d;
     border-color: rgba(255, 255, 255, .1);
+    
 }
 
 #navbar-account-button {
@@ -17,3 +18,9 @@
     overflow: hidden;
     margin: 10px 0px;
 }
+
+.bg-light{ 
+    background: rgb(139, 33, 33);
+
+}
+
