@@ -111,26 +111,41 @@
             </div>
         </main>
 
-        <footer class="bg-light text-center text-lg-start">
-            <!-- Grid container -->
-            <div class="container p-4">
-              <!--Grid row-->
-              <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                  <h5 class="text-uppercase">Creative Stash</h5>
-                  <p>
-                  Welcome to the world of creativity!
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div class="text-center p-3">
-                <a href="#">BACK TO TOP</a>
-            </div>
-            <!-- Copyright -->
-          </footer>
+        <footer>
+            <section id="footer">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <h5>Creative Stash</h5>
+                            <p> This is a project by Group 14 in course DA336A-TS043, Spring 2021. 
+                                Bachelor of Science in Computer and Information Science, Malmö University.
+                            </p>
+                                
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>Quick links</h5>
+                            <ul class="list-unstyled quick-links">
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                                <li><a href="{% url 'stashEditor:how_it_works'%}"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+                            </ul>
+                        </div>  
+                        <div class="col-sm-4">
+                            <h5>Location</h5>
+                                <p>Nordenskiöldsgatan 1, 211 19 Malmö</p>
+                                <p> 040-665 70 00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p><a href="#">BACK TO TOP</a></p>
+                        </div>
+                        
+                    </div>	
+                </div>
+            </section>
+        </footer>
 
 
         <!-- Import Bootstrp JavaScript START -->
