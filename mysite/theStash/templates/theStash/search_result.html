@@ -1,0 +1,84 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
+
+{% if search_result_idea or search_result_category %}
+<div class="card text-center" id="search_header">
+    <div class="card-header text-muted">
+        <h3> Your search for <strong>{{ search_query }}</strong> matched {{search_hits}} ideas. </h3>
+        <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchbox"
+                name="q">
+            <button class="btn btn-warning" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="col-sm-10">
+    <div class="row">
+        <h3>Based on idea</h3>
+        {% for idea in search_result_idea %}
+
+        <div class="card" style="width: 17rem;">
+            <div class="card-header text-muted">
+                <em>Author: </em><a href="#" a>{{idea.creator}}</a>
+            </div>
+            <div class="card-body">
+                <img src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
+                <h5 class="card-title">{{ idea.idea_title }}</h5>
+                <p class="card-text">{{ idea.idea_description }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                {% for obj in idea.idea_category.all %}
+                <em> {{ obj }}, </em>
+
+                {% endfor %}
+                <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning">Read more</a>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+<div class="col-sm-10">
+    <div class="row">
+        <h3>Based on category</h3>
+        <em>Länk till kategori? eller visa alla idéer som finns i kategori?</em>
+        {% for idea in search_result_category %}
+            <li>{{idea.category_name}}</li>  
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% else %}
+<div class="card text-center" id="search_header">
+    <div class="card-header text-muted">
+        <h3>{{ help }}</h3>
+        <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchbox"
+                name="q">
+            <button class="btn btn-warning" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
