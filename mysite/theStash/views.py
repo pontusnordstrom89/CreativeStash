@@ -70,7 +70,7 @@ def search_result(request):
             }
         else:
             context = {
-                'help': 'Try search for something'
+                'nothing_found': 'Nothing found, let´s create something'
             }
 
 

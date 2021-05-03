@@ -14,8 +14,9 @@
 {% if category %}
     {% for item in category %}
     <div class="row">
-        <h3>{{ item }}</h3>
 
+        <h2><u>{{ item }}</u></h2>
+        
         {% if latest_idea_list %}
             {% for idea in latest_idea_list %}
                 {% for obj in idea.idea_category.all %}
