@@ -14,16 +14,6 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
         
-        
-
-
-        <!---Denna script tag ska bort i framtiden-->
-        <script>
-            $("#show-add-category").click(function () {
-                    $("#add-category-form").toggle();
-                });
-        </script>
-        
     </head>
 
 
@@ -63,8 +53,8 @@
             
                     </ul>
 
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchbox" name="q">
                         <button class="btn btn-outline-warning" type="submit">Search</button>
                     </form>
 

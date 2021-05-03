@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from .models import Idea, Category, Profile
 from django.contrib.auth.models import User
+from django.db.models import Q
+import operator
 
 
 def index(request):
@@ -24,7 +26,6 @@ def index(request):
         else:
             pass
 
-    print(type(category_name))
     context = {
         'latest_idea_list': latest_idea_list,
         'category': category_name
@@ -45,19 +46,40 @@ def detail(request, user_poth, idea_id):
 
 
 
-'''
-Innan funktionen under (restricted_to_users) körs används en decorator = @login_required det är en inbyggd funktion vi får från django som ser om användaren är inloggad
-Om användaren är inloggad körs funktionen och sidan visas, annars dirigeras användaren till Loginsidan
-'''
+def search_result(request):
+    template = loader.get_template('theStash/search_result.html')
 
-@login_required
-def restricted_to_users(request):
-    template = loader.get_template('theStash/restricted.html')
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        print(query)
+        if query:
+            query_list = query.split()
+            for q in query_list:
+                result_idea = Idea.objects.filter(
+                    Q(idea_title__icontains=q) | Q(idea_description__icontains=q))
 
-    text = "The restricted area!!"
-    context = {
-        'restricted': text
-    }
+                result_category = Category.objects.filter(
+                    Q(category_name__icontains=q))
+
+            search_hits = len(result_idea) + len(result_category)
+            context = {
+                'search_query': query,
+                'search_result_idea': result_idea,
+                'search_result_category': result_category,
+                'search_hits': search_hits
+            }
+        else:
+            context = {
+                'help': 'Try search for something'
+            }
+
+
+    else:
+        context = {
+            'help': 'Try search for something'
+        }
+
+   
     return HttpResponse(template.render(context, request))
 
 
