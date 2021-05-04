@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'theStash.apps.ThestashConfig',
     'stashEditor.apps.StasheditorConfig',
     'crispy_forms',
+    'stashProfile.apps.StashprofileConfig',
+
     
 ]
 
