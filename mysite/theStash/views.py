@@ -19,7 +19,6 @@ def index(request):
     category_name = {}
     for cat in categoy_list:
         categories = cat.list_idea_categories.all()
-        print(len(categories))
         if categories:
             category_name[cat] = [categories]
         else:
