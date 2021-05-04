@@ -31,10 +31,10 @@ footer {
     
 }
 
-footer > h5{
+footer h5{
     padding-bottom: 6px;
     margin-bottom: 20px;
-    color:#e7c83e;
+    color:#ddc24a;
 }
 footer a {
     margin-top:50px;
