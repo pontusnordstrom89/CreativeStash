@@ -23,9 +23,12 @@ urlpatterns = [
     path('stashEditor/', include('stashEditor.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('stashProfile/', include('stashProfile.urls')),
 ]
+
 
 #might uncomment for image upload
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

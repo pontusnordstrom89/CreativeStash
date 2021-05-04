@@ -68,7 +68,7 @@
                                 {{ user.get_username }}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="navbar-account-button">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'stashProfile:social_profile' %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                             </ul>
                         {% else %}
