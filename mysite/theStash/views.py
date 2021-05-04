@@ -14,15 +14,14 @@ def index(request):
     template = loader.get_template('theStash/index.html')
 
     categoy_list = Category.objects.order_by('category_name')
-    latest_idea_list = Idea.objects.order_by('idea_title')[:20]
+    latest_idea_list = Idea.objects.order_by('idea_title')
 
     category_name = {}
     for cat in categoy_list:
-        test = cat.list_idea_categories.all()
-
-        if test:
-            category_name[cat] = [test]
-
+        categories = cat.list_idea_categories.all()
+        print(len(categories))
+        if categories:
+            category_name[cat] = [categories]
         else:
             pass
 
@@ -30,6 +29,7 @@ def index(request):
         'latest_idea_list': latest_idea_list,
         'category': category_name
     }
+    
     return HttpResponse(template.render(context, request))
 
 
@@ -72,14 +72,10 @@ def search_result(request):
             context = {
                 'help': 'Try search for something'
             }
-
-
     else:
         context = {
             'help': 'Try search for something'
         }
-
-   
     return HttpResponse(template.render(context, request))
 
 
@@ -88,18 +84,20 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            
+
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            
+            userID = User.objects.get(pk=request.user.id)
+            user_profile = Profile(user_id=userID.id)
+            user_profile.save()
+            
             return redirect('/')
             
     else:
         form = SignUpForm()
     return render(request, 'theStash/signup.html', {'form': form})
 
-def welcome(request):
-    template = loader.get_template('theStash/welcome.html')
-    context = {
-    }
-    return HttpResponse(template.render(context, request))

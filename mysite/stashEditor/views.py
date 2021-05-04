@@ -59,7 +59,7 @@ def create(request):
 
         # check if form data is valid
         if create_idea_form.is_valid():
-            print("Form is valid")
+            
             # Return an object without saving to the DB
             form_object = create_idea_form.save(commit=False)
             # Add an author field which will contain current user's id
@@ -74,7 +74,6 @@ def create(request):
             # Save the final "real form" to the DB
             form_object.save()
             
-            print(list_of_categories)
             for item in list_of_categories:
                 form_object.idea_category.add(item)
 
