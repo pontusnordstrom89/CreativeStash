@@ -18,4 +18,7 @@ def social_profile(request):
     template = loader.get_template('stashProfile/social_profile.html')
     return HttpResponse(template.render())
 
-# Create your views here.
+@login_required
+def edit_social_profile(request):
+    template = loader.get_template('stashProfile/edit_social_profile.html')
+    return HttpResponse(template.render())
