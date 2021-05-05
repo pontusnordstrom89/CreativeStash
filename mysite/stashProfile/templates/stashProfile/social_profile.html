@@ -2,15 +2,18 @@
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 {% block content %}
     <div class="profile-card" style="width: 17rem;">
-        <div class="profile-card-header text-muted">
-            <a href="#" a>#</a>
+        <div class="profile-picture"></div>
+           <!--  <img src="./media/" alt="Profil bild">  -->
         </div>
         <div class="profile-card-body">
-            <h5 class="profile-card-title">Profile</h5>
-            <p class="profile-card-text">Hello welcome to social profile!</p>
+            <h5 class="profile-name">Användarnamn</h5>
+            <p class="profile-bio">BIO</p>
         </div>
-        <div class="profile-card-footer text-muted">
-            <a href="#" class="btn btn-warning">Edit profile</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">Youtube</a>
+        <div class="profile-edit">
+            <a href="{% url 'stashProfile:edit_social_profile' %}" class="btn btn-warning">Edit profile</a>
         </div>
     </div>
 {% endblock %}

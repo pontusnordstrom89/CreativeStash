@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+<!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+{% block content %}
+
+<form action="" method="post" id="edit_social_form" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="sm-5">
+        
+        <small class="form-text text-muted">Change your social profile</small>
+        <label for="biography">add biography</label>
+        <input placeholder="Write your presentation here" type="text"> 
+        <label for="social_links">social links</label>
+        <input type="text" id="link" name="link_one">
+        <input type="text" id="link" name="link_two">
+        <input type="text" id="link" name="link_three">      
+
+    </div>
+
+    <div class="sm-5">
+
+        <label class="form-label" for="profilbild" id="div_id_add_image">Upload profile picture</label>
+        <input class="form-control" type="file" name="profilbild" id="imageupload">
+
+    </div>
+</form>
+
+<div class="sm-5" id="form_submit_button_box">
+            <button class="btn btn-warning" id="submit_idea_form">Publish</button>
+        </div>
+
+{% endblock %}
