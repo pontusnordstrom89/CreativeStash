@@ -23,9 +23,6 @@
                     {% if obj == item %}
                     
                             <div class="card" style="width: 17rem;">
-                                <div class="card-header text-muted">
-                                    <em>Author: </em><a href="#" a>{{idea.creator}}</a>
-                                </div>
                                 <div class="card-body">
                                     <img src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
                                     <h5 class="card-title">{{ idea.idea_title }}</h5>
@@ -34,7 +31,7 @@
                                 <div class="card-footer text-muted">
                                     {% for obj in idea.idea_category.all %}
                                     <em> {{ obj }}, </em>
-                            
+                             <em>BY: <yem><a href="#" a>{{idea.creator}}</a>
                                     {% endfor %}
                                     <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning">Read more</a>
                             
