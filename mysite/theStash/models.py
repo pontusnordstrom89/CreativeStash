@@ -10,14 +10,14 @@ class Category(models.Model):
         return self.category_name
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
     bio = models.TextField(blank=True)
     #profile_picture = models.Image()
     #social links connected to user profile
     link1 = models.URLField(max_length=200, blank=True)
     link2 = models.URLField(max_length=200, blank=True)
     link3 = models.URLField(max_length=200, blank=True)
-    user_interests = models.ManyToManyField(Category, blank=True)
+    #user_interests = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.bio
