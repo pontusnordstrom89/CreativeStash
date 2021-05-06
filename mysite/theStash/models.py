@@ -1,16 +1,18 @@
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import date
 
 
 # Create your models here.
 class Category(models.Model):
     category_name = models.CharField(max_length=100, primary_key=True)
+    user_interests = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.category_name
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile", primary_key=True)
     bio = models.TextField(blank=True)
     #profile_picture = models.Image()
     #social links connected to user profile
@@ -22,6 +24,8 @@ class Profile(models.Model):
     def __str__(self):
         return self.bio
 
+
+
 class Idea(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
     idea_title = models.CharField(max_length=30)
@@ -30,6 +34,8 @@ class Idea(models.Model):
     idea_category = models.ManyToManyField(Category, related_name="list_idea_categories")
     is_public = models.BooleanField(default=False)
     image = models.ImageField(upload_to='./media/', null=True, blank=True)
+    created_date = models.DateField(auto_now_add=True)
+    updated_when = models.DateField(auto_now=True)
 
 
     def __str__(self):
