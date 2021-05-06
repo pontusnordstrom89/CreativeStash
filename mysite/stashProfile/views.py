@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
@@ -28,32 +29,48 @@ def social_profile(request):
 @login_required
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
+    profile = get_object_or_404(Profile, user_id=user_profile_id)
+   
 
-    if request.method == 'POST':
-        update_form = EditSocialProfile(request.POST)
 
-        if update_form.is_valid():
+    if request.method == 'POST' or None:
+        form = EditSocialProfile(request.POST)
+        profile.user = get_object_or_404(User, pk=user_profile_id)
+        
+        '''
+        Formen validerar inte pga user inte är specificerad. 
 
-            # Return an object without saving to the DB
-            form_object = update_form.save(commit=False)
+        Något med OneToOneField som spökar. 
 
-            # Add an author field which will contain current user's id
-            form_object.user = User.objects.get(pk=request.user.id)
+        Möjligt att välja flera user i form???
+
+        elif slår ut pga Validation Error
+
+
+        https://docs.djangoproject.com/en/3.2/ref/forms/validation/
+        https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms
+        https://stackoverflow.com/questions/27832076/modelform-with-onetoonefield-in-django
+        '''
+        if form.is_valid():
             
-            # Save the final "real form" to the DB
-            form_object.save()
+            form.save()
+            return redirect('/')
+
+        elif ValidationError:
+            print('ValidationError')
             
-            return redirect('stashProfile/social_profile')
-    
+        else:
+            print('Something is wrong')
+        
     else:
     
-        profile = User.objects.get(pk=request.user.id)
-        print(profile)
-        
-        # If this is a GET (or any other method) create the default form.
-        form = EditSocialProfile(initial={'bio': profile.bio})
+        form = EditSocialProfile(instance=profile)
+
         context = {
             'form': form
         }
     
-    return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
+
+
+

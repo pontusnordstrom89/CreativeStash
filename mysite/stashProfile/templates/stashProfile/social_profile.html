@@ -14,8 +14,8 @@
         <a href="#">Youtube</a>
         {% if user.is_authenticated %}
         <div class="profile-edit">
-           <!--- <a href="{% url 'stashProfile:edit_social_profile/' %}" class="btn btn-warning">Edit profile</a>-->
-            <a href="/stashProfile/edit_social_profile/{{user.get_id }}/" class="btn btn-warning">Read more</a>
+            <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
+            
         </div>
         {{ user.get_username }}
         {% endif %}
