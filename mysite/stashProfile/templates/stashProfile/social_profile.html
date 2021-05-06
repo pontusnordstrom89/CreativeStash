@@ -6,18 +6,19 @@
            <!--  <img src="./media/" alt="Profil bild">  -->
         </div>
         <div class="profile-card-body">
-            <h5 class="profile-name">Användarnamn</h5>
-            <p class="profile-bio">BIO</p>
+            {% if user.is_authenticated %}
+            <h5 class="profile-name">{{ user.username }}</h5>
+            <p class="profile-bio"> {{profile.bio}} </p>
+            <a href="{{profile.link1}}">{{profile.link1}}</a>
+            <a href="{{profile.link2}}">{{profile.link2}}</a>
+            <a href="{{profile.link3}}">{{profile.link3}}</a>
+            {% endif %}
         </div>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
-        <a href="#">Youtube</a>
+
         {% if user.is_authenticated %}
         <div class="profile-edit">
             <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
-            
         </div>
-        {{ user.get_username }}
         {% endif %}
     </div>
 {% endblock %}

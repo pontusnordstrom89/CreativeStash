@@ -19,10 +19,9 @@ class Profile(models.Model):
     link1 = models.URLField(max_length=200, blank=True)
     link2 = models.URLField(max_length=200, blank=True)
     link3 = models.URLField(max_length=200, blank=True)
-    #user_interests = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
-        return self.bio
+        return self.user
 
 
 
