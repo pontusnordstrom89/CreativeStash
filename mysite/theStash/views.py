@@ -34,7 +34,7 @@ def index(request):
 
 def detail(request, user_poth, idea_id):
     idea = get_object_or_404(Idea, pk=idea_id)
-    idea_creator_profile = Profile.objects.get(user_id=user_poth)
+    idea_creator_profile = Profile.objects.get(pk=user_poth)
     
     template = loader.get_template('theStash/detail.html')
     context = {
