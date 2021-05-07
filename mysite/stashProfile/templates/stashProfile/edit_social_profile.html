@@ -3,7 +3,7 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<form action="" method="post" id="edit_social_form" enctype="multipart/form-data">
+<form method="post" id="edit_social_form">
     {% csrf_token %}
     {{ form|crispy }}
 <!---
@@ -15,7 +15,7 @@
     </div>
     -->
    
-    <button class="btn btn-warning" type="submit">Publish</button>
+    <button class="btn btn-warning" type="submit">Update</button>
     
 </form>
 

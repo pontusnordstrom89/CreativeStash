@@ -4,11 +4,11 @@ from theStash.models import Profile, Idea
 class EditSocialProfile(forms.ModelForm):
     class Meta:
         model= Profile
-        fields= ['bio','link1','link2','link3']
+        exclude = ['user']
 
 
 class EditIdeaForm(forms.ModelForm):
     class Meta:
         model = Idea
-        fields = '__all__'
-
+        exclude = ['creator']
+        

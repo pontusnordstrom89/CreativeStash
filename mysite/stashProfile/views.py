@@ -33,10 +33,10 @@ def social_profile(request):
 def edit_idea(request, idea_id):
     template = loader.get_template('stashProfile/edit_idea.html')
     idea = get_object_or_404(Idea, pk=idea_id)
-    
+    form = EditIdeaForm(instance=idea)
 
     if request.method == 'POST':
-        form = EditIdeaForm(request.POST)
+        form = EditIdeaForm(request.POST, instance=idea)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -46,23 +46,20 @@ def edit_idea(request, idea_id):
         else:
             print('Something is wrong')
 
-    else:
-        form = EditIdeaForm(instance=idea)
-
-        context = {
-            'content': form
-        }
+    context = {
+        'content': form
+    }
     return HttpResponse(template.render(context, request))
 
 @login_required
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
     profile = get_object_or_404(Profile, pk=user_profile_id)
-   
+    form = EditSocialProfile(instance=profile)
 
 
     if request.method == 'POST':
-        form = EditSocialProfile(request.POST)
+        form = EditSocialProfile(request.POST, instance=profile)
        
       
         if form.is_valid():
@@ -75,16 +72,13 @@ def edit_social_profile(request, user_profile_id):
             
         else:
             print('Something is wrong')
-        
-    else:
-    
-        form = EditSocialProfile(instance=profile)
+  
 
-        context = {
-            'form': form
-        }
+    context = {
+        'form': form
+    }
     
-        return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(context, request))
 
 
 
