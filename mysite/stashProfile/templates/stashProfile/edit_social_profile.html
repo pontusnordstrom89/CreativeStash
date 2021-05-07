@@ -2,9 +2,10 @@
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 {% block content %}
 {% load crispy_forms_tags %}
-{{ form|crispy }}
+
 <form action="" method="post" id="edit_social_form" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ form|crispy }}
 <!---
     <div class="sm-5">
 

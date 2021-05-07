@@ -8,5 +8,6 @@ urlpatterns = [
     path('profile_settings', views.profile_settings, name='profile_settings'),
     path('social_profile', views.social_profile, name= 'social_profile'),
     path('edit_social_profile/<int:user_profile_id>', views.edit_social_profile, name='edit_social_profile'),
-
+    path('edit_idea/<int:idea_id>',
+         views.edit_idea, name='edit_idea'),
     ]
