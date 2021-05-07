@@ -5,8 +5,8 @@ from django.template import loader
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import EditSocialProfile
-from theStash.models import Profile
+from .forms import EditSocialProfile, EditIdeaForm
+from theStash.models import Profile, Idea
 
 # Create your views here.
 
@@ -20,37 +20,51 @@ def profile_settings(request):
 @login_required
 def social_profile(request):
     template = loader.get_template('stashProfile/social_profile.html')
-    
+    userID = User.objects.get(pk=request.user.id)
+    categoy_list = Idea.objects.filter(creator=userID)
+
     context = {
-        'Tobben': 'Vadsomhelst'
+        'ideas': categoy_list
     }
+    return HttpResponse(template.render(context, request))
+
+
+@login_required
+def edit_idea(request, idea_id):
+    template = loader.get_template('stashProfile/edit_idea.html')
+    idea = get_object_or_404(Idea, pk=idea_id)
+    
+
+    if request.method == 'POST':
+        form = EditIdeaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+        elif ValidationError:
+            print('ValidationError')
+        else:
+            print('Something is wrong')
+
+    else:
+        form = EditIdeaForm(instance=idea)
+
+        context = {
+            'content': form
+        }
     return HttpResponse(template.render(context, request))
 
 @login_required
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
-    profile = get_object_or_404(Profile, user_id=user_profile_id)
+    profile = get_object_or_404(Profile, pk=user_profile_id)
    
 
 
-    if request.method == 'POST' or None:
+    if request.method == 'POST':
         form = EditSocialProfile(request.POST)
-        profile.user = get_object_or_404(User, pk=user_profile_id)
-        
-        '''
-        Formen validerar inte pga user inte är specificerad. 
-
-        Något med OneToOneField som spökar. 
-
-        Möjligt att välja flera user i form???
-
-        elif slår ut pga Validation Error
-
-
-        https://docs.djangoproject.com/en/3.2/ref/forms/validation/
-        https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms
-        https://stackoverflow.com/questions/27832076/modelform-with-onetoonefield-in-django
-        '''
+       
+      
         if form.is_valid():
             
             form.save()

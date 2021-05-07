@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+<!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+{% block content %}
+
+{% load crispy_forms_tags %}
+<form method="post">
+{% csrf_token %}
+{{ content|crispy }}
+
+    <button type="submit" class="btn btn-warning">Signup</button>
+</form>
+
+{% endblock %}

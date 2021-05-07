@@ -1,23 +1,54 @@
 {% extends "base_generic.html" %}
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 {% block content %}
-    <div class="profile-card" style="width: 17rem;">
-        <div class="profile-picture"></div>
-           <!--  <img src="./media/" alt="Profil bild">  -->
+<div class="profile-card" style="width: 17rem;">
+    <div class="profile-picture"></div>
+    <!--  <img src="./media/" alt="Profil bild">  -->
+</div>
+<div class="profile-card-body">
+    <h5 class="profile-name">Användarnamn</h5>
+    <p class="profile-bio">BIO</p>
+</div>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+<a href="#">Youtube</a>
+{% if user.is_authenticated %}
+<div class="profile-edit">
+    <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
+
+</div>
+{{ user.get_username }}
+{% endif %}
+</div>
+
+<div class="row">
+
+    {% if ideas %}
+    {% for idea in ideas %}
+    <div class="card" style="width: 17rem;">
+        <div class="card-header text-muted">
+            <em>Author: </em><a href="#" a>{{idea.creator}}</a>
         </div>
-        <div class="profile-card-body">
-            <h5 class="profile-name">Användarnamn</h5>
-            <p class="profile-bio">BIO</p>
+        <div class="card-body">
+            <img src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
+            <h5 class="card-title">{{ idea.idea_title }}</h5>
+            <p class="card-text">{{ idea.idea_description }}</p>
         </div>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
-        <a href="#">Youtube</a>
-        {% if user.is_authenticated %}
-        <div class="profile-edit">
-            <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
-            
+        <div class="card-footer text-muted">
+            {% for obj in idea.idea_category.all %}
+            <em> {{ obj }}, </em>
+
+            {% endfor %}
+            <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-warning">Read more</a>
+            {% if user.is_authenticated %}
+            <a href="edit_idea/{{ idea.id }}" class="btn btn-primary">Edit</a>
+            {% endif %}
         </div>
-        {{ user.get_username }}
-        {% endif %}
+
     </div>
+    {% endfor %}
+    {% endif %}
+
+
+</div>
 {% endblock %}
