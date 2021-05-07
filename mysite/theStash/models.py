@@ -12,7 +12,7 @@ class Category(models.Model):
         return self.category_name
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile", primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_profile")
     bio = models.TextField(blank=True)
     #profile_picture = models.Image()
     #social links connected to user profile
