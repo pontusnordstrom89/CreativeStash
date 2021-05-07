@@ -126,12 +126,35 @@
     </body>
 
     <footer>
-        <p>
-            <b> Lorem ipsum dolor sit amet, </b> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu <br> <br>
-            <b> Lorem ipsum dolor </b>sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-    </footer>
-    <article>
-       <p>Bertilla Fabris</p> <p>Kinlok Lee</p> <p>Pontus Nordström</p> <p>Terese Ahlin</p> <p>Tobias Svensson </p>
-    </article>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <h5>Creative Stash</h5>
+                        <p> This is a student project for system and project development, Spring 2021. 
+                            Bachelor of Science in Computer and Information Science, Malmö University.
+                        </p>
+                            
+                </div>
+            <div class="col-md-4">
+                <h5>Quick links</h5>
+                   <ul class="list-unstyled quick-links">
+                       <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                       <li><a href="{% url 'stashEditor:how_it_works'%}"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+                   </ul>
+            </div> 
+        
+            <div class="col-md-4">
+                 <h5>BY</h5>
+                    <p>Bertilla Fabris</p>
+                    <p>Terese Ahlin</p>
+                    <p>Pontus Nordström</p>
+                    <p>Kinlok Lee</p>
+                    <p>Tobias Svensson</p>
+                    
+            </div>
+                 
+            </div>	
+        </div>
+        
+        </footer>
 </html>

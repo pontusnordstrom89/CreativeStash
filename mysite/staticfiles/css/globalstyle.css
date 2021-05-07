@@ -1,14 +1,16 @@
-.navbar-dark .navbar-toggler {
-    color: #61614d;
-    border-color: rgba(255, 255, 255, .1);
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: normal;
 }
-
 #navbar-account-button {
     margin: 0px 60px 0px 60px;
     min-width: 100px;
-    background-color:#F9DF22;
 }
 
+.bg_special {
+    background-color:#898989;
+
+}
 #add-category-form {
     display: none;
 }
@@ -17,45 +19,34 @@
     text-align: left, bottom;
 
 }
-.card-body {
-    height: 300px;
-    overflow: hidden;
-    margin: 0px;
-    background-color: #FAFAFA;
-    margin: none;
-    padding-bottom: 50px;
+.my-card {
+    background-color:#F3F3F3;
 }
-.btn_cards {
+
+#stash_cards > .card {
+margin: 0.5%;
+}
+
+.card-title {
+    text-align: center;
+}
+.cards-button {
     background-color:#F0EFEE;
     width: 100%;
     padding: 0.5%;
     max-height: 40px;
     border-style: solid;
 }
-#stash_cards > .card {
-margin: 0.5%;
-}
-.bg_special {
-    background-color: blueviolet;
-}
-.container-fluid { (får ej styla)
-    color: black;
-}
-.card-footer {
-    background-color: white;
-}
+
 a {
     color:#6E6C6C;
     text-decoration: none;
 }
-body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-style: normal;
-}
-.card-title {
-    text-align: center;
-}
 
+.card-footer {
+    background-color: white;
+    width: 100%;
+}
 footer {
     margin-top: 70px;
     background-color:#FCE574;
@@ -64,14 +55,14 @@ footer {
     text-align: left;
 
 }
-footer p {
+footer {
     text-align: left;
-    margin: 10%;
-    padding-top: 5%;
+    padding-top:3%;
+
+}
+footer a {
+    color: black;
 }
 
-article {
-    margin:5%;
-    text-align: center;
-}
+
 
