@@ -42,7 +42,7 @@
 
 
 
-    EXTRA
+    EXTRA  !!!!! DATABASE IS NOT COMPATIBLE WITH LATEST VERSION !!!!!
     * To use sqlite3 database 
 
         * Go to CreativeStash/mysite/mysite/settings.py
