@@ -6,7 +6,7 @@
     <!--  <img src="./media/" alt="Profil bild">  -->
 </div>
 <div class="profile-card-body">
-    <h5 class="profile-name">Användarnamn</h5>
+    <h5 class="profile-name">{{ user.get_username }}</h5>
     <p class="profile-bio">BIO</p>
 </div>
 <a href="#">Instagram</a>
@@ -17,7 +17,7 @@
     <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
 
 </div>
-{{ user.get_username }}
+
 {% endif %}
 </div>
 
