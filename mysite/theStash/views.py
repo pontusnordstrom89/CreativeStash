@@ -1,13 +1,14 @@
+import operator
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
-from .models import Idea, Category, Profile
 from django.contrib.auth.models import User
 from django.db.models import Q
-import operator
+from .forms import SignUpForm
+from .models import Idea, Category, Profile
+
 
 
 def index(request):
@@ -50,9 +51,10 @@ def search_result(request):
 
     if request.method == 'GET':
         query = request.GET.get('q')
-        print(query)
+
         if query:
             query_list = query.split()
+
             for q in query_list:
                 result_idea = Idea.objects.filter(
                     Q(idea_title__icontains=q) | Q(idea_description__icontains=q))
@@ -91,7 +93,7 @@ def signup(request):
             login(request, user)
             
             userID = User.objects.get(pk=request.user.id)
-            user_profile = Profile(user_id=userID.id)
+            user_profile = Profile(user_id=userID.id, bio='Welcome user, to your profile page')
             user_profile.save()
             
             return redirect('/')

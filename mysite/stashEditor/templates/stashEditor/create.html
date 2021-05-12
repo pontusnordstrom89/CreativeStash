@@ -23,17 +23,7 @@
             dataType: 'json',
             success: function (data) {
                 $("#categories").append(data.category + ', ');
-                /*
-                if (data.is_taken) {
-                    $("#info").html(data.category).css('color', 'red');
-                    $("#categories").css('color', 'red').append(data.category + ', ');
-                   
-                } else {}
-                    
-                    $("#id_idea_category").append('<option value=' + data.category +'>' + data.category + '</option>')
-                    
-                */
-               $("#id_category_name").val("");
+                $("#id_category_name").val("");
             }
         });
 

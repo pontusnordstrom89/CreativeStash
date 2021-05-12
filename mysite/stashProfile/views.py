@@ -5,10 +5,8 @@ from django.template import loader
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import EditSocialProfile, EditIdeaForm
 from theStash.models import Profile, Idea
-
-# Create your views here.
+from .forms import EditSocialProfile, EditIdeaForm
 
 @login_required
 def profile_settings(request):
@@ -21,10 +19,10 @@ def profile_settings(request):
 def social_profile(request):
     template = loader.get_template('stashProfile/social_profile.html')
     userID = User.objects.get(pk=request.user.id)
-    categoy_list = Idea.objects.filter(creator=userID)
+    idea_list = Idea.objects.filter(creator=userID)
 
     context = {
-        'ideas': categoy_list
+        'ideas': idea_list
     }
     return HttpResponse(template.render(context, request))
 
@@ -54,7 +52,7 @@ def edit_idea(request, idea_id):
 @login_required
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
-    profile = get_object_or_404(Profile, pk=user_profile_id)
+    profile = get_object_or_404(Profile, user_id=user_profile_id)
     form = EditSocialProfile(instance=profile)
 
 

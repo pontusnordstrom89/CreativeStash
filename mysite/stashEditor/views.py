@@ -1,20 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .forms import CreateIdeaForm, CreateCategoryFrom
-from theStash.models import Idea, Category
 from django.contrib.auth.models import User
-from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
-
-
+from theStash.models import Idea, Category
+from .forms import CreateIdeaForm, CreateCategoryFrom
 
 list_of_categories = []
-
-
 
 def index(request):
     latest_idea_list = Idea.objects.order_by('idea_title')
@@ -93,4 +87,6 @@ def create(request):
 
 def how_it_works(request):
     template = loader.get_template('stashEditor/how_it_works.html')
-    return HttpResponse(template.render())
+    context = {
+        }
+    return HttpResponse(template.render(context, request))
