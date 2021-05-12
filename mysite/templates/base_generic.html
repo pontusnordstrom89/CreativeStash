@@ -106,6 +106,35 @@
                 </div>
             </div>
         </main>
+        <footer>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h5>Creative Stash</h5>
+                            <p> This is a project by Group 14 in course DA336A-TS043, Spring 2021. 
+                                Bachelor of Science in Computer and Information Science, Malmö University.
+                            </p>
+                                
+                    </div>
+                <div class="col-md-4">
+                    <h5>Quick links</h5>
+                       <ul class="list-unstyled quick-links">
+                           <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                           <li><a href="{% url 'stashEditor:how_it_works'%}"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+                       </ul>
+                </div> 
+
+                <div class="col-md-4">
+                     <h5>Location</h5>
+                        <p>Nordenskiöldsgatan 1, 211 19 Malmö</p>
+                        <p> 040-665 70 00</p>
+                        
+                </div>
+                     
+                </div>    
+            </div>
+            
+        </footer>
 
 
         <!-- Import Bootstrp JavaScript START -->
@@ -123,38 +152,8 @@
         {% block javascript %}
         <!-- Dessa tags fungerar på samma sätt som block content och endblock fast med scripts. Lägg dessa block på en html sida, skriv js och det kommer hamna här.-->
         {% endblock %}
+
+
     </body>
 
-    <footer>
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <h5>Creative Stash</h5>
-                        <p> This is a student project for system and project development, Spring 2021. 
-                            Bachelor of Science in Computer and Information Science, Malmö University.
-                        </p>
-                            
-                </div>
-            <div class="col-md-4">
-                <h5>Quick links</h5>
-                   <ul class="list-unstyled quick-links">
-                       <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                       <li><a href="{% url 'stashEditor:how_it_works'%}"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-                   </ul>
-            </div> 
-        
-            <div class="col-md-4">
-                 <h5>BY</h5>
-                    <p>Bertilla Fabris</p>
-                    <p>Terese Ahlin</p>
-                    <p>Pontus Nordström</p>
-                    <p>Kinlok Lee</p>
-                    <p>Tobias Svensson</p>
-                    
-            </div>
-                 
-            </div>	
-        </div>
-        
-        </footer>
 </html>
