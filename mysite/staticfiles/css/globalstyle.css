@@ -14,22 +14,59 @@ body {
 #add-category-form {
     display: none;
 }
-.col-sm-12 {
-    margin: 10%;
-    text-align: left, bottom;
 
+.cards-main {
+    
 }
+
 .my-card {
     background-color:#F3F3F3;
+    display: inline;
+    margin: 5px;
+    height: 500px;    
 }
 
-#stash_cards > .card {
-margin: 0.5%;
+
+.card-body-content {
+    height: 85%;
+    width: 100%;
+    
+}
+
+.card-img-container {
+    position: relative;
+    height: 60%;
+}
+
+.card-img {
+    align-content: center;
+    overflow: hidden;
 }
 
 .card-title {
+    height: 5%;
     text-align: center;
+    overflow: hidden;
 }
+
+.card-text {
+    height: 35%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-footer-content {
+    height: 15%;
+    background-color: white;
+    width: 100%;
+}
+
+.col-sm-12 {
+    margin: 10%;
+    text-align: left, bottom;
+}
+
 .cards-button {
     background-color:#F0EFEE;
     width: 100%;
@@ -38,14 +75,9 @@ margin: 0.5%;
     border-style: solid;
 }
 
-a {
+.card-creator-link {
     color:#6E6C6C;
     text-decoration: none;
-}
-
-.card-footer {
-    background-color: white;
-    width: 100%;
 }
 
 footer {
