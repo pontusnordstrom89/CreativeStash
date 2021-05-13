@@ -6,7 +6,8 @@
 <!-- Page start -->
 
 <!--Put content here-->
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
 
 
@@ -15,7 +16,7 @@
     {% for item in category %}
     <div class="row card-main">
 
-        <h2 class="cards-kategorier"><u>{{ item }}</u></h2>
+        <h2 class="cards-category"><u>{{ item }}</u></h2>
         
         {% if latest_idea_list %}
             {% for idea in latest_idea_list %}
