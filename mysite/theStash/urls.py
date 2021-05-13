@@ -4,7 +4,6 @@ from . import views
 
 app_name = 'theStash'
 urlpatterns = [
-    # ex: /movies/
     path('', views.index, name='theStashindex'),
     path('theStash/signup', views.signup, name='signup'),
     path('theStash/search_result', views.search_result, name='search_result'),

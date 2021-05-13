@@ -6,13 +6,16 @@
     <!--  <img src="./media/" alt="Profil bild">  -->
 </div>
 <div class="profile-card-body">
-    <h5 class="profile-name">{{ user.get_username }}</h5>
-    <p class="profile-bio">BIO</p>
+    <h5 class="profile-name">{{ show_user.username }}</h5>
+    <p class="profile-bio">{{ profile.bio }}</p>
 </div>
-<a href="#">Instagram</a>
-<a href="#">Twitter</a>
-<a href="#">Youtube</a>
-{% if user.is_authenticated %}
+<ul>
+<li><a href="{{ profile.link1 }}">{{ profile.link1 }}</a></li>
+<li><a href="{{ profile.link2 }}">{{ profile.link2 }}</a></li>
+<li><a href="{{ profile.link1 }}">{{ profile.link3 }}</a></li>
+</ul>
+{% if user.is_authenticated and user.id == profile.user_id %}
+
 <div class="profile-edit">
     <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning">Edit profile</a>
 
@@ -40,8 +43,8 @@
 
             {% endfor %}
             <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-warning">Read more</a>
-            {% if user.is_authenticated %}
-            <a href="edit_idea/{{ idea.id }}" class="btn btn-primary">Edit</a>
+            {% if user.is_authenticated and user.id == profile.user_id %}
+            <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-primary">Edit</a>
             {% endif %}
         </div>
 

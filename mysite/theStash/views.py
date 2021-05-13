@@ -29,18 +29,20 @@ def index(request):
         'latest_idea_list': latest_idea_list,
         'category': category_name
     }
-    
+
     return HttpResponse(template.render(context, request))
 
 
 def detail(request, user_poth, idea_id):
     idea = get_object_or_404(Idea, pk=idea_id)
     idea_creator_profile = Profile.objects.get(pk=user_poth)
-    
+    idea_creator = User.objects.get(pk=user_poth)
+
     template = loader.get_template('theStash/detail.html')
     context = {
         'idea': idea,
-        'profile': idea_creator_profile
+        'profile': idea_creator_profile,
+        'creator': idea_creator,
     }
     return HttpResponse(template.render(context, request))
 
@@ -85,20 +87,19 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            
+
 
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            
+
             userID = User.objects.get(pk=request.user.id)
             user_profile = Profile(user_id=userID.id, bio='Welcome user, to your profile page')
             user_profile.save()
-            
+
             return redirect('/')
-            
+
     else:
         form = SignUpForm()
     return render(request, 'theStash/signup.html', {'form': form})
-

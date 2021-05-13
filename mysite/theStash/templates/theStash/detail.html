@@ -37,40 +37,39 @@
                     <tr>
                         <th scope="row">Last updated</th>
                         <td>{{ idea.updated_when }}</td>
-                        
+
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    
+
         <div class="row">
             <div class="col-sm-8">
                 <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
             </div>
             <div class="col-sm-4">
                 <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture" id="idea_user_profile_picture">
-                <h3>{{ idea.creator }}</h3>
-
-                <p>{{ profile.bio}}</p>
-                <a href="#" class="btn btn-warning" id="visit_profile_button">Go To serprofile</a>
+                <h3>{{ creator.username }}</h3>
+                <p>{{ profile.bio }}</p>
+                <a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning" id="visit_profile_button">Go To their Profile</a>
             </div>
 
         </div>
             <div class="card-body">
                 <h5 class="card-title">{{ idea.idea_title }}</h5>
                 <p class="card-text">{{ idea.idea_description }}</p>
-                
+
             </div>
 
             <div class="card-footer text-muted">
                 Created 2021-03-12
             </div>
         </div>
-   
 
 
-    
+
+
 
 
 
