@@ -21,7 +21,7 @@
         {% if latest_idea_list %}
             {% for idea in latest_idea_list %}
                 {% for obj in idea.idea_category.all %}
-                    {% if obj == item %}
+                    {% if obj == item and idea.is_public == 1 %}
                     
                             <div class="card my-card" style="width: 17rem;">
                                 <div class="card-body card-body-content">
