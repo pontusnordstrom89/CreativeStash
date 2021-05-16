@@ -15,9 +15,9 @@
         <p class="profile-bio">{{ profile.bio }}</p>
 
         <ul>
-            <li class="profile-link-li li-1"><a href="{{ profile.link1 }}">{{ profile.link1 }}</a></li>
-            <li class="profile-link-li li-2"><a href="{{ profile.link2 }}">{{ profile.link2 }}</a></li>
-            <li class="profile-link-li li-3"><a href="{{ profile.link3 }}">{{ profile.link3 }}</a></li>
+            <li class="profile-link-li"><a href="{{ profile.link1 }}">{{ profile.link1 }}</a></li>
+            <li class="profile-link-li"><a href="{{ profile.link2 }}">{{ profile.link2 }}</a></li>
+            <li class="profile-link-li"><a href="{{ profile.link1 }}">{{ profile.link3 }}</a></li>
         </ul>
         {% if user.is_authenticated and user.id == profile.user_id %}
     </div>
@@ -30,14 +30,12 @@
 </div>
 
 {% endif %}
+</div>
 
-<div class="row card-main">
-
-    <h2 class="cards-category"><u>{{ item }}</u></h2>
+<div class="row">
 
     {% if ideas %}
     {% for idea in ideas %}
-
     <div class="card my-card" style="width: 17rem;">
         <div class="card-body card-body-content">
             <div class="card-img-container">
@@ -47,16 +45,20 @@
             <p class="card-text">{{ idea.idea_description }}</p>
         </div>
         <div class="card-footer text-muted card-footer-content">
-            <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
+            {% for obj in idea.idea_category.all %}
+            <em> {{ obj }}, </em>
+
+            {% endfor %}
+            <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-warning cards-button">Read more</a>
             {% if user.is_authenticated and user.id == profile.user_id %}
-            <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button" style="float: right;">Edit</a>
+            <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button">Edit</a>
             {% endif %}
         </div>
+
     </div>
     {% endfor %}
     {% endif %}
 
+
 </div>
-
-
 {% endblock %}

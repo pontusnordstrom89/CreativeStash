@@ -34,7 +34,7 @@
                                 <div class="card-footer text-muted card-footer-content">
                                     {% for obj in idea.idea_category.all %}
                                         <em> {{ obj }}, </em>
-                                        <em>BY: </em><a class="card-link" href="#" a>{{idea.creator}}</a>
+                                        <em>Author: </em><a class="card-link" href="#" a>{{idea.creator}}</a>
                                     {% endfor %}
                                     <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
                                 </div>
