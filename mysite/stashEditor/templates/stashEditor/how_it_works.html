@@ -6,18 +6,27 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/stashEditor/style.css' %}">
 
-<h1>HOW IT WORKS</h1>
-<h2> Photos</h2>
-   <p>Choose one or more photos that describe your idea.
 
-   </p>
-<h2>Ideas</h2>
-    <p>Describe what the idea is about.
-
+<h1> What counts as an idea?</h1>
+    <p> An idea refers to a, usually, spontaneous thought over a certain area or
+        for a certain reasoning. What characterizes an idea is that it focuses on the <b>new or original.</b>
     </p>
 
-<h2>Publish</h2>
-    <p>Your idea is ready to be published!</p>
+<h1>How it works</h1>
+    <h2> 1. Idea</h2>
+        <p> Pick out your best idea with a suitable title and description.</p>
+
+    <h2>2. Picture</h2>
+        <p>Choose <b>ONE</b> image that best describes your idea.</p>
+
+    <h2> 3. Publish</h2>
+        <p>Your idea is ready to be published!</p>
+
+<h1>Let's get started!</h1>
+    <h3>
+        <a href="{% url 'stashEditor:create' %}">Create idea here</a>
+    </h3>
+    
 
 
 

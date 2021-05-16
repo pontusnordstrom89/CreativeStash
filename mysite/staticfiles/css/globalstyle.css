@@ -2,6 +2,12 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: normal;
 }
+
+
+main{
+    min-height: 100vh;
+    }
+    
 #navbar-account-button {
     margin: 0px 60px 0px 60px;
     min-width: 100px;
@@ -92,4 +98,6 @@ footer ul.quick-links li:hover a i {
     footer {
         padding-top:30px;
         padding-left: 60px;
+}
+
 }
