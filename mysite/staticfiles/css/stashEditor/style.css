@@ -1,5 +1,5 @@
-body { 
-    background-image: url('https://image.freepik.com/free-photo/inspiration-crumpled-yellow-paper-light-bulb-idea-white-background_23-2147890098.jpg');
+body {
+    background-image: url('/media/default_idea.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7,7 +7,7 @@ body {
     background-repeat: no-repeat;
     background-position: right;
 
-   
+
 }
 
 h1 {
@@ -18,12 +18,12 @@ h1 {
 h2 {
     text-decoration: none;
     color:#ddc24a;
-    
+
 }
 h3 a {
     text-decoration: none;
     color:#000000;
-    
+
 }
 
 h3 a:hover  {
@@ -48,4 +48,3 @@ h3 a:hover  {
 #submit_idea_form {
     width: 30%;
 }
-
