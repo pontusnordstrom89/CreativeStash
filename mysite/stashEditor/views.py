@@ -58,7 +58,7 @@ def create(request):
 
             if uploaded_picture:
                 #Save the uploaded image
-                name = fs.save(uploaded_picture.name, uploaded_picture)
+                name = fs.save(f"upload-{uploaded_picture.name}", uploaded_picture)
                 url = fs.url(name)
                 form_object.image = url
 
