@@ -15,8 +15,7 @@
 {% if category %}
     {% for item in category %}
     <div class="row card-main">
-
-        <h2 class="cards-category"><u>{{ item }}</u></h2>
+        <h2 class="cards-category"><u><a href="theStash/{{ item }}/">{{ item }}</a></u></h2>
         
         {% if latest_idea_list %}
             {% for idea in latest_idea_list %}

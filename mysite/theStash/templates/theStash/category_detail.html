@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+<!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+
+
+{% block content %}
+<!-- Page start -->
+<h1>Category: {{ category_name }}</h1>
+{% if idea_in_category %}
+
+    {% for idea in idea_in_category %}
+
+    <div class="card my-card" style="width: 17rem;">
+        <div class="card-body card-body-content">
+            <div class="card-img-container">
+                <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
+            </div>
+            <h5 class="card-title">{{ idea.idea_title }}</h5>
+            <p class="card-text">{{ idea.idea_description }}</p>
+        </div>
+        <div class="card-footer text-muted card-footer-content">
+            {% for obj in idea.idea_category.all %}
+            <em> {{ obj }}, </em>
+            <em>Author: </em><a class="card-link" href="#" a>{{idea.creator}}</a>
+            {% endfor %}
+            <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
+        </div>
+    </div>
+   
+{% endfor %}
+
+{% else %}
+<p>No categories are available.</p>
+{% endif %}
+
+
+
+
+{% endblock %}

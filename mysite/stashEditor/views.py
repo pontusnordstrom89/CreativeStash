@@ -8,6 +8,7 @@ from django.core.files.storage import FileSystemStorage
 from theStash.models import Idea, Category
 from .forms import CreateIdeaForm, CreateCategoryFrom
 
+
 list_of_categories = []
 
 def index(request):

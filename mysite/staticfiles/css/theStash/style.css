@@ -1,15 +1,13 @@
 .my-card {
-    background-color:#F3F3F3;
+    background-color: #F3F3F3;
     display: inline;
     margin: 5px;
-    height: 500px;    
+    height: 500px;
 }
-
 
 .card-body-content {
     height: 85%;
     width: 100%;
-    
 }
 
 .card-img-container {
@@ -42,7 +40,7 @@
 }
 
 .cards-button {
-    background-color:#F0EFEE;
+    background-color: #F0EFEE;
     width: 100%;
     padding: 0.5%;
     max-height: 40px;
@@ -50,7 +48,7 @@
 }
 
 .card-creator-link {
-    color:#6E6C6C;
+    color: #6E6C6C;
     text-decoration: none;
 }
 
@@ -63,6 +61,14 @@
     display: none;
 }
 
-#search_header{
+#search_header {
     margin: 20px 0px;
+}
+
+.idea-details {
+    margin: 20px 0px 20px 0px;
+}
+
+.idea-detail-main {
+    margin-top: 20px;
 }
