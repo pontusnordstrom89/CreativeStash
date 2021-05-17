@@ -21,6 +21,7 @@ h2 {
 h3 a {
     text-decoration: none;
     color: #000000;
+    color:#000000;
 }
 
 h3 a:hover {
@@ -44,4 +45,3 @@ h3 a:hover {
 #submit_idea_form {
     width: 30%;
 }
-
