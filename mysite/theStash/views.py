@@ -33,10 +33,10 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def detail(request, user_poth, idea_id):
+def detail(request, user_id, idea_id):
     idea = get_object_or_404(Idea, pk=idea_id)
-    idea_creator_profile = Profile.objects.get(pk=user_poth)
-    idea_creator = User.objects.get(pk=user_poth)
+    idea_creator_profile = Profile.objects.get(user_id=user_id)
+    idea_creator = User.objects.get(pk=user_id)
 
     template = loader.get_template('theStash/detail.html')
     context = {
@@ -46,6 +46,15 @@ def detail(request, user_poth, idea_id):
     }
     return HttpResponse(template.render(context, request))
 
+def category_detail(request, category_name):
+    idea = Idea.objects.filter(idea_category=category_name)
+
+    template = loader.get_template('theStash/category_detail.html')
+    context = {
+        'idea_in_category': idea,
+        'category_name': category_name
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def search_result(request):
@@ -64,17 +73,29 @@ def search_result(request):
                 result_category = Category.objects.filter(
                     Q(category_name__icontains=q))
 
-            search_hits = len(result_idea) + len(result_category)
-            context = {
-                'search_query': query,
-                'search_result_idea': result_idea,
-                'search_result_category': result_category,
-                'search_hits': search_hits
-            }
+                result_user = User.objects.filter(
+                    Q(username__icontains=q))
+
+            search_hits = len(result_idea) + len(result_category) + len(result_user)
+            
+            if search_hits == 0:
+                context = {
+                    'nothing_found': 'Nothing found, let´s create something'
+                }
+            else:
+                context = {
+                    'search_query': query,
+                    'search_result_idea': result_idea,
+                    'search_result_category': result_category,
+                    'search_result_user': result_user,
+                    'search_hits': search_hits
+                }
+            
         else:
             context = {
                 'nothing_found': 'Nothing found, let´s create something'
             }
+            
     else:
         context = {
             'help': 'Try search for something'

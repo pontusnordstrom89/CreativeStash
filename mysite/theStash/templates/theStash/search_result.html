@@ -6,7 +6,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
-{% if search_result_idea or search_result_category %}
+{% if search_result_idea or search_result_category or search_result_user %}
 <div class="card-header text-center" id="search_header">
     <h3>We managed to find <u>{{search_hits}}</u> things related to <strong><u>{{ search_query }}</u></strong></h3>
     <div class="d-flex justify-content-center">
@@ -54,9 +54,31 @@
     <div class="alert alert-dark" role="alert">
         <h3>Based on category</h3>
     </div>
-    <em>Länk till kategori? eller visa alla idéer som finns i kategori?</em>
-    {% for idea in search_result_category %}
-    <li>{{idea.category_name}}</li>
+    {% for category in search_result_category %}
+    <a href="/{{ category }}/" class="btn btn-warning btn-lg">{{ category }}</a>
+    {% endfor %}
+</div>
+
+
+<div class="col">
+    <div class="alert alert-dark" role="alert">
+        <h3>Based on user</h3>
+    </div>
+    
+    {% for user in search_result_user %}
+
+    <div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture">
+        <div class="card-body">
+            <a href="/stashProfile/social_profile/{{ user.id }}"><h5 class="card-title">{{ user.username }}</h5></a>
+            <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+        <div class="card-footer text-muted">
+    
+        </div>
+    </div>
+
+
     {% endfor %}
 </div>
 

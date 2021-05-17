@@ -3,7 +3,7 @@
 <script>
 
     $("#details").click(function () {
-        $("#vy_1").toggle();
+        $("#vy_1").fadeToggle();
     });
 </script>
 
@@ -13,59 +13,60 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
-<div class="card text-center">
-    <div class="card-header">
-        <ul class="nav nav-tabs">
-            <button class="btn btn-warning" id="details">Details</button>
-        </ul>
-    </div>
-
+<div class="card text-center idea-detail-main">
     <div class="row">
-        <div class="col-sm-6" id="vy_1">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Created by:</th>
-                        <th scope="col">{{ idea.creator }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Date of creation:</th>
-                        <td>{{ idea.created_date }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Last updated</th>
-                        <td>{{ idea.updated_when }}</td>
-
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-md-9">
+            <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
         </div>
+        <div class="col-md-3 bg-dark">
+            <h3 class="bg-warning mt-3 rounded">{{ creator.username }}</h3>
+            <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture"
+                id="idea_user_profile_picture">
+                <h3><a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning btn-lg"
+                id="visit_profile_button">Profile</a></h3>
+            
+            
+
+            <div class="idea-details">
+            <button class="btn btn-outline-warning btn-sm" id="details">Details</button>
+            </div>
+
+            <div class="bg-white" id="vy_1">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Created by:</th>
+                            <th scope="col">{{ idea.creator }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Date of creation:</th>
+                            <td>{{ idea.created_date }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Last updated</th>
+                            <td>{{ idea.updated_when }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ idea.idea_title }}</h5>
+        <p class="card-text">{{ idea.idea_description }}</p>
+        {% if user.is_authenticated and user.id == profile.user_id %}
+        <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning" style="float: right;">Edit</a>
+        {% endif %}
     </div>
 
-        <div class="row">
-            <div class="col-sm-8">
-                <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
-            </div>
-            <div class="col-sm-4">
-                <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture" id="idea_user_profile_picture">
-                <h3>{{ creator.username }}</h3>
-                <p>{{ profile.bio }}</p>
-                <a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning" id="visit_profile_button">Go To their Profile</a>
-            </div>
-
-        </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ idea.idea_title }}</h5>
-                <p class="card-text">{{ idea.idea_description }}</p>
-
-            </div>
-
-            <div class="card-footer text-muted">
-                Created 2021-03-12
-            </div>
-        </div>
+    <div class="card-footer text-muted">
+        Created 2021-03-12
+    </div>
+</div>
 
 
 
