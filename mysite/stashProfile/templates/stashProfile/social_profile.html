@@ -35,20 +35,20 @@
         {% for idea in ideas %}
 
         {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
-            </div>
-        {% endif %}
+    </div>
+    {% endif %}
 
-        {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-            <div class="carousel-item active">
+    {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
+    <div class="carousel-item active">
         {% elif forloop.counter0|divisibleby:4 %}
-            <div class="carousel-item">
-        {% endif %}
+        <div class="carousel-item">
+            {% endif %}
 
             <div class="col-md-3" style="float:left">
                 <div class="card mb-2">
                     <img class="card-img-top"
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                        alt="Card image cap">
+                        src="{{ idea.image }}"
+                        alt="{{ idea.idea_title }}">
                     <div class="card-body">
                         <h4 class="card-title">{{ idea.idea_title }}</h4>
                         <p class="card-text">{{ idea.idea_description }}</p>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-                <!--
+            <!--
             <div class="card my-card">
                 <div class="card-body card-body-content">
                     <div class="card-img-container">
@@ -76,121 +76,69 @@
                 -->
 
 
-        {% endfor %}
-        {% endif %}
+            {% endfor %}
+            {% endif %}
 
-      
-        
-      </div>
+
+
+        </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#slideshow-1" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
     </button>
-  </div>
+</div>
 
-  <hr>
-
-  <div id="slideshow-2" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        {% if ideas %}
-        {% for idea in ideas %}
-
-        {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
-            </div>
-        {% endif %}
-
-        {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-            <div class="carousel-item active">
-        {% elif forloop.counter0|divisibleby:4 %}
-            <div class="carousel-item">
-        {% endif %}
-
-            <div class="col-md-3" style="float:left">
-                <div class="card mb-2">
-                    <img class="card-img-top"
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ idea.idea_title }}</h4>
-                        <p class="card-text">{{ idea.idea_description }}</p>
-                        <a class="btn btn-primary">Details</a>
-                    </div>
-                </div>
-            </div>
-                <!--
-            <div class="card my-card">
-                <div class="card-body card-body-content">
-                    <div class="card-img-container">
-                        <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-                    </div>
-                    <h5 class="card-title">{{ idea.idea_title }}</h5>
-                    <p class="card-text">{{ idea.idea_description }}</p>
-                </div>
-                
-                <div class="card-footer text-muted card-footer-content">
-                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
-                    {% if user.is_authenticated and user.id == profile.user_id %}
-                    <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
-                        style="float: right;">Edit</a>
-                    {% endif %}
-                </div>
-                -->
-
-
-        {% endfor %}
-        {% endif %}
-
-      
-        
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-2" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#slideshow-2" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-
-
-
-
+<hr>
 
 
 <!--
-<div class="row card-main">
+            <div class="card my-card">
+                <div class="card-body card-body-content">
+                    <div class="card-img-container">
+                        <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
+                    </div>
+                    <h5 class="card-title">{{ idea.idea_title }}</h5>
+                    <p class="card-text">{{ idea.idea_description }}</p>
+                </div>
+                
+                <div class="card-footer text-muted card-footer-content">
+                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
+                    {% if user.is_authenticated and user.id == profile.user_id %}
+                    <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
+                        style="float: right;">Edit</a>
+                    {% endif %}
+                </div>
+                -->
+<!-- <div class="row card-main">
 
-    <h2 class="cards-category"><u>{{ item }}</u></h2>
+<h2 class="cards-category"><u>{{ item }}</u></h2>
 
-    {% if ideas %}
-    {% for idea in ideas %}
+{% if ideas %}
+{% for idea in ideas %}
 
-    <div class="card my-card" style="width: 17rem;">
-        <div class="card-body card-body-content">
-            <div class="card-img-container">
-                <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-            </div>
-            <h5 class="card-title">{{ idea.idea_title }}</h5>
-            <p class="card-text">{{ idea.idea_description }}</p>
+<div class="card my-card" style="width: 17rem;">
+    <div class="card-body card-body-content">
+        <div class="card-img-container">
+            <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
         </div>
-        <div class="card-footer text-muted card-footer-content">
-            <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
-            {% if user.is_authenticated and user.id == profile.user_id %}
-            <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
-                style="float: right;">Edit</a>
-            {% endif %}
-        </div>
+        <h5 class="card-title">{{ idea.idea_title }}</h5>
+        <p class="card-text">{{ idea.idea_description }}</p>
     </div>
-    {% endfor %}
-    {% endif %}
+    <div class="card-footer text-muted card-footer-content">
+        <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
+        {% if user.is_authenticated and user.id == profile.user_id %}
+        <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
+            style="float: right;">Edit</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
 
 </div>
 -->
