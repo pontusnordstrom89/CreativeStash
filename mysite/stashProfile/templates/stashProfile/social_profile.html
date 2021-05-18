@@ -29,7 +29,7 @@
     </div>
 </div>
 {% endif %}
-<div id="slideshow-1" class="carousel slide" data-bs-ride="carousel">
+<div id="slideshow-1" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
     <div class="carousel-inner">
         {% if ideas %}
         {% for idea in ideas %}
@@ -46,9 +46,7 @@
 
             <div class="col-md-3" style="float:left">
                 <div class="card mb-2">
-                    <img class="card-img-top"
-                        src="{{ idea.image }}"
-                        alt="{{ idea.idea_title }}">
+                    <img class="card-img-top" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
                     <div class="card-body">
                         <h4 class="card-title">{{ idea.idea_title }}</h4>
                         <p class="card-text">{{ idea.idea_description }}</p>
@@ -83,8 +81,8 @@
 
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <button class="carousel-control-prev bg-warning" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#slideshow-1" data-bs-slide="next">
