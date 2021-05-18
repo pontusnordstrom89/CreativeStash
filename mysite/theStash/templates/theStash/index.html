@@ -16,12 +16,12 @@
     {% for item in category %}
     <div class="row card-main">
         <h2 class="cards-category"><u><a class="category-links" href="theStash/{{ item }}/">{{ item }}</a></u></h2>
-        
+      
         {% if latest_idea_list %}
             {% for idea in latest_idea_list %}
                 {% for obj in idea.idea_category.all %}
                     {% if obj == item and idea.is_public == 1 %}
-                    
+
                             <div class="card my-card" style="width: 17rem;">
                                 <div class="card-body card-body-content">
                                     <div class="card-img-container">
@@ -33,19 +33,18 @@
                                 <div class="card-footer text-muted card-footer-content">
                                     {% for obj in idea.idea_category.all %}
                                         <em> {{ obj }}, </em>
-                                        <em>Author: </em><a class="card-link" href="#" a>{{idea.creator}}</a>
                                     {% endfor %}
                                     <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
                                 </div>
                             </div>
                     {% endif %}
                 {% endfor %}
-                
+
             {% endfor %}
-            
-        
+
+
         {% endif %}
-    </div>    
+    </div>
     {% endfor %}
 
     {% else %}
