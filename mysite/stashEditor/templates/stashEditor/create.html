@@ -52,15 +52,15 @@
             <div class="sm-5">
                 {{ideaform.idea_title|as_crispy_field}}
                 <small class="form-text text-muted">Choose a suitable title for your project</small>
-        
+
                 {{ideaform.idea_description|as_crispy_field}}
                 <small class="form-text text-muted">Describe your project</small><br>
             </div>
 
             <div class="sm-5">
                 <label for="id_category_name" class="form-label" id="div_id_add_category" >Add categories to your idea</label>
-                <input type="text" class="form-control" id="id_category_name" placeholder="e.g. cloud computing or cryptocurrency" required> 
-                <small class="form-text text-muted">Press enter to add the new category</small>
+                <input type="text" class="form-control" id="id_category_name" placeholder="e.g. cloud computing or cryptocurrency" required>
+                <small class="form-text text-muted">Categories help people find your public ideas on CreativeStash</small>
 
                 <strong id="categories"></strong><br>
 
@@ -73,9 +73,9 @@
         <div class="sm-5" id="form_submit_button_box">
             <button class="btn btn-warning" id="submit_idea_form">Save</button>
         </div>
-        
+
       </div>
-    
+
     </div>
 </div>
 {% endblock %}
