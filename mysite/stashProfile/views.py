@@ -68,7 +68,7 @@ def edit_social_profile(request, user_profile_id):
         if form.is_valid():
 
             form.save()
-            return redirect('/')
+            return redirect(f'/stashProfile/social_profile/{user_profile_id}')
 
         elif ValidationError:
             print('ValidationError')
