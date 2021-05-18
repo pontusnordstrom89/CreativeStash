@@ -72,3 +72,13 @@
 .idea-detail-main {
     margin-top: 20px;
 }
+
+.category-links {
+    color: #898989;
+    text-transform: capitalize;
+    text-decoration-color: #ffc107;
+}
+
+.category-links:hover {
+    color: #ffc107;
+}
