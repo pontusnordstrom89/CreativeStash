@@ -5,7 +5,6 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     category_name = models.CharField(max_length=100, primary_key=True)
-    user_interests = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.category_name
@@ -18,7 +17,7 @@ class Profile(models.Model):
     link1 = models.URLField(max_length=200, blank=True)
     link2 = models.URLField(max_length=200, blank=True)
     link3 = models.URLField(max_length=200, blank=True)
-    #user_interests = models.ManyToManyField(Category, blank=True)
+    user_interests = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.bio

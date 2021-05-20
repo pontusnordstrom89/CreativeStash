@@ -67,7 +67,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="navbar-account-button">
                                 <li><a class="dropdown-item" href="/stashProfile/social_profile/{{ user.id }}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
                             </ul>
                         {% else %}
                             <button class="btn btn-warning dropdown-toggle" type="button" id="navbar-account-button" data-bs-toggle="dropdown"

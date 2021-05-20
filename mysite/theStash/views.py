@@ -8,26 +8,30 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from .forms import SignUpForm
 from .models import Idea, Category, Profile
-
+import random
 
 
 def index(request):
     template = loader.get_template('theStash/index.html')
 
-    categoy_list = Category.objects.order_by('category_name')
-    latest_idea_list = Idea.objects.order_by('idea_title')
+    if request.user.is_authenticated:
+        #Get user interests
+        users_interests = Profile.objects.get(
+            user_id=request.user.id).user_interests.all()[:20]
+        
+        my_dict = {}
 
-    category_name = {}
-    for cat in categoy_list:
-        categories = cat.list_idea_categories.all()
-        if categories:
-            category_name[cat] = [categories]
-        else:
-            pass
+        for category_name in users_interests:
+            ideas = Idea.objects.filter(idea_category__pk=category_name)
+
+            my_dict[category_name] = ideas
+            
+    else:
+        my_dict = Idea.objects.all()
+
 
     context = {
-        'latest_idea_list': latest_idea_list,
-        'category': category_name
+        'everything': my_dict
     }
 
     return HttpResponse(template.render(context, request))

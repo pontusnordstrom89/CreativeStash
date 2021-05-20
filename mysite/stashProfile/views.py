@@ -21,13 +21,14 @@ def social_profile(request, user_profile_id):
     #userID = User.objects.get(pk=request.user.id)
     profile = get_object_or_404(Profile, user_id=user_profile_id)
     user = get_object_or_404(User, id=user_profile_id)
-
     idea_list = Idea.objects.filter(creator=user_profile_id)
+    users_interests = Profile.objects.get(user_id=user_profile_id).user_interests.all()
 
     context = {
         'ideas': idea_list,
         'profile': profile,
         'show_user': user,
+        'user_interests': users_interests
     }
     return HttpResponse(template.render(context, request))
 
