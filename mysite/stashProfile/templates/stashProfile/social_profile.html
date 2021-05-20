@@ -5,6 +5,7 @@
 <!--<link rel="stylesheet" href="{% static 'css/stashProfile/style.css' %}"> -->
 <link rel="stylesheet" href="{% static 'css/stashProfile/slider_style.css' %}">
 <div class="row bg-warning">
+    {% if user.is_authenticated and user.id == profile.user_id %}
     <div class="col-md-3 justify-content-md-center bg-primary">
         <img class="img-fluid" src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png">
     </div>
@@ -18,7 +19,12 @@
             <li class="profile-link-li li-2"><a href="{{ profile.link2 }}">{{ profile.link2 }}</a></li>
             <li class="profile-link-li li-3"><a href="{{ profile.link3 }}">{{ profile.link3 }}</a></li>
         </ul>
-        {% if user.is_authenticated and user.id == profile.user_id %}
+
+        <strong class="text-light">Interests</strong>
+        {% for interest in user_interests %}
+            <li class="text-light"><a href="/theStash/{{ interest }}/">{{ interest }}</a></li>
+        {% endfor %}
+
     </div>
 </div>
 <div class="profile-footer">
