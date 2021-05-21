@@ -25,9 +25,10 @@ def index(request):
             ideas = Idea.objects.filter(idea_category__pk=category_name)
 
             my_dict[category_name] = ideas
-            print(type(my_dict))
-            print(type(my_dict[category_name]))
-            print(my_dict[category_name][0].creator)
+        print(type(my_dict))
+        print(type(my_dict[category_name]))
+        print(my_dict[category_name][0].creator)
+        
     else:
         my_dict = Idea.objects.all()
 
