@@ -29,6 +29,9 @@ def index(request):
     else:
         my_dict = Idea.objects.all()
 
+    print(type(my_dict))
+    print(type(my_dict[category_name]))
+    print(my_dict[category_name][0].creator)
 
     context = {
         'everything': my_dict
