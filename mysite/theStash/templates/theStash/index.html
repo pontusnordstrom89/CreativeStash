@@ -17,12 +17,13 @@
 
     {% for categories in everything %}
         <h3>{{ categories.category_name }}</h3>
-           
-
-        
 
 
+        {% for ideas in everything.category_name.ideas %}
+            {{ ideas }}
+        {% endfor %}
     {% endfor %}
+    
 {% endif %}
 
 {% endblock %}
