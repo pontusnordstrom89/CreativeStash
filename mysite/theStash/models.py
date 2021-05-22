@@ -12,8 +12,8 @@ class Category(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_profile")
     bio = models.TextField(blank=True)
-    #profile_picture = models.Image()
-    #social links connected to user profile
+    profile_picture = models.ImageField(upload_to='./profilepics/', null=True, blank=True)
+    #optional social links connected to user profile
     link1 = models.URLField(max_length=200, blank=True)
     link2 = models.URLField(max_length=200, blank=True)
     link3 = models.URLField(max_length=200, blank=True)

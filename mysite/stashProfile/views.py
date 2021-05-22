@@ -5,6 +5,7 @@ from django.template import loader
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 from theStash.models import Profile, Idea
 from .forms import EditSocialProfile, EditIdeaForm
 
@@ -41,6 +42,7 @@ def edit_idea(request, idea_id):
 
     if request.method == 'POST':
         form = EditIdeaForm(request.POST, instance=idea)
+
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -59,23 +61,33 @@ def edit_idea(request, idea_id):
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
     profile = get_object_or_404(Profile, user_id=user_profile_id)
-    form = EditSocialProfile(instance=profile)
-
+    #form = EditSocialProfile(instance=profile)
+    fs = FileSystemStorage()
 
     if request.method == 'POST':
-        form = EditSocialProfile(request.POST, instance=profile)
+        form = EditSocialProfile(request.POST, request.FILES, instance=profile)
 
-
+        # check if form data is valid
         if form.is_valid():
+            profile_picture = request.FILES.get('profile_picture')
+            form_object = form.save(commit=False)
 
+            if profile_picture:
+                #Save the uploaded image
+                name = fs.save(profile_picture.name, profile_picture)
+                url = fs.url(name)
+                form_object.image = url
+
+            else:
+                form_object.image = '/media/profilepics/default_profile.png'
+
+            #Save the form to database
             form.save()
+            #Redirect to user profile
             return redirect(f'/stashProfile/social_profile/{user_profile_id}')
 
-        elif ValidationError:
-            print('ValidationError')
-
-        else:
-            print('Something is wrong')
+    else:
+        form = EditSocialProfile(instance=profile)
 
 
     context = {

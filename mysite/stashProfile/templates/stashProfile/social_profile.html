@@ -7,7 +7,11 @@
 <div class="row bg-warning">
     {% if user.is_authenticated and user.id == profile.user_id %}
     <div class="col-md-3 justify-content-md-center bg-primary">
-        <img class="img-fluid" src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png">
+      {% if profile.profile_picture %}
+      <img src="/media/{{ profile.profile_picture }}" alt="profile picture" style="max-width: 200px; max-height: 300px">
+      {% else %}
+      <img class="img-fluid" src="/media/profilepics/default_profile.png">
+    {%endif%}
     </div>
     <div class="col-md-6 mt-5">
         <h5 class="profile-name">{{ show_user.username }}</h5>
@@ -56,7 +60,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ idea.idea_title }}</h4>
                         <p class="card-text">{{ idea.idea_description }}</p>
-                        <a class="btn btn-primary">Details</a>
+                        <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +73,7 @@
                     <h5 class="card-title">{{ idea.idea_title }}</h5>
                     <p class="card-text">{{ idea.idea_description }}</p>
                 </div>
-                
+
                 <div class="card-footer text-muted card-footer-content">
                     <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
                     {% if user.is_authenticated and user.id == profile.user_id %}
@@ -109,7 +113,7 @@
                     <h5 class="card-title">{{ idea.idea_title }}</h5>
                     <p class="card-text">{{ idea.idea_description }}</p>
                 </div>
-                
+
                 <div class="card-footer text-muted card-footer-content">
                     <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
                     {% if user.is_authenticated and user.id == profile.user_id %}
