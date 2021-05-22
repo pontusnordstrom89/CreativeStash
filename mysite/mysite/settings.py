@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'stashProfile.apps.StashprofileConfig',
 
-    
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -148,8 +148,3 @@ LOGIN_REDIRECT_URL = '/'
 
 # We do not support emails yet. This logs any emails sent to the console (so you can copy the password reset link from the console).
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
-
-
-

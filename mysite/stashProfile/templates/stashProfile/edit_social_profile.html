@@ -3,19 +3,13 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<form method="post" id="edit_social_form">
+<form action="" method="post" id="EditSocialProfile" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Tell us about you.</h2>
-    <p>Write your bio and add some links to your best social media profile(s). So that other creators can see your work!</p>
+    <p>Write your bio and add some links to your best social media profile(s).
+      So that other creatives can see your work!</p>
+
     {{ form|crispy }}
-<!---
-    <div class="sm-5">
-
-        <label class="form-label" for="profilbild" id="div_id_add_image">Upload profile picture</label>
-        <input class="form-control" type="file" name="profilbild" id="imageupload">
-
-    </div>
-    -->
 
     <button class="btn btn-warning" type="submit">Update</button>
 

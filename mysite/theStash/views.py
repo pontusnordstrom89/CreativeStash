@@ -18,7 +18,7 @@ def index(request):
         #Get user interests
         users_interests = Profile.objects.get(
             user_id=request.user.id).user_interests.all()[:20]
-        
+
         my_dict = {}
 
         for category_name in users_interests:
@@ -32,7 +32,7 @@ def index(request):
     else:
         my_dict = Idea.objects.all()
 
-    
+
 
     context = {
         'everything': my_dict
@@ -85,7 +85,7 @@ def search_result(request):
                     Q(username__icontains=q))
 
             search_hits = len(result_idea) + len(result_category) + len(result_user)
-            
+
             if search_hits == 0:
                 context = {
                     'nothing_found': 'Nothing found, let´s create something'
@@ -98,12 +98,12 @@ def search_result(request):
                     'search_result_user': result_user,
                     'search_hits': search_hits
                 }
-            
+
         else:
             context = {
                 'nothing_found': 'Nothing found, let´s create something'
             }
-            
+
     else:
         context = {
             'help': 'Try search for something'
