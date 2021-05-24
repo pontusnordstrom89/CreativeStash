@@ -1,52 +1,54 @@
 {% extends "base_generic.html" %}
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 {% block content %}
+
 {% load static %}
-<!--<link rel="stylesheet" href="{% static 'css/stashProfile/style.css' %}"> -->
-<link rel="stylesheet" href="{% static 'css/stashProfile/slider_style.css' %}">
+<link rel="stylesheet" href="{% static 'css/stashProfile/style.css' %}">
 
-
-
-
-<div class="profile-page mt-5">
-<div class="row bg-warning">
+<div class="row mt-5 profile-links">
     {% if user.is_authenticated and user.id == profile.user_id %}
 
-    <div class="col-md-3 justify-content-md-center bg-primary">
-      {% if profile.profile_picture %}
-      <img src="/media/{{ profile.profile_picture }}" alt="profile picture">
-      {% else %}
-      <img class="img-fluid" src="/media/profilepics/default_profile.png">
-    {%endif%}
+    <div class="col-md-3 justify-content-md-center">
+        {% if profile.profile_picture %}
+        <img class="img-fluid rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
+        {% else %}
+        <img class="img-fluid" src="/media/profilepics/default_profile.png">
+        {%endif%}
     </div>
-    <div class="col-md-6 mt-5">
-        <h5 class="profile-name">{{ show_user.username }}</h5>
-        <p class="profile-bio">{{ profile.bio }}</p>
+    <div class="col-md-6 text-center">
+        <h3 class="bg-warning text-dark text-uppercase rounded">{{ show_user.username }}</h3>
+        <p>{{ profile.bio }}</p>
     </div>
-    <div class="col-md-3 bg-dark border">
-        <ul>
-            <li class="profile-link-li li-1"><a href="{{ profile.link1 }}">{{ profile.link1 }}</a></li>
-            <li class="profile-link-li li-2"><a href="{{ profile.link2 }}">{{ profile.link2 }}</a></li>
-            <li class="profile-link-li li-3"><a href="{{ profile.link3 }}">{{ profile.link3 }}</a></li>
+    <div class="col-md-3 bg-dark p-2 rounded">
+
+        <h4 class="text-light">Social links</h4>
+        <ul class="list-group list-unstyled">
+            <li><a class="text-light text-decoration-none" href="{{ profile.vimeo }}">Vimeo</a></li>
+            <li><a class="text-light text-decoration-none" href="{{ profile.behance }}">Behance</a></li>
+            <li><a class="text-light text-decoration-none" href="{{ profile.instagram }}">Instagram</a></li>
         </ul>
+        <hr>
 
-        <strong class="text-light">Interests</strong>
-        {% for interest in user_interests %}
-            <li class="text-light"><a href="/theStash/{{ interest }}/">{{ interest }}</a></li>
-        {% endfor %}
-
-    </div>
-</div>
-<div class="profile-footer">
-    <div class="profile-edit">
-        <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning profile-button">Edit
-            profile</a>
-
+        <h4 class="text-light text-center d-flex flex-row-reverse">Interests</h4>
+        <ul class="list-group w-100">
+            {% for interest in user_interests %}
+            <li class="text-light text-light text-decoration-none"><a
+                    class="d-flex flex-row-reverse text-light text-decoration-none" href="/theStash/{{ interest }}/">{{ interest }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="w-100">
+            <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning profile-button">Edit
+                profile</a>
+        </div>
     </div>
 </div>
 {% endif %}
-<div id="slideshow-1" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
-    <div class="carousel-inner">
+
+<hr>
+
+<h3 class="text-dark">{{ show_user.username }}'s ideas</h3>
+<div id="slideshow-1" class="carousel slide mt-5" data-bs-ride="false" data-bs-interval="false">
+    <div class="carousel-inner" style="height: inherit;">
         {% if ideas %}
         {% for idea in ideas %}
 
@@ -55,49 +57,36 @@
     {% endif %}
 
     {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-    <div class="carousel-item active">
+    <div class="carousel-item active" style="height: inherit;">
         {% elif forloop.counter0|divisibleby:4 %}
-        <div class="carousel-item">
+        <div class="carousel-item" style="height: inherit;">
             {% endif %}
 
-            <div class="col-md-3" style="float:left">
-                <div class="card mb-2">
-                    <img class="card-img-top" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
+            
+                <div class="card col-sm-3 h-100" style="float:left;">
+                    
+                    <a href="/{{ idea.creator_id }}/{{ idea.id }}"><img class="card-img-top" src="{{ idea.image }}" alt="{{ idea.idea_title }}"></a>
+                
                     <div class="card-body">
-                        <a class="text-decoration-none" href="/theStash/{{ idea.idea_title }}/"><h4 class="card-title text-dark">{{ idea.idea_title }}</h4></a>
-                        <p class="card-text">{{ idea.idea_description }}</p>
+                        <a class="text-decoration-none" href="/theStash/{{ idea.idea_title }}/">
+                            <h4 class="card-title text-dark">{{ idea.idea_title }}</h4>
+                        </a>
+                        <p class="card-text text-truncate">{{ idea.idea_description }}</p>
+
+                    </div>
+                    <div class="card-footer d-flex justify-content-center">
                         <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
-            </div>
-            <!--
-            <div class="card my-card">
-                <div class="card-body card-body-content">
-                    <div class="card-img-container">
-                        <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-                    </div>
-                    <h5 class="card-title">{{ idea.idea_title }}</h5>
-                    <p class="card-text">{{ idea.idea_description }}</p>
-                </div>
-
-                <div class="card-footer text-muted card-footer-content">
-                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
-                    {% if user.is_authenticated and user.id == profile.user_id %}
-                    <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
-                        style="float: right;">Edit</a>
-                    {% endif %}
-                </div>
-                -->
+            
 
 
             {% endfor %}
             {% endif %}
 
-
-
         </div>
     </div>
-    <button class="carousel-control-prev bg-warning" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
         <span class="carousel-control-prev-icon " aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
@@ -107,54 +96,6 @@
     </button>
 </div>
 
-<hr>
 
 
-<!--
-            <div class="card my-card">
-                <div class="card-body card-body-content">
-                    <div class="card-img-container">
-                        <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-                    </div>
-                    <h5 class="card-title">{{ idea.idea_title }}</h5>
-                    <p class="card-text">{{ idea.idea_description }}</p>
-                </div>
-
-                <div class="card-footer text-muted card-footer-content">
-                    <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
-                    {% if user.is_authenticated and user.id == profile.user_id %}
-                    <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
-                        style="float: right;">Edit</a>
-                    {% endif %}
-                </div>
-                -->
-<!-- <div class="row card-main">
-
-<h2 class="cards-category"><u>{{ item }}</u></h2>
-
-{% if ideas %}
-{% for idea in ideas %}
-
-<div class="card my-card" style="width: 17rem;">
-    <div class="card-body card-body-content">
-        <div class="card-img-container">
-            <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-        </div>
-        <h5 class="card-title">{{ idea.idea_title }}</h5>
-        <p class="card-text">{{ idea.idea_description }}</p>
-    </div>
-    <div class="card-footer text-muted card-footer-content">
-        <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
-        {% if user.is_authenticated and user.id == profile.user_id %}
-        <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning cards-button"
-            style="float: right;">Edit</a>
-        {% endif %}
-    </div>
-</div>
-{% endfor %}
-{% endif %}
-
-</div>
--->
-</div>
 {% endblock %}

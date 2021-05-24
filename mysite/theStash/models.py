@@ -14,9 +14,9 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='./profilepics/', null=True, blank=True)
     #optional social links connected to user profile
-    link1 = models.URLField(max_length=200, blank=True)
-    link2 = models.URLField(max_length=200, blank=True)
-    link3 = models.URLField(max_length=200, blank=True)
+    vimeo = models.URLField(max_length=200, blank=True)
+    behance = models.URLField(max_length=200, blank=True)
+    instagram = models.URLField(max_length=200, blank=True)
     user_interests = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
