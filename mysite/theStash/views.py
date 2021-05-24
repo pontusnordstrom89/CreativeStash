@@ -20,10 +20,9 @@ def index(request):
             user_id=request.user.id).user_interests.all()[:20]
 
         my_dict = {}
-
+    
         for category_name in users_interests:
             ideas = Idea.objects.filter(idea_category__pk=category_name)
-
             my_dict[category_name] = ideas
         #print(type(my_dict))
         #print(type(my_dict[category_name]))
