@@ -14,22 +14,33 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
-<div class="card text-center idea-detail-main">
-    <div class="row">
-        <div class="col-md-9">
-            <img class="card-img-top" src="{{ idea.image }}" alt="Card image cap">
-        </div>
-        <div class="col-md-3 bg-dark">
-            <h3 class="bg-warning mt-3 rounded">{{ creator.username }}</h3>
+<h1 class="mt-5 ">{{ idea.idea_title }}</h1>
+<div class="d-flex justify-content-between">
+    
+    <div class="col-md-8 mr-auto border rounded p-2">
+        
+        <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
+            alt="Card image cap">
+        <p class="">{{ idea.idea_description }}</p>
+        {% if user.is_authenticated and user.id == profile.user_id %}
+        <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
+        {% endif %}
+
+
+
+    </div>
+
+
+    <div class="col-md-3 text-center">
+        <div class="p-1 bg-dark rounded">
+            <h3 class="bg-warning rounded text-uppercase">{{ creator.username }}</h3>
             <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture"
                 id="idea_user_profile_picture">
-                <h3><a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning btn-lg"
-                id="visit_profile_button">Profile</a></h3>
-            
-            
+            <h3><a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning btn-lg"
+                    id="visit_profile_button">Profile</a></h3>
 
             <div class="idea-details">
-            <button class="btn btn-outline-warning btn-sm" id="details">Details</button>
+                <button class="btn btn-outline-warning btn-sm" id="details">Details</button>
             </div>
 
             <div class="bg-white" id="vy_1">
@@ -54,20 +65,11 @@
                 </table>
             </div>
         </div>
-
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">{{ idea.idea_title }}</h5>
-        <p class="card-text">{{ idea.idea_description }}</p>
-        {% if user.is_authenticated and user.id == profile.user_id %}
-        <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning" style="float: right;">Edit</a>
-        {% endif %}
     </div>
 
-    <div class="card-footer text-muted">
-        Created 2021-03-12
-    </div>
 </div>
+
+
 
 
 

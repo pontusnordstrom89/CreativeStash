@@ -105,10 +105,11 @@ footer ul.quick-links li:hover a i {
     font-weight: 700;
 }
 
+
 @media (max-width:767px){
     footer {
         padding-top:30px;
         
-}
+    }
 
 }
