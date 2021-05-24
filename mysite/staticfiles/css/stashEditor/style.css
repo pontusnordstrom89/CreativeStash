@@ -1,12 +1,33 @@
-body {
+.main-body {
     background-image: url('https://image.freepik.com/free-photo/inspiration-crumpled-yellow-paper-light-bulb-idea-white-background_23-2147890098.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: center;
+    height: 100vh;
 }
+
+/* Styling för autogenererade formfileds */
+
+#div_id_idea_title, #div_id_idea_description, #div_id_add_category, #div_id_add_image, #div_id_is_public {
+    margin-top: 20px;
+    opacity: 0.9;
+}
+
+/* Hides progressbar until save button is pushed */
+
+#progress-bar-create {
+    display: none;
+}
+
+
+
+
+
+
+/* Behöver vi dessa klasser??*/
 
 h1 {
     color: #ddc24a;
@@ -21,27 +42,9 @@ h2 {
 h3 a {
     text-decoration: none;
     color: #000000;
-    color:#000000;
+    color: #000000;
 }
 
 h3 a:hover {
     color: #ddc24a;
-}
-
-#idea_editor {
-    display: flex;
-    justify-content: center;
-}
-
-#div_id_idea_title, #div_id_idea_description, #div_id_add_category, #div_id_add_image, #div_id_is_public {
-    margin-top: 20px;
-}
-
-#form_submit_button_box {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-#submit_idea_form {
-    width: 30%;
 }
