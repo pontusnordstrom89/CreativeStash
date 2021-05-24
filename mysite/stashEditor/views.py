@@ -74,8 +74,9 @@ def create(request):
 
             list_of_categories = []
 
-
             return redirect('/')
+        
+        
 
     else:
 

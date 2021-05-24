@@ -4,18 +4,21 @@
 
 {% block javascript %}
 <script>
-
+    
     $("#submit_idea_form").click(function () {
-        $("#publish-info").text('Publishing idea!');
+        $("#progress-bar-create").css("display", "flex");
+        $("#progression-width").css("width", "100%");
+
         setTimeout(
             function () {
+                
                 $("#idea_form").submit();
             }, 1000);
         
         
         
     });
-
+    
 
 
     $("#id_category_name").change(function () {
@@ -60,9 +63,9 @@
 <link rel="stylesheet" href="{% static 'css/stashEditor/style.css' %}">
 
 
-<div class="container" id="idea_editor">
-    <div class="col-sm-8">
-        <h3>Publish new idea</h3>
+<div class="container d-flex justify-content-center" id="create-page">
+    <div class="col-sm-8 mt-5">
+        <h2 class="bg_special text-warning rounded text-center">Publish new idea</h2>
         {% load crispy_forms_tags %}
         <form action="" method="post" id="idea_form" enctype="multipart/form-data">
             {% csrf_token %}
@@ -76,7 +79,7 @@
             </div>
 
             <div class="sm-5">
-                <label for="id_category_name" class="form-label" id="div_id_add_category" >Add categories to your idea</label>
+                <label for="id_category_name" class="form-label " id="div_id_add_category" >Add categories to your idea</label>
                 <input type="text" class="form-control" id="id_category_name" placeholder="e.g. cloud computing or cryptocurrency" required>
                 <small class="form-text text-muted">Categories help people find your public ideas on CreativeStash</small>
 
@@ -87,12 +90,21 @@
 
                 {{ideaform.is_public|as_crispy_field}}
             </div>
+           
         </form>
-        <div class="sm-5" id="form_submit_button_box">
-            <button class="btn btn-warning" id="submit_idea_form">Save</button>
-            <a href="/" class="btn btn-danger profile-button">Cancel</a>
+        
+        
+        <div class="sm-5 d-flex justify-content-center" id="form_submit_button_box">
+            <button class="btn btn-warning w-25" id="submit_idea_form">Save</button>
+            <div class="w-25"></div>
+            <a href="/" class="btn btn-danger profile-button w-25">Cancel</a>
+            
         </div>
-        <h3 class="bg-success" id="publish-info"></h3>
+        <div class="progress mt-4" id="progress-bar-create" style="height: 20px;">
+            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" id="progression-width" role="progressbar" style="width: 0%" aria-valuenow="75"
+                aria-valuemin="0" aria-valuemax="100">Publishing</div>
+        </div>
+        
 
       </div>
 

@@ -4,11 +4,17 @@
 {% load static %}
 <!--<link rel="stylesheet" href="{% static 'css/stashProfile/style.css' %}"> -->
 <link rel="stylesheet" href="{% static 'css/stashProfile/slider_style.css' %}">
+
+
+
+
+<div class="profile-page mt-5">
 <div class="row bg-warning">
     {% if user.is_authenticated and user.id == profile.user_id %}
+
     <div class="col-md-3 justify-content-md-center bg-primary">
       {% if profile.profile_picture %}
-      <img src="/media/{{ profile.profile_picture }}" alt="profile picture" style="max-width: 200px; max-height: 300px">
+      <img src="/media/{{ profile.profile_picture }}" alt="profile picture">
       {% else %}
       <img class="img-fluid" src="/media/profilepics/default_profile.png">
     {%endif%}
@@ -58,9 +64,9 @@
                 <div class="card mb-2">
                     <img class="card-img-top" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
                     <div class="card-body">
-                        <h4 class="card-title">{{ idea.idea_title }}</h4>
+                        <a class="text-decoration-none" href="/theStash/{{ idea.idea_title }}/"><h4 class="card-title text-dark">{{ idea.idea_title }}</h4></a>
                         <p class="card-text">{{ idea.idea_description }}</p>
-                        <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-primary">Details</a>
+                        <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
             </div>
@@ -150,5 +156,5 @@
 
 </div>
 -->
-
+</div>
 {% endblock %}
