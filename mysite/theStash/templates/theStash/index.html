@@ -6,34 +6,60 @@
 <!-- Page start -->
 
 <!--Put content here-->
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
+
+
 
 
 
 {% if everything %}
 
+{{ everything }}
 
-    {% for category, idea in everything.items %}
-        <h3>{{category}}</h3>
+{% for categories, idea in everything.items %}
+<div class="my-container">
+    <h3>{{ category }}</h3>
+    <div id="slideshow-1" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+        <div class="carousel-inner">
+    {% for idea_data in idea %}
+    
 
-        {% for idea_data in idea %}
-        <div class="col-md-3 border">
-            
-            <img class="card-img-top" src="{{ idea_data.image }}" alt="hej">
-            <h5>{{ idea_data.idea_title }}</h5>
-            <p>{{ idea_data.idea_description }}</p>
-            
-            <strong>{{ idea_data.creator }}</strong>
+        {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
+        </div> <!--Här-->
+        {% endif %}
+                   
+        {% if forloop.counter0|divisibleby:4 %}
+        <div class="carousel-item active">
+        {% else %}
+        <div class="carousel-item">
+        {% endif %}
 
-            {{ idea_data.created_date }}
-        </div>
-
-        {% endfor %}
-
+                <div class="col-md-3" style="float:left">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ idea_data.idea_title }}</h4>
+                            <p class="card-text">{{ idea_data.idea_description }}</p>
+                            <strong>{{ idea_data.creator }}</strong>
+                            <em>{{ idea_data.created_date }}</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
     {% endfor %}
+        <button class="carousel-control-prev bg-warning" type="button" data-bs-target="#slideshow-1"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#slideshow-1" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
 
-
+{% endfor %}
 {% endif %}
 
 {% endblock %}
