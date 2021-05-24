@@ -1,7 +1,12 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: normal;
+    background-image:url('https://image.freepik.com/free-photo/abstract-image-yellow-blur-background-yellow-background-gradient_7182-1960.jpg'); 
+    background-size:cover;
+    
 }
+
+
 
 .carousel-control-prev-icon {
     width: 40px;
@@ -43,7 +48,7 @@ footer {
 footer h5{
     padding-bottom: 6px;
     margin-bottom: 20px;
-    color:#ddc24a;
+    
 }
 
 footer a {
@@ -103,7 +108,7 @@ footer ul.quick-links li:hover a i {
 @media (max-width:767px){
     footer {
         padding-top:30px;
-        padding-left: 60px;
+        
 }
 
 }
