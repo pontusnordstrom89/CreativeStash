@@ -12,19 +12,28 @@
 
 
 {% if everything %}
-    
-{{ everything }}
 
-    {% for categories in everything %}
-        <h3>{{ categories.category_name }}</h3>
 
-        {% for ideas in categories.categories %}
+    {% for category, idea in everything.items %}
+        <h3>{{category}}</h3>
+
+        {% for idea_data in idea %}
+        <div class="col-md-3 border">
             
-                <p>{{ ideas.idea_title }}</p>
+            <img class="card-img-top" src="{{ idea_data.image }}" alt="hej">
+            <h5>{{ idea_data.idea_title }}</h5>
+            <p>{{ idea_data.idea_description }}</p>
             
+            <strong>{{ idea_data.creator }}</strong>
+
+            {{ idea_data.created_date }}
+        </div>
+
         {% endfor %}
+
     {% endfor %}
-    
+
+
 {% endif %}
 
 {% endblock %}
