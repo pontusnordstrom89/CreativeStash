@@ -6,20 +6,24 @@
 <script>
     
     $("#submit_idea_form").click(function () {
-        $("#progress-bar-create").css("display", "flex");
-        $("#progression-width").css("width", "100%");
+        var empt = document.forms["create"]["idea_title"].value;
+        if (empt == "") {
+            $("#id_idea_title").css("background-color", "#fa9f91");
+            return false;
+        } else if (document.forms["create"]["idea_description"].value == "") {
+            $("#id_idea_description").css("background-color", "#fa9f91");
+            return false;
 
-        setTimeout(
-            function () {
-                
-                $("#idea_form").submit();
-            }, 1000);
-        
-        
-        
+        } else {
+            $("#progress-bar-create").css("display", "flex");
+            $("#progression-width").css("width", "100%");
+            setTimeout(
+                function () {
+                    $("#idea_form").submit();
+                }, 1000);
+        }
+
     });
-    
-
 
     $("#id_category_name").change(function () {
         var category_name = $(this).val();
@@ -35,23 +39,20 @@
                 $("#id_category_name").val("");
             }
         });
-
     });
 
-    
-
     $(document).ready(function () {
-            $('#id_is_public').click(function () {
-                if ($(this).prop("checked") == true) {
-                    $("#submit_idea_form").text("Publish");
-                }
-                else if ($(this).prop("checked") == false) {
-                    $("#submit_idea_form").text("Save");
-                }
-            });
+        $('#id_is_public').click(function () {
+            if ($(this).prop("checked") == true) {
+                $("#submit_idea_form").text("Publish");
+            }
+            else if ($(this).prop("checked") == false) {
+                $("#submit_idea_form").text("Save");
+            }
         });
+    });
 
-    
+
 </script>
 
 {% endblock %}
@@ -67,7 +68,7 @@
     <div class="col-sm-8 mt-5">
         <h2 class="bg_special text-warning rounded text-center">Publish new idea</h2>
         {% load crispy_forms_tags %}
-        <form action="" method="post" id="idea_form" enctype="multipart/form-data">
+        <form name="create" action="" method="post" id="idea_form" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="sm-5">
@@ -79,9 +80,12 @@
             </div>
 
             <div class="sm-5">
-                <label for="id_category_name" class="form-label " id="div_id_add_category" >Add categories to your idea</label>
-                <input type="text" class="form-control" id="id_category_name" placeholder="e.g. cloud computing or cryptocurrency" required>
-                <small class="form-text text-muted">Categories help people find your public ideas on CreativeStash</small>
+                <label for="id_category_name" class="form-label " id="div_id_add_category">Add categories to your
+                    idea</label>
+                <input type="text" class="form-control" id="id_category_name"
+                    placeholder="e.g. cloud computing or cryptocurrency" required>
+                <small class="form-text text-muted">Categories help people find your public ideas on
+                    CreativeStash</small>
 
                 <strong id="categories"></strong><br>
 
@@ -90,24 +94,23 @@
 
                 {{ideaform.is_public|as_crispy_field}}
             </div>
-           
         </form>
-        
-        
+
+
         <div class="sm-5 d-flex justify-content-center" id="form_submit_button_box">
             <button class="btn btn-warning w-25" id="submit_idea_form">Save</button>
             <div class="w-25"></div>
             <a href="/" class="btn btn-danger profile-button w-25">Cancel</a>
-            
+
         </div>
         <div class="progress mt-4" id="progress-bar-create" style="height: 20px;">
-            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" id="progression-width" role="progressbar" style="width: 0%" aria-valuenow="75"
-                aria-valuemin="0" aria-valuemax="100">Publishing</div>
+            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" id="progression-width"
+                role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Publishing
+            </div>
         </div>
-        
-
-      </div>
 
     </div>
+
+</div>
 </div>
 {% endblock %}
