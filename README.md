@@ -6,8 +6,8 @@ Visit our site http://creativestash.pythonanywhere.com/
 - Spring 2021. 
 - Bachelor of Science in Computer and Information Science, Malmö University.
 
-## Getting started
 
+## Run files on your local machine
     1. Clone files https://github.com/pontusnordstrom89/CreativeStash.git
         
         In powershell, terminal or similar
@@ -41,6 +41,7 @@ Visit our site http://creativestash.pythonanywhere.com/
             - MAC       python3 manage.py runserver
 
             - WINDOWS   py -3 manage.py runserver
+            
 
 Django documentation https://docs.djangoproject.com/en/3.2/
 
