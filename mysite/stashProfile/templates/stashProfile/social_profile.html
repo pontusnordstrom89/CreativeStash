@@ -73,9 +73,9 @@
                         <img class="img-thumbnail" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
                     </div>
                     <div class="card-body">
-                        <a class="text-decoration-none" href="/theStash/{{ idea.idea_title }}/">
+                        
                             <h4 class="card-title text-dark text-center text-capitalize">{{ idea.idea_title }}</h4>
-                        </a>
+                        
         
                         <p class="card-text text-dark text-truncate">{{ idea.idea_description }}</p>
                     </div>
@@ -90,9 +90,11 @@
                 </a>
 
 
-            {% endfor %}
-            {% endif %}
-
+            
+            
+        {% if forloop.last and forloop.counter0 <= 3 %}
+            </div>
+        {% elif forloop.last and forloop.counter0 >= 4 %}
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
@@ -103,7 +105,11 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+    {% endif %}
+    
+    {% endfor %}
 </div>
+{% endif %}
 
 
 
