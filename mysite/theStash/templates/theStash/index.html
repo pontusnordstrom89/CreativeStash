@@ -13,11 +13,12 @@
 {% for categories, idea in everything.items %}
 <div class="my-container">
     <div class="category-name-gradient mt-4 rounded">
-        <h3 class="text-capitalize m-2"><u><a class="text-capitalize text-dark text-decoration-none" href="/theStash/{{ categories }}/">{{ categories }}</a></u></h3>
+        <h3 class="text-capitalize m-2"><u><a class="text-capitalize text-dark text-decoration-none"
+                    href="/theStash/{{ categories }}/">{{ categories }}</a></u></h3>
     </div>
     <div id="slideshow-{{ forloop.counter0 }}" class="carousel slide mt5 custom-slideshow" data-bs-ride="false"
         data-bs-interval="false">
-        <div class="carousel-inner" style="height: inherit;">
+        <div class="carousel-inner h-100">
             {% for idea_data in idea %}
 
 
@@ -28,25 +29,35 @@
 
 
         {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-        <div class="carousel-item active" style="height: inherit;">
+        <div class="carousel-item active h-100">
             {% elif forloop.counter0|divisibleby:4 %}
-            <div class="carousel-item" style="height: inherit;">
+            <div class="carousel-item h-100">
                 {% endif %}
 
                 <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
-                <div class="h-100 card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
+                    
+                    <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
 
-                    <div class="card-image-control">
-                    <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
-                    </div>
+                        <div class="card-image-control">
+                            <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
+                        </div>
 
-                    <div class="card-body h-100">
-                        <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
-                        <p class="card-text text-dark">{{ idea_data.idea_description }}</p>
-                        <strong>{{ idea_data.creator }}</strong>
-                        <em>{{ idea_data.created_date }}</em>
+                        <div class="card-body">
+                            <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
+
+                            <p class="card-text text-dark text-truncate">{{ idea_data.idea_description }}</p>
+
+
+                        </div>
+
+                        <div class="card-footer d-flex w-100">
+                            <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea_data.creator }}</strong></div>
+                            <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea_data.created_date }}</em></div>
+                            
+                            
+                        </div>
+
                     </div>
-                </div>
                 </a>
 
 

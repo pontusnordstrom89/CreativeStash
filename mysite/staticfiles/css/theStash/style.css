@@ -1,5 +1,5 @@
 .custom-slideshow {
-    height: 60vh;
+    height: 45vh;
 }
 
 .carousel-control-next, .carousel-control-prev {
@@ -16,11 +16,13 @@
 }
 
 .index-cards-box-shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-height: 97%;
+    width: 23%;
 }
 
 .index-cards-box-shadow:hover {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 .card-image-control {
