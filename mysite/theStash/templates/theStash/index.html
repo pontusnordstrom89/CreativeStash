@@ -3,9 +3,8 @@
 
 
 {% block content %}
-<!-- Page start -->
-
-<!--Put content here-->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
 
 
@@ -17,8 +16,8 @@
 
 {% for categories, idea in everything.items %}
 <div class="my-container">
-    <h3>{{category}}</h3>
-    <div id="slideshow-{{ forloop.counter0 }}" class="carousel slide mt5" data-bs-ride="false" data-bs-interval="false">
+    <h3 class="text-capitalize">{{ categories }}</h3>
+    <div id="slideshow-{{ forloop.counter0 }}" class="carousel slide mt5 custom-slideshow" data-bs-ride="false" data-bs-interval="false">
         <div class="carousel-inner" style="height: inherit;">
             {% for idea_data in idea %}
 
@@ -55,7 +54,7 @@
                 {% endfor %}
         </div>
         
-        <button class="carousel-control-prev bg-warning" type="button" data-bs-target="#slideshow-{{ forloop.counter0 }}"
+        <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-{{ forloop.counter0 }}"
                 data-bs-slide="prev">
             <span class="carousel-control-prev-icon " aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
