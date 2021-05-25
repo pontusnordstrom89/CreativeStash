@@ -45,11 +45,11 @@
 {% endif %}
 
 <hr>
-
+{% if ideas %}
 <h3 class="text-dark">{{ show_user.username }}'s ideas</h3>
 <div id="slideshow-1" class="carousel slide mt-5" data-bs-ride="false" data-bs-interval="false">
     <div class="carousel-inner" style="height: inherit;">
-        {% if ideas %}
+        
         {% for idea in ideas %}
 
         {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
