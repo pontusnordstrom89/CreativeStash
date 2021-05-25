@@ -28,3 +28,11 @@
     height: auto;
     margin: auto;
 }
+
+.category-cloud {
+    color: #f8f9fa;
+}
+
+.category-cloud:hover {
+    color: rgba(255, 193, 7, 1);
+}
