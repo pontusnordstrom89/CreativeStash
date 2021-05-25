@@ -54,8 +54,10 @@ def create(request):
             uploaded_picture = request.FILES.get('image')
             # Return an object without saving to the DB
             form_object = create_idea_form.save(commit=False)
+            
             # Add an author field which will contain current user's id
             form_object.creator = User.objects.get(pk=request.user.id)
+
 
             if uploaded_picture:
                 #Save the uploaded image
@@ -73,8 +75,8 @@ def create(request):
                 form_object.idea_category.add(item)
 
             list_of_categories = []
-
-            return redirect('/')
+            
+            return redirect(f'/{form_object.creator.id}/{form_object.id}')
         
         
 
