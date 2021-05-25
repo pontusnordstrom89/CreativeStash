@@ -4,33 +4,68 @@
 
 {% block content %}
 <!-- Page start -->
-<h1>Category: {{ category_name }}</h1>
-{% if idea_in_category %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
-    {% for idea in idea_in_category %}
 
-    <div class="card my-card" style="width: 17rem;">
-        <div class="card-body card-body-content">
-            <div class="card-img-container">
-                <img class="card-img" src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-            </div>
-            <h5 class="card-title">{{ idea.idea_title }}</h5>
-            <p class="card-text">{{ idea.idea_description }}</p>
-        </div>
-        <div class="card-footer text-muted card-footer-content">
-            {% for obj in idea.idea_category.all %}
-            <em> {{ obj }}, </em>
-            <em>Author: </em><a class="card-link" href="#" a>{{idea.creator}}</a>
+{% if ideas %}
+
+<div class="category-name-gradient mt-4 rounded">
+    <h3 class="text-capitalize m-2"><u>{{ category_name }}</u></h3>
+</div>
+
+<div id="slideshow-1" class="carousel slide mt-5" data-bs-ride="false" data-bs-interval="false">
+    <div class="carousel-inner h-100">
+
+        {% for idea in ideas %}
+
+        {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
+    </div>
+    {% endif %}
+
+    {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
+    <div class="carousel-item active h-100">
+        {% elif forloop.counter0|divisibleby:4 %}
+        <div class="carousel-item h-100">
+            {% endif %}
+
+            <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="text-light text-decoration-none">
+                <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
+
+                    <div class="card-image-control">
+                        <img class="img-thumbnail" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
+                    </div>
+                    <div class="card-body">
+
+                        <h4 class="card-title text-dark text-center text-capitalize">{{ idea.idea_title }}</h4>
+
+                        <p class="card-text text-dark text-truncate">{{ idea.idea_description }}</p>
+                    </div>
+
+                    <div class="card-footer d-flex w-100">
+                        <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea.creator }}</strong></div>
+                        <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea.created_date }}</em></div>
+
+
+                    </div>
+                </div>
+            </a>
+
+
             {% endfor %}
-            <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning cards-button ">Read more</a>
+            {% endif %}
+
         </div>
     </div>
-   
-{% endfor %}
-
-{% else %}
-<p>No categories are available.</p>
-{% endif %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#slideshow-1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 
 
