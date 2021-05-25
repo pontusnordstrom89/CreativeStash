@@ -7,12 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/theStash/style.css' %}">
 
 
-
-
-
+{% if user.is_authenticated %}
 {% if everything %}
-
-
 
 {% for categories, idea in everything.items %}
 <div class="my-container">
@@ -67,10 +63,26 @@
 </div>
 
 
-    {% endfor %}
+        {% endfor %}
+        {% else %}
+
+
+
+            <!--För inloggad utan intresse-->
+            <p>{{ info }}</p>
+            <p>Inloggad utan intresse</p>
+            <p>Länk till profilsidan</p>
+
+
+
     {% endif %}
 
-    {% endblock %}
+    {% else %}
+    <!--För ej inloggade-->
+    <p>Ej inloggad</p>
+    {% endif %}
+
+{% endblock %}
 
 
 

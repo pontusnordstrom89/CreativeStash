@@ -14,6 +14,7 @@ from .models import Idea, Category, Profile
 def index(request):
     template = loader.get_template('theStash/index.html')
 
+    info = ""
     if request.user.is_authenticated:
         #Get user interests
         users_interests = Profile.objects.get(
@@ -23,14 +24,21 @@ def index(request):
     
         for category_name in users_interests:
             ideas = Idea.objects.filter(idea_category__pk=category_name)
-            my_dict[category_name] = ideas
+            if len(ideas) == 0:
+                pass
+            else:
+                my_dict[category_name] = ideas
+
+        if my_dict == {}:
+            info = 'Info text'
+
     else:
         my_dict = Idea.objects.all()
-
-
+        
 
     context = {
-        'everything': my_dict
+        'everything': my_dict,
+        'info': info
     }
 
     return HttpResponse(template.render(context, request))
