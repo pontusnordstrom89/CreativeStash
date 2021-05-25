@@ -74,14 +74,19 @@
                     </div>
                     <div class="card-body">
                         
-                            <h4 class="card-title text-dark text-center text-capitalize">{{ idea.idea_title }}</h4>
-                        
-        
+
+                        <h4 class="card-title text-dark text-center text-capitalize">{{ idea.idea_title }}</h4>
+                    
+
                         <p class="card-text text-dark text-truncate">{{ idea.idea_description }}</p>
                     </div>
         
                     <div class="card-footer d-flex w-100">
-                        <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea.creator }}</strong></div>
+                        {% if idea.is_public == True %}
+                            <div class="col d-flex justify-content-start"><em class="bg-warning text-dark text-center rounded p-1">Public</em></div>
+                        {% else %}
+                            <div class="col d-flex justify-content-start"><em class="bg-success text-dark text-center rounded p-1">Private</em></div>
+                        {% endif %}
                         <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea.created_date }}</em></div>
                     
                     

@@ -62,7 +62,7 @@ def category_detail(request, category_name):
 
     template = loader.get_template('theStash/category_detail.html')
     context = {
-        'idea_in_category': idea,
+        'ideas': idea,
         'category_name': category_name
     }
     return HttpResponse(template.render(context, request))
