@@ -1,13 +1,30 @@
 /*css for the user profile starts here*/
 
 #slideshow-1 {
-    height: 60vh;
+    height: 45vh;
 }
 
-.carousel-control-prev {
-    margin-left: -80px;
+.carousel-control-next, .carousel-control-prev {
+    width: 4%;
 }
 
-.carousel-control-next {
-    margin-right: -80px;
+.category-name-gradient {
+    background-image: linear-gradient(to right, rgba(255, 193, 7, 1), rgba(255, 193, 7, 0));
+    font-family: 'Odibee Sans', cursive;
+}
+
+.index-cards-box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-height: 97%;
+    width: 24%;
+}
+
+.index-cards-box-shadow:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.card-image-control {
+    width: 70%;
+    height: auto;
+    margin: auto;
 }
