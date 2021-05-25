@@ -25,9 +25,9 @@
     (städa bort denna kommentar)-->
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg_special">
+        <nav class="navbar navbar-expand-lg p-3 mb-2 navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'theStash:theStashindex' %}">CreativeStash</a>
+                <a class="navbar-brand" href="{% url 'theStash:theStashindex' %}">CREATIVE STASH</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -41,14 +41,13 @@
                         </li>
 
 
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
 
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'stashEditor:index' %}">Edit Idea</a></li>                                <li>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'stashEditor:index' %}">Edit Idea</a></li>                              
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'stashEditor:how_it_works'%}">How it works</a></li>
@@ -58,18 +57,23 @@
                     </ul>
 
                     <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchbox" name="q">
+                        <div class="input-group">
+                            <input type="search" class="form-control" placeholder="Type here to search" aria-label="Search"
+                              aria-describedby="search-addon" />
+                            <button type="button" class="btn btn-outline-warning">search</button>
+                          </div>
+                        
                     </form>
-
-
+                    
+                    
                     <div class="dropdown">
 
                         {% if user.is_authenticated %}
-                            <button class="btn btn-warning dropdown-toggle" type="button" id="navbar-account-button" data-bs-toggle="dropdown"
+                            <button class="btn btn-outline-warning dropdown-toggle" type="button" id="navbar-account-button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{ user.get_username }}
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="navbar-account-button">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbar-account-button">
                                 <li><a class="dropdown-item" href="/stashProfile/social_profile/{{ user.id }}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
                             </ul>
@@ -95,6 +99,7 @@
 
                     {% block content %}
 
+                    
 
 
                     <!-- This is where extensions of this html document appear-->
@@ -106,20 +111,21 @@
 
                 </div>
             </div>
+
         </main>
         
         <footer>
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <h5>Creative Stash</h5>
+                        <h5 class= text-warning>Creative Stash</h5>
                             <p> This is a project by Group 14 in course DA336A-TS043, Spring 2021.
                                 Bachelor of Science in Computer and Information Science, Malmö University.
                             </p>
 
                     </div>
                 <div class="col-md-4">
-                    <h5>Quick links</h5>
+                    <h5 class = text-warning>Quick links</h5>
                        <ul class="list-unstyled quick-links">
                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
                            <li><a href="{% url 'stashEditor:how_it_works'%}"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
@@ -127,7 +133,7 @@
                 </div>
 
                 <div class="col-md-4">
-                     <h5>Location</h5>
+                     <h5 class=text-warning>Location</h5>
                         <p>Nordenskiöldsgatan 1, 211 19 Malmö</p>
                         <p> 040-665 70 00</p>
 

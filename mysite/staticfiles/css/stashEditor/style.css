@@ -1,4 +1,4 @@
-.main-body {
+body {
     background-image: url('https://image.freepik.com/free-photo/inspiration-crumpled-yellow-paper-light-bulb-idea-white-background_23-2147890098.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -6,6 +6,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    
 }
 
 /* Styling för autogenererade formfileds */
