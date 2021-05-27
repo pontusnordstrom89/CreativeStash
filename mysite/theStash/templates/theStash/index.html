@@ -43,8 +43,11 @@
                     <div class="card-body h-100">
                         <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
                         <p class="card-text text-dark">{{ idea_data.idea_description }}</p>
-                        <strong>{{ idea_data.creator }}</strong>
-                        <em>{{ idea_data.created_date }}</em>
+                        <strong class="text-secondary">{{ idea_data.creator }}</strong>
+                        <em class = "text-secondary">{{ idea_data.created_date }}</em>
+                        <p class="text-dark">{{ idea_data.comments_idea.all|length }} comments </p>
+                        
+
                     </div>
                 </div>
                 </a>
