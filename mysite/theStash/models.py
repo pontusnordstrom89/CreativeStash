@@ -38,3 +38,12 @@ class Idea(models.Model):
 
     def __str__(self):
         return self.idea_title
+
+class Like(models.Model):
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="likes") 
+    idea_like = models.IntegerField(null=True) 
+
+
+    def __str__(self):
+        self.namn="test"
+        return self.namn  

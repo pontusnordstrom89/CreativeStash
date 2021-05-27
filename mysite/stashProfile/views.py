@@ -95,3 +95,4 @@ def edit_social_profile(request, user_profile_id):
     }
 
     return HttpResponse(template.render(context, request))
+

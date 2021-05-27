@@ -94,3 +94,5 @@ def how_it_works(request):
     context = {
         }
     return HttpResponse(template.render(context, request))
+
+
