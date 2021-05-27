@@ -7,7 +7,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db.models import Q
 from .forms import SignUpForm, CommentForm
-from .models import Idea, Category, Profile, Comments
+from .models import Idea, Category, Profile, Comments, Like
+
 
 
 
@@ -82,7 +83,7 @@ def category_detail(request, category_name):
 
     template = loader.get_template('theStash/category_detail.html')
     context = {
-        'idea_in_category': idea,
+        'ideas': idea,
         'category_name': category_name
     }
     return HttpResponse(template.render(context, request))
@@ -155,5 +156,20 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'theStash/signup.html', {'form': form})
+
+ 
+def like_counter(id):
+    like_idea = Like.objects.filter(idea_id=id)
+    like_idea.idea_like += 1 
+    like_idea.save()
+
+    return like_idea
+
+def most_liked(request):
+    template = loader.get_template('theStash/most_liked.html')
+    context = {
+
+    }
+    return HttpResponse(template.render(context, request))
 
 

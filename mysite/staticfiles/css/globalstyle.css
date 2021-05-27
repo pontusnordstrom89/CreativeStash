@@ -37,6 +37,9 @@ main{
     display: none;
 }
 
+.bi.bi-heart {
+    margin-left: 100%;
+}
 footer {
     padding-top: 50px;
     padding-bottom:70px;
