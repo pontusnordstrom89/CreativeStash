@@ -61,7 +61,6 @@ def edit_idea(request, idea_id):
 def edit_social_profile(request, user_profile_id):
     template = loader.get_template('stashProfile/edit_social_profile.html')
     profile = get_object_or_404(Profile, user_id=user_profile_id)
-    #form = EditSocialProfile(instance=profile)
     fs = FileSystemStorage()
 
     if request.method == 'POST':

@@ -5,7 +5,7 @@
     $("#details").click(function () {
         $("#vy-1").fadeToggle();
     });
-    
+
 </script>
 
 {% endblock %}
@@ -16,11 +16,10 @@
 
 <h1 class="mt-5 ">{{ idea.idea_title }}</h1>
 <div class="row d-flex justify-content-between">
-    
+
     <div class="col-md-8 mr-auto border rounded p-3 bg-light">
-        
-        <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
-            alt="Card image cap">
+      <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
+alt="Card image cap">
         <p class="">{{ idea.idea_description }}</p>
         {% if user.is_authenticated and user.id == profile.user_id %}
         <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
@@ -33,9 +32,17 @@
 
     <div class="col-md-3 text-center">
         <div class="p-1 bg-dark rounded">
-            
-            <img class="img-thumbnail rounded" src="/media/{{profile.profile_picture}}" alt="profilepicture"
-                id="idea_user_profile_picture">
+                <div class="justify-content-md-center">
+                    {% if profile.profile_picture %}
+                    <img class="img-fluid rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
+                    {% else %}
+                    <img class="img-fluid" src="/media/profilepics/default_profile.png">
+                    {%endif%}
+                </div>
+
+
+
+
             <h3 class="bg-warning rounded text-uppercase mt-3">{{ creator.username }}</h3>
             <h3 class="mt-1"><a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning btn-lg"
                     id="visit_profile_button">Profile</a></h3>
