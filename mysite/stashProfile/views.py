@@ -39,13 +39,13 @@ def edit_idea(request, idea_id):
     template = loader.get_template('stashProfile/edit_idea.html')
     idea = get_object_or_404(Idea, pk=idea_id)
     form = EditIdeaForm(instance=idea)
-
+    userID = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
         form = EditIdeaForm(request.POST, instance=idea)
 
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect(f'/{userID.id}/{idea_id}')
 
         elif ValidationError:
             print('ValidationError')

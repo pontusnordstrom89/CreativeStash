@@ -12,23 +12,50 @@
 
 {% for categories, idea in everything.items %}
 <div class="my-container">
-    <h3 class="text-capitalize">{{ categories }}</h3>
-    <div id="slideshow-{{ forloop.counter0 }}" class="carousel slide mt5 custom-slideshow" data-bs-ride="false" data-bs-interval="false">
-        <div class="carousel-inner" style="height: inherit;">
+    <div class="category-name-gradient mt-4 rounded">
+        <h3 class="text-capitalize m-2"><u><a class="text-capitalize text-dark text-decoration-none"
+                    href="/theStash/{{ categories }}/">{{ categories }}</a></u></h3>
+    </div>
+    <div id="slideshow-{{ forloop.counter0 }}" class="carousel slide mt5 custom-slideshow" data-bs-ride="false"
+        data-bs-interval="false">
+        <div class="carousel-inner h-100">
             {% for idea_data in idea %}
 
 
             {% if forloop.counter0|divisibleby:4 and forloop.counter0 != 0 %}
-            </div>
-            {% endif %}
+        </div>
+        {% endif %}
 
 
 
-            {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-            <div class="carousel-item active" style="height: inherit;">
-                {% elif forloop.counter0|divisibleby:4 %}
-            <div class="carousel-item" style="height: inherit;">
-            {% endif %}
+        {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
+        <div class="carousel-item active h-100">
+            {% elif forloop.counter0|divisibleby:4 %}
+            <div class="carousel-item h-100">
+                {% endif %}
+
+                <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
+                    
+                    <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
+
+                        <div class="card-image-control">
+                            <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
+
+                            <p class="card-text text-dark text-truncate">{{ idea_data.idea_description }}</p>
+
+
+                        </div>
+
+                        <div class="card-footer d-flex w-100">
+                            <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea_data.creator }}</strong></div>
+                            <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea_data.created_date }}</em></div>
+                            
+                            
+                        </div>
 
 
                 <div class="card col-sm-3 h-100" style="float:left;">
@@ -53,34 +80,45 @@
                    <em id="{{idea_data.id}}"> {{like.idea_like}} </em> <button type="button" id="{{idea_data.idea_id}}"> LIKE </button> 
                     {% endfor %}
                 </div>
+                    </div>
+                </a>
+                
+                {% if forloop.last and forloop.counter0 <= 3 %}
+            </div>
+                {% elif forloop.last and forloop.counter0 >= 4%}
+                
+                
+            </div>
 
             
-
-                {% endfor %}
-        </div>
-        
-        <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-{{ forloop.counter0 }}"
+                         
+            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
                 data-bs-slide="prev">
-            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#slideshow-{{ forloop.counter0 }}" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            {% endif %}
+            {% endfor %}
+             
+
+        </div>
     </div>
-</div>
 
 
-        {% endfor %}
-        {% else %}
+    {% endfor %}
+    {% else %}
 
 
 
-            <!--För inloggad utan intresse-->
-            <p>{{ info }}</p>
-            <p>Inloggad utan intresse</p>
-            <p>Länk till profilsidan</p>
+    <!--För inloggad utan intresse-->
+    <p>{{ info }}</p>
+    <p>Inloggad utan intresse</p>
+    <p>Länk till profilsidan</p>
 
 
 
@@ -91,7 +129,7 @@
     <p>Ej inloggad</p>
     {% endif %}
 
-{% endblock %}
+    {% endblock %}
 
 
 
