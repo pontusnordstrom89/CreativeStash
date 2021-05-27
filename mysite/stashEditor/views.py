@@ -11,15 +11,6 @@ from .forms import CreateIdeaForm, CreateCategoryFrom
 
 list_of_categories = []
 
-def index(request):
-    latest_idea_list = Idea.objects.order_by('idea_title')
-    template = loader.get_template('stashEditor/index.html')
-    context = {
-        'latest_idea_list': latest_idea_list
-    }
-    return HttpResponse(template.render(context, request))
-
-
 def validate_categories(request):
     category_name = request.GET.get('category_name', None)
     data = {
@@ -54,8 +45,10 @@ def create(request):
             uploaded_picture = request.FILES.get('image')
             # Return an object without saving to the DB
             form_object = create_idea_form.save(commit=False)
+
             # Add an author field which will contain current user's id
             form_object.creator = User.objects.get(pk=request.user.id)
+
 
             if uploaded_picture:
                 #Save the uploaded image
@@ -74,9 +67,9 @@ def create(request):
 
             list_of_categories = []
 
-            return redirect('/')
-        
-        
+            return redirect(f'/{form_object.creator.id}/{form_object.id}')
+
+
 
     else:
 
@@ -94,3 +87,5 @@ def how_it_works(request):
     context = {
         }
     return HttpResponse(template.render(context, request))
+
+

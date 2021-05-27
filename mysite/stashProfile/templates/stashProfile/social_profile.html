@@ -29,14 +29,13 @@
         </ul>
         <hr>
 
-        <h4 class="text-light text-center d-flex flex-row-reverse">Interests</h4>
-        <ul class="list-group w-100">
-            {% for interest in user_interests %}
-            <li class="text-light text-light text-decoration-none"><a
-                    class="d-flex flex-row-reverse text-light text-decoration-none" href="/theStash/{{ interest }}/">{{ interest }}</a></li>
-            {% endfor %}
-        </ul>
+        <h4 class="text-light text-center">Interests Cloud</h4>
         <div class="w-100">
+            {% for interest in user_interests %}
+            <a class="text-decoration-none text-capitalize category-cloud" href="/theStash/{{ interest }}/">{{ interest }}</a><strong></strong>
+            {% endfor %}
+        </div>
+        <div class="w-100 mt-3 d-flex flex-row-reverse">
             <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning profile-button">Edit
                 profile</a>
         </div>
@@ -46,9 +45,14 @@
 
 <hr>
 {% if ideas %}
-<h3 class="text-dark">{{ show_user.username }}'s ideas</h3>
+
+<div class="category-name-gradient mt-4 rounded">
+    <h3 class="text-capitalize m-2"><u><a class="text-capitalize text-dark text-decoration-none"
+                href="/theStash/{{ categories }}/">{{ show_user.username }}'s ideas</a></u></h3>
+</div>
+
 <div id="slideshow-1" class="carousel slide mt-5" data-bs-ride="false" data-bs-interval="false">
-    <div class="carousel-inner" style="height: inherit;">
+    <div class="carousel-inner h-100">
         
         {% for idea in ideas %}
 
@@ -57,33 +61,45 @@
     {% endif %}
 
     {% if forloop.counter0|divisibleby:4 and forloop.counter0 == 0 %}
-    <div class="carousel-item active" style="height: inherit;">
+    <div class="carousel-item active h-100">
         {% elif forloop.counter0|divisibleby:4 %}
-        <div class="carousel-item" style="height: inherit;">
+        <div class="carousel-item h-100">
             {% endif %}
 
-            
-                <div class="card col-sm-3 h-100" style="float:left;">
-                    
-                    <a href="/{{ idea.creator_id }}/{{ idea.id }}"><img class="card-img-top" src="{{ idea.image }}" alt="{{ idea.idea_title }}"></a>
+                <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="text-light text-decoration-none">
+                <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
                 
-                    <div class="card-body">
-                        <a class="text-decoration-none" href="/theStash/{{ idea.idea_title }}/">
-                            <h4 class="card-title text-dark">{{ idea.idea_title }}</h4>
-                        </a>
-                        <p class="card-text text-truncate">{{ idea.idea_description }}</p>
-
+                    <div class="card-image-control">
+                        <img class="img-thumbnail" src="{{ idea.image }}" alt="{{ idea.idea_title }}">
                     </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <a href="/{{ idea.creator_id }}/{{ idea.id }}" class="btn btn-primary">Read more</a>
+                    <div class="card-body">
+                        
+
+                        <h4 class="card-title text-dark text-center text-capitalize">{{ idea.idea_title }}</h4>
+                    
+
+                        <p class="card-text text-dark text-truncate">{{ idea.idea_description }}</p>
+                    </div>
+        
+                    <div class="card-footer d-flex w-100">
+                        {% if idea.is_public == True %}
+                            <div class="col d-flex justify-content-start"><em class="bg-warning text-dark text-center rounded p-1">Public</em></div>
+                        {% else %}
+                            <div class="col d-flex justify-content-start"><em class="bg-success text-dark text-center rounded p-1">Private</em></div>
+                        {% endif %}
+                        <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea.created_date }}</em></div>
+                    
+                    
                     </div>
                 </div>
+                </a>
+
+
             
-
-
-            {% endfor %}
-            {% endif %}
-
+            
+        {% if forloop.last and forloop.counter0 <= 3 %}
+            </div>
+        {% elif forloop.last and forloop.counter0 >= 4 %}
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-1" data-bs-slide="prev">
@@ -94,7 +110,11 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+    {% endif %}
+    
+    {% endfor %}
 </div>
+{% endif %}
 
 
 

@@ -38,7 +38,7 @@ class Idea(models.Model):
 
     def __str__(self):
         return self.idea_title
-
+    
 class Comments(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="comments_idea")
     idea_comment = models.TextField()
@@ -48,3 +48,13 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.idea_comment
+
+class Like(models.Model):
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="likes") 
+    idea_like = models.IntegerField(null=True) 
+
+
+    def __str__(self):
+        self.namn="test"
+        return self.namn  
+
