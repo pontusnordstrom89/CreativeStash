@@ -18,8 +18,10 @@
 <div class="row d-flex justify-content-between">
 
     <div class="col-md-8 mr-auto border rounded p-3 bg-light">
+
       <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
-alt="Card image cap">
+          alt="Card image cap">
+          
         <p class="">{{ idea.idea_description }}</p>
         {% if user.is_authenticated and user.id == profile.user_id %}
         <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
