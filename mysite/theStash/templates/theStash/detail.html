@@ -26,8 +26,6 @@
         <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
         {% endif %}
 
-
-
     </div>
 
 
@@ -71,29 +69,43 @@
                         <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{ category }}</a></li>
                     {% endfor %}
                 </ul>
+            
             </div>
         </div>
+        
     </div>
+    <div>
+    {% load crispy_forms_tags %}
+    <form method="d-inline p-2" style="width: 50rem;">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+    <button type ="submit" class="btn-warning rounded">Comment</button>
+    </form>
 
-</div>
+    </div>
+    <h3 class= "text-muted">Comments</h3>
+
+    {% for comment in comments %}
+    <div class="card mb-3" style="width: 18rem;">
+        <div class="card-header text-muted fw-bolder">
+          <p class="fst-italic"> {{comment.from_user}}</p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ comment.idea_comment }}</h5>
+          <p class="card-text text-warning">{{ comment.comment_likes }} Likes</p>
 
 
+        </div>
+        {% load crispy_forms_tags %}
+        {% csrf_token %}
 
 
+        
+      </div>
+  {% empty %}
+    <p>There are no comments yet.</p>
 
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
+  {% endfor %}
 
 
 {% endblock %}

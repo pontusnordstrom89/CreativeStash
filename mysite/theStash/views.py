@@ -6,14 +6,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db.models import Q
-from .forms import SignUpForm
-from .models import Idea, Category, Profile, Like
+from .forms import SignUpForm, CommentForm
+from .models import Idea, Category, Profile, Comments, Like
+
 
 
 
 def index(request):
     template = loader.get_template('theStash/index.html')
-
+    
     info = ""
     if request.user.is_authenticated:
         #Get user interests
@@ -48,12 +49,32 @@ def detail(request, user_id, idea_id):
     idea = get_object_or_404(Idea, pk=idea_id)
     idea_creator_profile = Profile.objects.get(user_id=user_id)
     idea_creator = User.objects.get(pk=user_id)
+    comments = Comments.objects.filter(idea=idea_id)
 
     template = loader.get_template('theStash/detail.html')
+
+
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet          
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.from_user = request.user
+            new_comment.idea_id = idea_id
+            # Save the comment to the database
+            new_comment.save()
+            return redirect(f'/{user_id}/{idea_id}')
+    else:
+        comment_form = CommentForm()
+
     context = {
         'idea': idea,
         'profile': idea_creator_profile,
         'creator': idea_creator,
+        'comments': comments,
+        'comment_form': comment_form
     }
     return HttpResponse(template.render(context, request))
 
@@ -135,6 +156,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'theStash/signup.html', {'form': form})
+
  
 def like_counter(id):
     like_idea = Like.objects.filter(idea_id=id)
@@ -149,4 +171,5 @@ def most_liked(request):
 
     }
     return HttpResponse(template.render(context, request))
+
 

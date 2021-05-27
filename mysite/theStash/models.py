@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.fields import IntegerField
 
 
 # Create your models here.
@@ -35,9 +36,18 @@ class Idea(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_when = models.DateField(auto_now=True)
 
-
     def __str__(self):
         return self.idea_title
+    
+class Comments(models.Model):
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="comments_idea")
+    idea_comment = models.TextField()
+    comment_likes = IntegerField(null= True) 
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.idea_comment
 
 class Like(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="likes") 
@@ -47,3 +57,4 @@ class Like(models.Model):
     def __str__(self):
         self.namn="test"
         return self.namn  
+
