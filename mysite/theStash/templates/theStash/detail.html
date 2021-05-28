@@ -5,6 +5,21 @@
     $("#details").click(function () {
         $("#vy-1").fadeToggle();
     });
+
+    function like_comment(like_id) {
+        $.ajax({
+            url:'/ajax/like_comment/',
+            data:{
+                'like_comment':like_id
+            },
+            dataType:'json',
+            success: function (data) {
+                console.log(data.message);
+                $(`#like-counter-${like_id}`).text(data.message);
+
+            }        
+        })    
+    }
     
 </script>
 
@@ -79,7 +94,7 @@
     <form method="post" style="width: 50rem;">
     {% csrf_token %}
     {{ comment_form|crispy }}
-    <button type ="submit" class="btn-warning rounded">Comment</button>
+    <button type="submit" class="btn-warning rounded">Comment</button>
     </form>
 
     </div>
@@ -92,8 +107,10 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ comment.idea_comment }}</h5>
-          <p class="card-text text-warning">{{ comment.comment_likes }} Likes</p>
+          <em class="card-text text-warning" id="like-counter-{{comment.id}}">{{ comment.comment_likes }}</em>
+        <em> likes</em>
 
+        <button type="button" id="{{comment.id}}" onClick="like_comment(this.id)">Like comment</button>
 
         </div>
         {% load crispy_forms_tags %}

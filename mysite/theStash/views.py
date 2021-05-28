@@ -1,4 +1,5 @@
 import operator
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
@@ -172,4 +173,19 @@ def most_liked(request):
     }
     return HttpResponse(template.render(context, request))
 
+def like_comment(request):
+    comment_id = request.GET.get('like_comment', None)
+    
+    
+    likes = Comments.objects.get(id=comment_id)
+    if likes.comment_likes == None:
+        likes.comment_likes = 1
+
+    else:
+        likes.comment_likes += 1
+    likes.save()
+
+    
+    data = {'message':likes.comment_likes}
+    return JsonResponse(data)
 
