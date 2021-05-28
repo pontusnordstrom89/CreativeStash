@@ -57,6 +57,8 @@
                             {% for like in idea_data.likes.all%}
                             <em id="{{idea_data.id}}"> {{like.idea_like}} Likes</em> <button type="button" id="{{idea_data.idea_id}}"> LIKE </button> 
                             {% endfor %}
+
+                            <p class="text-dark">{{ idea_data.comments_idea.all|length }} comments </p>
                             
                         </div>
                     </div>
