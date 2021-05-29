@@ -2,11 +2,11 @@ $("#show-add-category").click(function () {
     $("#add-category-form").toggle();
 });
 
-$("#{{idea_data.idea_id}}").click(function () {
+$(".like_button").click(function () {
     $.ajax({
-        url: '/theStash/ajax/like_counter/',
+        url: '/theStash/ajax/like_counter',
         data: {
-            'idea_id': idea_data.idea_id
+            'idea_id': $(".like_button").attr("id")
         },
         dataType: 'json',
         success: function (data) {
@@ -15,4 +15,6 @@ $("#{{idea_data.idea_id}}").click(function () {
     });
     
 });
+
+
 

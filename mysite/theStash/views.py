@@ -42,7 +42,7 @@ def index(request):
         'everything': my_dict,
         'info': info
     }
-
+    print (my_dict)
     return HttpResponse(template.render(context, request))
 
 
@@ -159,12 +159,21 @@ def signup(request):
     return render(request, 'theStash/signup.html', {'form': form})
 
  
-def like_counter(id):
-    like_idea = Like.objects.filter(idea_id=id)
-    like_idea.idea_like += 1 
-    like_idea.save()
+def like_counter(request):
+    idea_id = request.GET.get('idea_id', None)
+    print (idea_id)
+    likes = Like.objects.get(idea_id=idea_id)
+    print (likes)
+    if likes.idea_like == None:
 
-    return like_idea
+        likes.idea_like = 1
+
+    else:
+        likes.idea_like += 1
+    likes.save()
+    return HttpResponse('')
+  
+    
 
 def most_liked(request):
     template = loader.get_template('theStash/most_liked.html')

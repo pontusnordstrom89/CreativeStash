@@ -34,7 +34,7 @@
             <div class="carousel-item h-100">
                 {% endif %}
 
-                <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
+                <a href="#" class="text-light text-decoration-none">
                     
                     <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
 
@@ -45,17 +45,17 @@
                         <div class="card-body">
                             <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
 
-                            <p class="card-text text-dark text-truncate">{{ idea_data.idea_description }}</p>
+                            <p class="card-text text-dark text-truncate">{{ idea_data.idea_description}}</p>
 
 
                         </div>
-
+                        
                         <div class="card-footer d-flex w-100">
                             <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea_data.creator }}</strong></div>
                             <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea_data.created_date }}</em></div>
                           
                             {% for like in idea_data.likes.all%}
-                            <em id="{{idea_data.id}}"> {{like.idea_like}} Likes</em> <button type="button" id="{{idea_data.idea_id}}"> LIKE </button> 
+                            <em id="{{idea_data.id}}"> {{like.idea_like}} Likes</em> <button class="like_button" type="button" id="{{idea_data.id}}"> LIKE </button> 
                             {% endfor %}
 
                             <p class="text-dark">{{ idea_data.comments_idea.all|length }} comments </p>
