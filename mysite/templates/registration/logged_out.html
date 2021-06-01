@@ -1,6 +1,39 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>Logged out!</p>
-<a href="{% url 'login'%}">Click here to login again.</a>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <img class="img-fluid"
+            src="https://image.freepik.com/free-photo/inspiration-crumpled-yellow-paper-light-bulb-idea-white-background_23-2147890098.jpg"
+            alt="Image not found">
+    </div>
+    <div class="col-md-8">
+        <h2>Logged out!</h2>
+
+        <h3>Welcome back!</h3>
+
+        <h4><a class="text-decoration-none" href="{% url 'login'%}">Click here to login again</a></h4>
+    </div>
+    
+    
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

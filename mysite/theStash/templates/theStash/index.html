@@ -35,8 +35,8 @@
                 {% endif %}
 
                 <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
-                    
-                    <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
+
+                    <div class="card col-sm-3 d-flex index-cards-box-shadow m-1" style="float:left;">
 
                         <div class="card-image-control">
                             <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
@@ -49,74 +49,84 @@
 
 
                         </div>
-
-                        <div class="card-footer d-flex w-100">
-                            <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea_data.creator }}</strong></div>
-                            <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea_data.created_date }}</em></div>
-                          
-                            {% for like in idea_data.likes.all%}
-                            <em id="{{idea_data.id}}"> {{like.idea_like}} Likes</em> <button type="button" id="{{idea_data.idea_id}}"> LIKE </button> 
-                            {% endfor %}
-
-                            <p class="text-dark">{{ idea_data.comments_idea.all|length }} comments </p>
-                            
-                        </div>
-                    </div>
                 </a>
-                
-                {% if forloop.last and forloop.counter0 <= 3 %}
-            </div>
-                {% elif forloop.last and forloop.counter0 >= 4%}
-                
-                
+
+                <div class="d-flex justify-content-between w-100 cs-card-footer p-1">
+                    <div class="col-md-6">
+                        <a href="/stashProfile/social_profile/{{ idea_data.creator_id }}" class="text-capitalize m-2">{{ idea_data.creator }}</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        {% for like in idea_data.likes.all%}
+                        <em id="{{idea_data.id}}"> {{like.idea_like}}</em>
+                        <img height="16" width="16" class="img-fluid social-icons-cs" id="{{idea_data.idea_id}}"
+                            src="/media/icons/like.svg" alt="" onClick="like_idea(this.id)">
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-md-3">
+                        <em class="text-dark">{{ idea_data.comments_idea.all|length }}</em>
+                        <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}#comments-section"><img height="16"
+                                width="16" class="img-fluid social-icons-cs" src="/media/icons/comment.svg" alt=""></a>
+                    </div>
+
+
+                </div>
             </div>
 
-            
-                         
-            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            {% endif %}
-            {% endfor %}
-             
+
+            {% if forloop.last and forloop.counter0 <= 3 %} </div>
+                {% elif forloop.last and forloop.counter0 >= 4%}
+
 
         </div>
+
+
+
+        <button class="carousel-control-prev" type="button"
+            data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button"
+            data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        {% endif %}
+        {% endfor %}
+
+
     </div>
+</div>
 
 
-    {% endfor %}
-    {% else %}
-
-
-
-    <!--För inloggad utan intresse-->
-    <p>{{ info }}</p>
-    <p>Inloggad utan intresse</p>
-    <p>Länk till profilsidan</p>
+{% endfor %}
+{% else %}
 
 
 
-    {% endif %}
-
-    {% else %}
-    <!--För ej inloggade-->
-    <p>Ej inloggad</p>
-    {% endif %}
-
-    {% endblock %}
+<!--För inloggad utan intresse-->
+<p>{{ info }}</p>
+<p>Inloggad utan intresse</p>
+<p>Länk till profilsidan</p>
 
 
 
-    <!-- Change global CSS go to CreativeStash/mysite/staticfiles/css/globalstyle.css -->
-    <!-- For app specific CSS go to CreativeStash/mysite/theStash/static/css/globalstyle.css -->
+{% endif %}
+
+{% else %}
+<!--För ej inloggade-->
+<p>Ej inloggad</p>
+{% endif %}
+
+{% endblock %}
 
 
 
-    <!-- Page end -->
+<!-- Change global CSS go to CreativeStash/mysite/staticfiles/css/globalstyle.css -->
+<!-- For app specific CSS go to CreativeStash/mysite/theStash/static/css/globalstyle.css -->
+
+
+
+<!-- Page end -->
