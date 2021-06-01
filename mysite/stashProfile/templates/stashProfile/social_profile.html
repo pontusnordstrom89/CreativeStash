@@ -6,8 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/stashProfile/style.css' %}">
 
 <div class="row mt-5 profile-links">
-    {% if user.is_authenticated and user.id == profile.user_id %}
-
     <div class="col-md-3 justify-content-md-center">
         {% if profile.profile_picture %}
         <img class="img-fluid rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
@@ -41,14 +39,15 @@
             <a class="text-decoration-none text-capitalize category-cloud" href="/theStash/{{ interest }}/">{{ interest }}</a><strong></strong>
             {% endfor %}
         </div>
-
+        {% if user.is_authenticated and user.id == profile.user_id %}
         <div class="w-100 mt-3 d-flex flex-row-reverse">
             <a href="/stashProfile/edit_social_profile/{{ user.id }}" class="btn btn-warning profile-button">Edit
                 profile</a>
         </div>
+        {% endif %}
     </div>
 </div>
-{% endif %}
+
 
 <hr>
 {% if ideas %}
