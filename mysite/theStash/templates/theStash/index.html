@@ -1,6 +1,25 @@
 {% extends "base_generic.html" %}
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+{% block javascript %}
+<script>
 
+function like_function(idea_id){
+    $.ajax({
+        url: '/ajax/like_counter/',
+        data: {
+            'idea_id': idea_id
+        },
+        dataType: 'json',
+        success: function (data) {
+            $(`#like_idea_counter-${idea_id}`).text(data.message);
+        }
+    });
+    
+};
+    
+</script>
+
+{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -57,13 +76,15 @@
                     </div>
 
                     <div class="col-md-3">
+                       {%if idea_data.likes.all%}
                         {% for like in idea_data.likes.all%}
-                        <em id="{{idea_data.id}}"> {{like.idea_like}}</em>
-                        <img id="{{idea_data.id}}" height="16" width="16" class="img-fluid social-icons-cs" 
-                            src="/media/icons/like.svg" alt="" onClick="like_idea(this.id)">
+                          <em id="like_idea_counter-{{idea_data.id}}"> {{like.idea_like}} </em>
                         {% endfor %}
+                        {%else%}
+                        <em id="like_idea_counter-{{idea_data.id}}"> 0</em>
+                        {%endif%}
+                        <img height="16" width="16" class="img-fluid social-icons-cs" id="{{idea_data.id}}" src="/media/icons/like.svg" alt="" onClick="like_function(this.id)">
                     </div>
-
                     <div class="col-md-3">
                         <em class="text-dark">{{ idea_data.comments_idea.all|length }}</em>
                         <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}#comments-section"><img height="16"

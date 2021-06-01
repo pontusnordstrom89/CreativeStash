@@ -159,12 +159,19 @@ def signup(request):
     return render(request, 'theStash/signup.html', {'form': form})
 
  
-def like_counter(id):
-    like_idea = Like.objects.filter(idea_id=id)
-    like_idea.idea_like += 1 
-    like_idea.save()
-
-    return like_idea
+def like_counter(request):
+    idea_id = request.GET.get('idea_id', None)
+    print(idea_id)
+    try: 
+        like_idea = Like.objects.get(idea_id=idea_id)
+        like_idea.idea_like += 1
+        like_idea.save()
+    except:
+        idea = Idea.objects.get(id=idea_id)
+        like_idea = Like(idea=idea, idea_like = 1)
+        like_idea.save()
+    data = {'message': like_idea.idea_like}
+    return JsonResponse(data)
 
 def most_liked(request):
     template = loader.get_template('theStash/most_liked.html')
