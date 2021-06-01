@@ -161,7 +161,6 @@ def signup(request):
  
 def like_counter(request):
     idea_id = request.GET.get('idea_id', None)
-    print(idea_id)
     try: 
         like_idea = Like.objects.get(idea_id=idea_id)
         like_idea.idea_like += 1
