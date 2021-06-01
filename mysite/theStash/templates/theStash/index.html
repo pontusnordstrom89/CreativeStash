@@ -59,7 +59,7 @@
                     <div class="col-md-3">
                         {% for like in idea_data.likes.all%}
                         <em id="{{idea_data.id}}"> {{like.idea_like}}</em>
-                        <img height="16" width="16" class="img-fluid social-icons-cs" id="{{idea_data.idea_id}}"
+                        <img id="{{idea_data.id}}" height="16" width="16" class="img-fluid social-icons-cs" 
                             src="/media/icons/like.svg" alt="" onClick="like_idea(this.id)">
                         {% endfor %}
                     </div>
