@@ -39,14 +39,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'stashEditor:create' %}">Create Idea</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'stashEditor:how_it_works'%}">How it works</a>
+                            <a class="nav-link" href="{% url 'theStash:most_liked' %}">Most liked</a>
                         </li>
-
+                  
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stashEditor:how_it_works'%}">How it works</a>
+                      </li>
                     </ul>
 
 
