@@ -105,7 +105,7 @@
     {% for comment in comments %}
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-header text-muted fw-bolder">
-            <em class="fst-italic">Made by:  <u>{{comment.from_user}}</u></em>
+            <em class="fst-italic">Made by:  <u><a href="/stashProfile/social_profile/{{comment.from_user.id}}">{{comment.from_user}}</a></u></em>
         </div>
         <div class="card-body">
             <p class="card-title">{{ comment.idea_comment }}</p>
