@@ -41,17 +41,14 @@
                             <a class="nav-link" href="{% url 'stashEditor:create' %}">Create Idea</a>
                         </li>
 
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'stashEditor:how_it_works'%}">How it works</a></li>
-                    </ul>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stashEditor:how_it_works'%}">How it works</a>
+                        </li>
 
                     </ul>
+
+
+                
 
                     <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
                         <div class="input-group">
@@ -124,7 +121,7 @@
                     <div class="col-md-4">
                         <h5 class=text-warning>Quick links</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                            <li><a href="/"><i class="fa fa-angle-double-right"></i>Home</a></li>
                             <li><a href="{% url 'stashEditor:how_it_works'%}"><i
                                         class="fa fa-angle-double-right"></i>Get Started</a></li>
                         </ul>
