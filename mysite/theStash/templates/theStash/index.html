@@ -134,12 +134,19 @@ function like_function(idea_id){
 
 
 
-{% endif %}
 
-{% else %}
-<!--För ej inloggade-->
-<p>Ej inloggad</p>
-{% endif %}
+    {% endif %}
+    {% else %}
+    
+    <!--För ej inloggade-->
+    
+                <div class="not-auth">
+                    <img class="default-img" src="/media/frontpics/1.jpg">
+                    <h1 class="this-header">Share your Ideas with CreativeStash!</h1>
+                </div>
+    
+    {% endif %}
+
 
 {% endblock %}
 
