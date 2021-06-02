@@ -51,8 +51,13 @@
     <div class="col-md-3 text-center">
         <div class="p-1 bg-dark rounded">
 
-            <img class="img-thumbnail rounded" src="/media/{{profile.profile_picture}}" alt="profilepicture"
-                id="idea_user_profile_picture">
+          <div class="justify-content-md-center">
+              {% if profile.profile_picture %}
+              <img class="img-fluid rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
+              {% else %}
+              <img class="img-fluid" src="/media/profilepics/default_profile.png">
+              {%endif%}
+          </div>
             <h3 class="bg-warning rounded text-uppercase mt-3">{{ creator.username }}</h3>
             <h3 class="mt-1"><a href="/stashProfile/social_profile/{{ idea.creator_id }}" class="btn btn-warning btn-lg"
                     id="visit_profile_button">Profile</a></h3>
