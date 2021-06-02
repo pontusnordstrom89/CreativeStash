@@ -8,19 +8,19 @@
 
     function like_comment(like_id) {
         $.ajax({
-            url:'/ajax/like_comment/',
-            data:{
-                'like_comment':like_id
+            url: '/ajax/like_comment/',
+            data: {
+                'like_comment': like_id
             },
-            dataType:'json',
+            dataType: 'json',
             success: function (data) {
                 console.log(data.message);
                 $(`#like-counter-${like_id}`).text(data.message);
 
-            }        
-        })    
+            }
+        })
     }
-    
+
 </script>
 
 {% endblock %}
@@ -31,9 +31,9 @@
 
 <h1 class="mt-5 ">{{ idea.idea_title }}</h1>
 <div class="row d-flex justify-content-between">
-    
+
     <div class="col-md-8 mr-auto border rounded p-3 bg-light">
-        
+
         <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
             alt="Card image cap">
         <p class="">{{ idea.idea_description }}</p>
@@ -46,7 +46,7 @@
 
     <div class="col-md-3 text-center">
         <div class="p-1 bg-dark rounded">
-            
+
             <img class="img-thumbnail rounded" src="/media/{{profile.profile_picture}}" alt="profilepicture"
                 id="idea_user_profile_picture">
             <h3 class="bg-warning rounded text-uppercase mt-3">{{ creator.username }}</h3>
@@ -81,21 +81,23 @@
 
                 <ul class="list-group list-unstyled">
                     {% for category in idea.idea_category.all %}
-                        <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{ category }}</a></li>
+                    <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{
+                            category }}</a></li>
                     {% endfor %}
                 </ul>
-            
+
             </div>
         </div>
-        
     </div>
-    <div>
-    {% load crispy_forms_tags %}
-    <form method="post" style="width: 50rem;">
-    {% csrf_token %}
-    {{ comment_form|crispy }}
-    <button type="submit" class="btn-warning rounded">Comment</button>
-    </form>
+
+
+    <div class="col-md-8 bg-warning rounded mt-2">
+        {% load crispy_forms_tags %}
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form|crispy }}
+            <button type="submit" class="btn btn-outline-warning bg-dark mt-2 mb-2">Comment</button>
+        </form>
 
     </div>
     <h3 class="text-muted" id="comments-section">Comments</h3>
@@ -103,26 +105,27 @@
     {% for comment in comments %}
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-header text-muted fw-bolder">
-          <p class="fst-italic"> {{comment.from_user}}</p>
+            <em class="fst-italic">Made by:  <u>{{comment.from_user}}</u></em>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{ comment.idea_comment }}</h5>
-          <em class="card-text text-warning" id="like-counter-{{comment.id}}">{{ comment.comment_likes }}</em>
-        <em> likes</em>
-
-        <button type="button" id="{{comment.id}}" onClick="like_comment(this.id)">Like comment</button>
-
+            <p class="card-title">{{ comment.idea_comment }}</p>
         </div>
-        {% load crispy_forms_tags %}
-        {% csrf_token %}
+        <div class="card-footer">
+            {% if comment.comment_likes == None %}
+            <em class="card-text" id="like-counter-{{comment.id}}">0</em>
+            {% else %}
+            <em class="card-text" id="like-counter-{{comment.id}}">{{ comment.comment_likes }}</em>
+            {% endif %}
+            <em> likes</em>
+            <img height="16" width="16" class="img-fluid social-icons-cs" id="{{comment.id}}"
+                src="/media/icons/like.svg" alt="" onClick="like_comment(this.id)">
+        </div>
 
-
-        
-      </div>
-  {% empty %}
+    </div>
+    {% empty %}
     <p>There are no comments yet.</p>
 
-  {% endfor %}
-
+    {% endfor %}
+</div>
 
 {% endblock %}

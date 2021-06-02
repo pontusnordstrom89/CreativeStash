@@ -22,7 +22,7 @@
     {% csrf_token %}
     {{ form|crispy}}
     <button type="submit" class="btn btn-warning">Login</button>
-    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="hidden" name="next" />
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}

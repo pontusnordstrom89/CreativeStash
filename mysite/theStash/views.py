@@ -32,12 +32,12 @@ def index(request):
                 my_dict[category_name] = ideas
 
         if my_dict == {}:
-            info = 'Info text'
+            info = 'Seems like you do not have any interests yet, click here to choose some and filter ideas that you will like!'
 
     else:
         my_dict = Idea.objects.all()
         
-
+    
     context = {
         'everything': my_dict,
         'info': info

@@ -11,6 +11,7 @@
         <img class="img-fluid rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
         {% else %}
         <img class="img-fluid" src="/media/profilepics/default_profile.png">
+        <em>Add a profilepicture in edit profile!</em>
         {%endif%}
     </div>
     <div class="col-md-6 text-center">
@@ -35,9 +36,13 @@
 
         <h4 class="text-light text-center">Interests Cloud</h4>
         <div class="w-100">
+            {% if user_interests %}
             {% for interest in user_interests %}
             <a class="text-decoration-none text-capitalize category-cloud" href="/theStash/{{ interest }}/">{{ interest }}</a><strong></strong>
             {% endfor %}
+            {% else %}
+            <p class="text-light">You don't have any interests, edit profile to add some!</p>
+            {% endif %}
         </div>
         {% if user.is_authenticated and user.id == profile.user_id %}
         <div class="w-100 mt-3 d-flex flex-row-reverse">
@@ -120,6 +125,9 @@
     
     {% endfor %}
 </div>
+
+{% else %}
+<a class="text-decoration-none text-warning" href="/stashEditor/create"><h3 class="bg-dark rounded text-center p-3">Eyy, you havent created any ideas yet, click here and create your first idea!</h3></a>
 {% endif %}
 
 

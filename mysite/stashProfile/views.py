@@ -91,7 +91,8 @@ def edit_social_profile(request, user_profile_id):
 
 
     context = {
-        'form': form
+        'form': form,
+        'profile': profile
     }
 
     return HttpResponse(template.render(context, request))

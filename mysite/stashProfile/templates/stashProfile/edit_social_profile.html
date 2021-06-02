@@ -2,19 +2,32 @@
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
 {% block content %}
 {% load crispy_forms_tags %}
+<div class="row">
+  <div class="col-md-6">
+    <form action="" method="post" id="EditSocialProfile" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2 class="bg-dark text-warning rounded p-2">Tell us about you.</h2>
+      <p>Write your bio and add some links to your best social media profile(s).
+        So that other creatives can see your work!</p>
 
-<form action="" method="post" id="EditSocialProfile" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h2>Tell us about you.</h2>
-    <p>Write your bio and add some links to your best social media profile(s).
-      So that other creatives can see your work!</p>
+      {{ form|crispy }}
+      <em>Ctrl or shift + click to select multiple items</em><br>
+      <button class="btn btn-warning mt-2" type="submit">Update</button>
 
-    {{ form|crispy }}
+    </form>
+  </div>
+  <div class="col-md-6 border bg-dark text-center rounded">
+    <h3 class="text-warning">Current profile</h3>
+    {% if profile.profile_picture %}
+    <img class="img-thumbnail rounded" src="/media/{{ profile.profile_picture }}" alt="profile picture">
+    {% else %}
+    <img class="img-fluid" src="/media/profilepics/default_profile.png">
+    {% endif %}
 
-    <button class="btn btn-warning" type="submit">Update</button>
+    {% if profile.bio %}
+    <p class="text-light">{{profile.bio}}</p>
+    {% endif %}
 
-</form>
-
-
-
+  </div>
+</div>
 {% endblock %}

@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+        
+
 
 
     </head>
@@ -37,15 +39,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <p> class="nav-item">
-                         <p>  <a class="nav-link" href="{% url 'stashEditor:create' %}">Create Idea</a> </p> 
-                           <p> <a class="nav-link" href="{% url 'theStash:most_liked' %}">Most liked</a></p>
-                          <p>  <a class="nav-link" href="{% url 'stashEditor:how_it_works'%}">How it works</a></p>
-                        </p>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stashEditor:create' %}">Create Idea</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'theStash:most_liked' %}">Most liked</a>
+                        </li>
+                  
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stashEditor:how_it_works'%}">How it works</a>
+                      </li>
                     </ul>
 
 
-                    </ul>
+                
 
                     <form class="d-flex" action="{% url 'theStash:search_result' %}" method="get">
                         <div class="input-group">
@@ -84,8 +93,8 @@
 
             </div>
         </nav>
-
-        <main class="container-fluid">
+        <main class="container-fluid ">
+            
             <div class="row justify-content-md-center main-body">
                 <div class="col-sm-10">
 
@@ -103,6 +112,7 @@
 
                 </div>
             </div>
+            
         </main>
 
         <footer>
@@ -118,7 +128,7 @@
                     <div class="col-md-4">
                         <h5 class=text-warning>Quick links</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                            <li><a href="/"><i class="fa fa-angle-double-right"></i>Home</a></li>
                             <li><a href="{% url 'stashEditor:how_it_works'%}"><i
                                         class="fa fa-angle-double-right"></i>Get Started</a></li>
                         </ul>
