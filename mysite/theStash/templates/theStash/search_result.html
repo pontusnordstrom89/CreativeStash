@@ -21,66 +21,96 @@
 </div>
 
 
-<div class="col">
-    <div class="alert alert-dark" role="alert">
+
+<div class="col-md-12">
+    <div class="bg-dark text-warning p-2 rounded">
         <h3>Based on idea</h3>
     </div>
+
+
     <div class="d-flex">
-        {% for idea in search_result_idea %}
+        {% for idea_data in search_result_idea %}
 
-        <div class="card" style="width: 17rem;">
-            <div class="card-header text-muted">
-                <em>Author: </em><a href="#" a>{{idea.creator}}</a>
-            </div>
-            <div class="card-body">
-                <img src="{{ idea.image }}" alt="{{ idea.idea_title }}" style="max-width:200px;">
-                <h5 class="card-title">{{ idea.idea_title }}</h5>
-                <p class="card-text">{{ idea.idea_description }}</p>
-            </div>
-            <div class="card-footer text-muted">
-                {% for obj in idea.idea_category.all %}
-                <em> {{ obj }}, </em>
+        <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
 
+            <div class="card col-sm-3 d-flex index-cards-box-shadow m-1" style="float:left;">
+
+                <div class="card-image-control">
+                    <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
+                </div>
+
+                <div class="card-body">
+                    <h4 class="card-title text-dark text-center text-capitalize">{{ idea_data.idea_title }}</h4>
+
+                    <p class="card-text text-dark text-truncate">{{ idea_data.idea_description }}</p>
+
+
+                </div>
+        </a>
+
+        <div class="d-flex justify-content-between w-100 cs-card-footer p-1">
+            <div class="col-md-6">
+                <a href="/stashProfile/social_profile/{{ idea_data.creator_id }}" class="text-capitalize m-2">{{idea_data.creator}}</a>
+            </div>
+
+            <div class="col-md-3">
+                {% for like in idea_data.likes.all%}
+                <em id="{{idea_data.id}}"> {{like.idea_like}}</em>
+                <img height="16" width="16" class="img-fluid social-icons-cs" id="{{idea_data.idea_id}}"
+                    src="/media/icons/like.svg" alt="" onClick="like_idea(this.id)">
                 {% endfor %}
-                <a href="/{{ idea.creator_id }}/{{ idea.id }}/" class="btn btn-warning">Read more</a>
             </div>
+
+            <div class="col-md-3">
+                <em class="text-dark">{{ idea_data.comments_idea.all|length }}</em>
+                <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}#comments-section"><img height="16" width="16"
+                        class="img-fluid social-icons-cs" src="/media/icons/comment.svg" alt=""></a>
+            </div>
+
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 </div>
 
 
-<div class="col">
-    <div class="alert alert-dark" role="alert">
-        <h3>Based on category</h3>
-    </div>
+
+<div class="col-md-12 bg-dark text-warning p-2 rounded">
+    <h3>Based on category</h3>
+</div>
+
+<div class="m-4">
     {% for category in search_result_category %}
     <a href="/theStash/{{ category }}/" class="btn btn-warning btn-lg">{{ category }}</a>
     {% endfor %}
 </div>
 
-
-<div class="col">
-    <div class="alert alert-dark" role="alert">
-        <h3>Based on user</h3>
-    </div>
-    
-    {% for user in search_result_user %}
-
-    <div class="card" style="width: 12rem;">
-        <img class="card-img-top" src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="profilepicture">
-        <div class="card-body">
-            <a href="/stashProfile/social_profile/{{ user.id }}"><h5 class="card-title">{{ user.username }}</h5></a>
-            <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
-        </div>
-        <div class="card-footer text-muted">
-    
-        </div>
-    </div>
-
-
-    {% endfor %}
+<div class="col-md-12 bg-dark text-warning p-2 rounded">
+    <h3>Based on user</h3>
 </div>
+
+{% for user in search_result_user %}
+
+<div class="card mt-4" style="width: 12rem;">
+
+    {% for image in user.user_profile.all %}
+    <img class="img-thumbnail" src="/media/{{ image.profile_picture }}" alt="profilepicture">
+    {% endfor %}
+    <div class="card-body text-center">
+        <a href="/stashProfile/social_profile/{{ user.id }}">
+            <h5 class="card-title">{{ user.username }}</h5>
+        </a>
+        <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+        <strong>Joined</strong><br>
+        <em>{{ user.date_joined}}</em>
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+</div>
+
+
+{% endfor %}
 
 
 {% else %}

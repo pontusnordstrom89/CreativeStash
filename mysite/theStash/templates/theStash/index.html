@@ -1,6 +1,25 @@
 {% extends "base_generic.html" %}
 <!-- Extends the global base_generic.html. PATH = CreativeStash/mysite/templates/base_generic.html-->
+{% block javascript %}
+<script>
 
+function like_function(idea_id){
+    $.ajax({
+        url: '/ajax/like_counter/',
+        data: {
+            'idea_id': idea_id
+        },
+        dataType: 'json',
+        success: function (data) {
+            $(`#like_idea_counter-${idea_id}`).text(data.message);
+        }
+    });
+    
+};
+    
+</script>
+
+{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -35,8 +54,8 @@
                 {% endif %}
 
                 <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}" class="text-light text-decoration-none">
-                    
-                    <div class="card col-sm-3 index-cards-box-shadow m-1" style="float:left;">
+
+                    <div class="card col-sm-3 d-flex index-cards-box-shadow m-1" style="float:left;">
 
                         <div class="card-image-control">
                             <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
@@ -49,54 +68,70 @@
 
 
                         </div>
-
-                        <div class="card-footer d-flex w-100">
-                            <div class="col d-flex justify-content-start"><strong class="text-dark text-capitalize">{{ idea_data.creator }}</strong></div>
-                            <div class="col d-flex justify-content-end"><em class="text-dark text-right">{{ idea_data.created_date }}</em></div>
-                            
-                            
-                        </div>
-
-                    </div>
                 </a>
-                
-                {% if forloop.last and forloop.counter0 <= 3 %}
-            </div>
-                {% elif forloop.last and forloop.counter0 >= 4%}
-                
-                
-            </div>
-            
 
-            
-                         
-            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            {% endif %}
-            {% endfor %}
-             
+                <div class="d-flex justify-content-between w-100 cs-card-footer p-1">
+                    <div class="col-md-6">
+                        <a href="/stashProfile/social_profile/{{ idea_data.creator_id }}" class="text-capitalize m-2">{{ idea_data.creator }}</a>
+                    </div>
+
+                    <div class="col-md-3">
+                       {%if idea_data.likes.all%}
+                        {% for like in idea_data.likes.all%}
+                          <em id="like_idea_counter-{{idea_data.id}}"> {{like.idea_like}} </em>
+                        {% endfor %}
+                        {%else%}
+                        <em id="like_idea_counter-{{idea_data.id}}"> 0</em>
+                        {%endif%}
+                        <img height="16" width="16" class="img-fluid social-icons-cs" id="{{idea_data.id}}" src="/media/icons/like.svg" alt="" onClick="like_function(this.id)">
+                    </div>
+                    <div class="col-md-3">
+                        <em class="text-dark">{{ idea_data.comments_idea.all|length }}</em>
+                        <a href="/{{ idea_data.creator_id }}/{{ idea_data.id }}#comments-section"><img height="16"
+                                width="16" class="img-fluid social-icons-cs" src="/media/icons/comment.svg" alt=""></a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            {% if forloop.last and forloop.counter0 <= 3 %} </div>
+                {% elif forloop.last and forloop.counter0 >= 4%}
+
 
         </div>
+
+
+
+        <button class="carousel-control-prev" type="button"
+            data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button"
+            data-bs-target="#slideshow-{{ forloop.parentloop.counter0 }}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        {% endif %}
+        {% endfor %}
+
+
     </div>
+</div>
 
 
-    {% endfor %}
-    {% else %}
+{% endfor %}
+{% else %}
 
 
 
-    <!--För inloggad utan intresse-->
-    <p>{{ info }}</p>
-    <p>Inloggad utan intresse</p>
-    <p>Länk till profilsidan</p>
+<!--För inloggad utan intresse-->
+<p>{{ info }}</p>
+<p>Inloggad utan intresse</p>
+<p>Länk till profilsidan</p>
+
 
 
 
@@ -112,13 +147,14 @@
     
     {% endif %}
 
-    {% endblock %}
+
+{% endblock %}
 
 
 
-    <!-- Change global CSS go to CreativeStash/mysite/staticfiles/css/globalstyle.css -->
-    <!-- For app specific CSS go to CreativeStash/mysite/theStash/static/css/globalstyle.css -->
+<!-- Change global CSS go to CreativeStash/mysite/staticfiles/css/globalstyle.css -->
+<!-- For app specific CSS go to CreativeStash/mysite/theStash/static/css/globalstyle.css -->
 
 
 
-    <!-- Page end -->
+<!-- Page end -->

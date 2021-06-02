@@ -5,6 +5,21 @@
     $("#details").click(function () {
         $("#vy-1").fadeToggle();
     });
+
+    function like_comment(like_id) {
+        $.ajax({
+            url:'/ajax/like_comment/',
+            data:{
+                'like_comment':like_id
+            },
+            dataType:'json',
+            success: function (data) {
+                console.log(data.message);
+                $(`#like-counter-${like_id}`).text(data.message);
+
+            }        
+        })    
+    }
     
 </script>
 
@@ -25,8 +40,6 @@
         {% if user.is_authenticated and user.id == profile.user_id %}
         <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
         {% endif %}
-
-
 
     </div>
 
@@ -71,29 +84,45 @@
                         <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{ category }}</a></li>
                     {% endfor %}
                 </ul>
+            
             </div>
         </div>
+        
     </div>
+    <div>
+    {% load crispy_forms_tags %}
+    <form method="post" style="width: 50rem;">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+    <button type="submit" class="btn-warning rounded">Comment</button>
+    </form>
 
-</div>
+    </div>
+    <h3 class="text-muted" id="comments-section">Comments</h3>
+
+    {% for comment in comments %}
+    <div class="card mb-3" style="width: 18rem;">
+        <div class="card-header text-muted fw-bolder">
+          <p class="fst-italic"> {{comment.from_user}}</p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ comment.idea_comment }}</h5>
+          <em class="card-text text-warning" id="like-counter-{{comment.id}}">{{ comment.comment_likes }}</em>
+        <em> likes</em>
+
+        <button type="button" id="{{comment.id}}" onClick="like_comment(this.id)">Like comment</button>
+
+        </div>
+        {% load crispy_forms_tags %}
+        {% csrf_token %}
 
 
+        
+      </div>
+  {% empty %}
+    <p>There are no comments yet.</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
+  {% endfor %}
 
 
 {% endblock %}
