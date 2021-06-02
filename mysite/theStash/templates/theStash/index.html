@@ -128,10 +128,14 @@ function like_function(idea_id){
 
 
 <!--För inloggad utan intresse-->
-<p>{{ info }}</p>
-<p>Inloggad utan intresse</p>
-<p>Länk till profilsidan</p>
+<div class="bg-dark rounded text-center">
+<h2 class="text-capitalize text-warning mt-3">Welcome {{ user.get_username }}</h2>
+<a href="/stashProfile/social_profile/{{ user.id }}"><h3 class="text-warning">{{ info }}</h3></a>
+<hr class="text-warning">
 
+<img width="20%" class="rounded mb-5" src="https://image.freepik.com/free-photo/inspiration-crumpled-yellow-paper-light-bulb-idea-white-background_23-2147890098.jpg" alt="lightbulb">
+<a href="/stashEditor/create"><h4 class="text-warning mb-2">Or click here to create a new idea</h4></a>
+</div>
 
 
 
