@@ -34,8 +34,12 @@
 
     <div class="col-md-8 mr-auto border rounded p-3 bg-light">
 
+        {% if idea.image %}
         <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="{{ idea.image }}"
-            alt="Card image cap">
+            alt="card">
+        {% else %}
+        <img class="img-thumbnail rounded float-left mr-2mb-1" style="max-width: 30%;" src="/media/default_idea.jpg" alt="card">
+        {% endif %}
         <p class="">{{ idea.idea_description }}</p>
         {% if user.is_authenticated and user.id == profile.user_id %}
         <a href="/stashProfile/edit_idea/{{ idea.id }}" class="btn btn-warning">Edit</a>
@@ -81,8 +85,7 @@
 
                 <ul class="list-group list-unstyled">
                     {% for category in idea.idea_category.all %}
-                    <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{
-                            category }}</a></li>
+                    <li class="text-decoration-none"><a class="text-capitalize" href="/theStash/{{ category }}/">{{category }}</a></li>
                     {% endfor %}
                 </ul>
 
@@ -101,7 +104,8 @@
 
     </div>
     <h3 class="text-muted" id="comments-section">Comments</h3>
-
+</div>
+<div class="row">
     {% for comment in comments %}
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-header text-muted fw-bolder">

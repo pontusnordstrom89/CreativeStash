@@ -58,7 +58,11 @@ function like_function(idea_id){
                     <div class="card col-sm-3 d-flex index-cards-box-shadow m-1" style="float:left;">
 
                         <div class="card-image-control">
+                            {% if idea.image %}
                             <img class="img-thumbnail" src="{{ idea_data.image }}" alt="{{ idea.idea_title }}">
+                            {% else %}
+                            <img class="img-thumbnail" src="/media/default_idea.jpg" alt="">
+                            {% endif %}
                         </div>
 
                         <div class="card-body">
