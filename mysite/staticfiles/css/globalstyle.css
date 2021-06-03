@@ -1,15 +1,13 @@
 #topbutton {
-
-    right: 10%;
     color: #ffc107;
     float: right;
-    font-size: 25px;
+    font-size: 19px;
     text-decoration: none;
-    padding-right:20px;
+    padding-right:25px;
+    
 
-
-}
-
+} 
+    
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: normal;
